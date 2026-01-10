@@ -7,13 +7,27 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.extensions.ExtensionObjectType;
 import org.verapdf.pd.PDCatalog;
 import org.verapdf.pd.PDDocument;
+import org.verapdf.pd.PDMetadata;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
+import org.verapdf.pdfa.flavours.PDFFlavours;
+import org.verapdf.xmp.XMPException;
+import org.verapdf.xmp.impl.VeraPDFMeta;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.EnumSet;
 
 public class GFAExtensions {
 
     public static EnumSet<ExtensionObjectType> getExtensions(PDDocument document, EnumSet<ExtensionObjectType> enableExtensions) {
         EnumSet<ExtensionObjectType> result = EnumSet.copyOf(enableExtensions);
+        result.addAll(getExtensionsFromCatalog(document));
+        result.addAll(getExtensionsFromMetadata(document));
+        return result;
+    }
+
+    private static EnumSet<ExtensionObjectType> getExtensionsFromCatalog(PDDocument document) {
+        EnumSet<ExtensionObjectType> result = EnumSet.noneOf(ExtensionObjectType.class);
         PDCatalog catalog = document.getCatalog();
         if (catalog == null) {
             return result;
@@ -45,6 +59,26 @@ public class GFAExtensions {
                     }
                 }
             }
+        }
+        return result;
+    }
+
+    private static EnumSet<ExtensionObjectType> getExtensionsFromMetadata(PDDocument document) {
+        EnumSet<ExtensionObjectType> result = EnumSet.noneOf(ExtensionObjectType.class);
+        if (document == null || document.getCatalog() == null) {
+            return result;
+        }
+        PDMetadata metadata = document.getCatalog().getMetadata();
+        if (metadata == null) {
+            return result;
+        }
+        try (InputStream is = metadata.getStream()) {
+            VeraPDFMeta veraPDFMeta = VeraPDFMeta.parse(is);
+            PDFAFlavour pdfaFlavour = GFModelParser.detectPDFAFlavour(veraPDFMeta);
+            if (PDFFlavours.isFlavourPart(pdfaFlavour, PDFAFlavour.Specification.ISO_19005_3)) {
+                result.add(ExtensionObjectType.ISO_19005_3);
+            }
+        } catch (XMPException | IOException ignored) {
         }
         return result;
     }

@@ -218,7 +218,7 @@ public class GFModelParser implements PDFAParser {
 				Collections.emptyList() : Collections.singletonList(defaultFlavour);
 	}
 
-	private static PDFAFlavour detectPDFAFlavour(VeraPDFMeta veraPDFMeta) {
+	public static PDFAFlavour detectPDFAFlavour(VeraPDFMeta veraPDFMeta) {
 		try {
 			Integer identificationPart = veraPDFMeta.getPDFAIdentificationPart();
 			String identificationConformance = veraPDFMeta.getPDFAIdentificationConformance();
