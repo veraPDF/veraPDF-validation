@@ -20,16 +20,52 @@
  */
 package org.verapdf.gf.model.impl.pd.gfse;
 
+import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.model.selayer.SEMathMLStructElem;
+import org.verapdf.pd.structure.StructureType;
+import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
+import org.verapdf.tools.TaggedPDFRoleMapHelper;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GFSEMathMLStructElem extends GFPDStructElem implements SEMathMLStructElem {
+
+    private static final Logger LOGGER = Logger.getLogger(GFSEMathMLStructElem.class.getCanonicalName());
 
     public static final String MATH_ML_STRUCTURE_ELEMENT_TYPE = "SEMathMLStructElem";
 
     public GFSEMathMLStructElem(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.MATH_ML, MATH_ML_STRUCTURE_ELEMENT_TYPE);
+    }
+
+    @Override
+    public Boolean gethasParentFormulaOrMathML() {
+        TaggedPDFRoleMapHelper taggedPDFRoleMapHelper = StaticResources.getRoleMapHelper();
+        org.verapdf.pd.structure.PDStructElem parent = ((org.verapdf.pd.structure.PDStructElem) simplePDObject).getParent();
+        if (parent != null && taggedPDFRoleMapHelper != null) {
+            Set<COSKey> keys = new HashSet<>();
+            while (parent != null) {
+                StructureType standardStructureType = PDStructElem.getStructureElementStandardStructureType(parent);
+                if ((standardStructureType != null && TaggedPDFConstants.FORMULA.equals(standardStructureType.getType().getValue())) || PDStructElem.isMathStandardType(standardStructureType)) {
+                    return true;
+                }
+                COSKey key = parent.getObject().getObjectKey();
+                if (keys.contains(key)) {
+                    LOGGER.log(Level.WARNING, "Struct tree loop found");
+                    break;
+                }
+                if (key != null) {
+                    keys.add(key);
+                }
+                parent = parent.getParent();
+            }
+        }
+        return false;
     }
 }
