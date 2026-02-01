@@ -78,6 +78,10 @@ public class GFAExtensions {
             if (PDFFlavours.isFlavourPart(pdfaFlavour, PDFAFlavour.Specification.ISO_19005_3)) {
                 result.add(ExtensionObjectType.ISO_19005_3);
             }
+            if (veraPDFMeta.containsDeclaration(VeraPDFMeta.WTPDF_ACCESSIBILITY_DECLARATION) ||
+                    veraPDFMeta.containsDeclaration(VeraPDFMeta.WTPDF_REUSE_DECLARATION)) {
+                result.add(ExtensionObjectType.WTPDF);
+            }
         } catch (XMPException | IOException ignored) {
         }
         return result;
