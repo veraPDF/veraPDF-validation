@@ -234,10 +234,10 @@ public class GFModelParser implements PDFAParser {
 
 	private static List<PDFAFlavour> detectWTPDFFlavour(VeraPDFMeta veraPDFMeta) {
 		List<PDFAFlavour> wtpdfFlavours = new LinkedList<>();
-		if (veraPDFMeta.containsDeclaration("http://pdfa.org/declarations/wtpdf#accessibility1.0")) {
+		if (veraPDFMeta.containsDeclaration(VeraPDFMeta.WTPDF_ACCESSIBILITY_DECLARATION)) {
 			wtpdfFlavours.add(PDFAFlavour.WTPDF_1_0_ACCESSIBILITY);
 		}
-		if (veraPDFMeta.containsDeclaration("http://pdfa.org/declarations/wtpdf#reuse1.0")) {
+		if (veraPDFMeta.containsDeclaration(VeraPDFMeta.WTPDF_REUSE_DECLARATION)) {
 			wtpdfFlavours.add(PDFAFlavour.WTPDF_1_0_REUSE);
 		}
 		return wtpdfFlavours;
