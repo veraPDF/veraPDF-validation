@@ -832,15 +832,28 @@ public class ChunkParser {
 						double shift = - obj.getReal() / 1000 *
 								graphicsState.getTextState().getTextFontSize() *
 								graphicsState.getTextState().getHorizontalScaling();
-						if (-obj.getReal() >= TextChunkUtils.TEXT_CHUNK_SPACE_RATIO && StaticStorages.getIsAddSpacesBetweenTextPieces()) {
-							textPieces.add(new TextPieces.TextPiece(" ", textPieces.getCurrentX(),
-									textPieces.getCurrentX() + shift));
-						} else {
-							textPieces.shiftCurrentX(shift);
-						}
+                        textPieces.shiftCurrentX(shift);
 					}
 				}
 			}
+            double previousEnd = 0;
+            double currentStart = 0;
+            List<TextPieces.TextPiece> spaces = new ArrayList<>();
+            for (TextPieces.TextPiece textPiece: textPieces.getTextPieces()) {
+                if (textPiece.equals(textPieces.getTextPieces().first())) {
+                    previousEnd = textPiece.getEndX();
+                    continue;
+                }
+                currentStart = textPiece.getStartX();
+                if (currentStart - previousEnd > graphicsState.getTextState().getTextFontSize() * TextChunkUtils.TEXT_LINE_SPACE_RATIO) {
+                    spaces.add(new TextPieces.TextPiece(" ", previousEnd,
+                            currentStart));
+                }
+                previousEnd = textPiece.getEndX();
+            }
+            for (TextPieces.TextPiece space: spaces) {
+                textPieces.add(space);
+            }
 			unicodeValue.append(textPieces.getValue());
 			if (!textPieces.isEmpty()) {
 				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getStartX(), 0));
@@ -867,17 +880,18 @@ public class ChunkParser {
 							" in font" + graphicsState.getTextState().getTextFont().getName());
 					width = 0.0;
 				}
-				double shift = (width *
-								graphicsState.getTextState().getTextFontSize() / 1000 +
-								graphicsState.getTextState().getCharacterSpacing() + (code == 32 ?
+				double shift = (graphicsState.getTextState().getCharacterSpacing() + (code == 32 ?
 								graphicsState.getTextState().getWordSpacing() : 0)) *
 								graphicsState.getTextState().getHorizontalScaling();
-				String value = graphicsState.getTextState().getTextFont().toUnicode(code);
+                width = width *
+                        graphicsState.getTextState().getTextFontSize() / 1000 *
+                        graphicsState.getTextState().getHorizontalScaling();
+                String value = graphicsState.getTextState().getTextFont().toUnicode(code);
 				if (symbolEnds != null) {
 					if (symbolEnds.isEmpty()) {
-						TextChunksHelper.updateSymbolEnds(symbolEnds, shift, 0, value != null ? value.length() : 0);
+						TextChunksHelper.updateSymbolEnds(symbolEnds,  width, 0, value != null ? value.length() : 0);
 					} else {
-						TextChunksHelper.updateSymbolEnds(symbolEnds, shift, symbolEnds.get(symbolEnds.size() - 1),
+						TextChunksHelper.updateSymbolEnds(symbolEnds,  width, symbolEnds.get(symbolEnds.size() - 1),
 						                                  value != null ? value.length() : 0);
 					}
 				}
@@ -892,7 +906,8 @@ public class ChunkParser {
 					unicodeValue.append(result);
 				} else {
 					textPieces.add(new TextPieces.TextPiece(result, textPieces.getCurrentX(),
-					                                        textPieces.getCurrentX() + shift));
+					                                        textPieces.getCurrentX() + width));
+                    textPieces.shiftCurrentX(shift);
 				}
 			}
 		} catch (IOException e) {

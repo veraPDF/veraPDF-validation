@@ -35,6 +35,10 @@ public class TextPieces {
 		currentX = textPiece.endX;
 	}
 
+    public SortedSet<TextPiece> getTextPieces() {
+        return textPieces;
+    }
+
 	public String getValue() {
 		StringBuilder unicodeValue = new StringBuilder();
 		for (TextPiece textPiece : textPieces) {
@@ -91,6 +95,10 @@ public class TextPieces {
 		public double getEndX() {
 			return endX;
 		}
+
+        public double getStartX() {
+            return startX;
+        }
 	}
 
 	public static class TextPieceComparator implements Comparator<TextPiece> {
