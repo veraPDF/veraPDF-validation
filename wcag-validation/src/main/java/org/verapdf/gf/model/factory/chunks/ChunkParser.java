@@ -891,7 +891,7 @@ public class ChunkParser {
 					unicodeValue.append(result);
 				} else {
 					textPieces.add(new TextPieces.TextPiece(result, textPieces.getCurrentX(),
-					                                        textPieces.getCurrentX() + shift + width));
+					                                        textPieces.getCurrentX() + width));
                     textPieces.shiftCurrentX(shift);
 				}
 			}
