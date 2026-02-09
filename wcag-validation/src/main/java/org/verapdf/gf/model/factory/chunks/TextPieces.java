@@ -77,6 +77,26 @@ public class TextPieces {
 		return ends;
 	}
 
+    public void addSpaces(double threshold) {
+        List<TextPiece> spaces = new ArrayList<>();
+        Iterator<TextPiece> validation = textPieces.iterator();
+        if (!validation.hasNext()) {
+            return;
+        }
+        TextPiece prev = validation.next();
+        double previousEnd = prev.getEndX();
+
+        while (validation.hasNext()) {
+            TextPiece piece = validation.next();
+            double currentStart = piece.getStartX();
+            if (currentStart - previousEnd > threshold) {
+                spaces.add(new TextPieces.TextPiece(" ", previousEnd, currentStart));
+            }
+            previousEnd = piece.getEndX();
+        }
+        textPieces.addAll(spaces);
+    }
+
 	public static class TextPiece {
 		private final String value;
 		private final double startX;
@@ -91,6 +111,10 @@ public class TextPieces {
 		public double getEndX() {
 			return endX;
 		}
+
+        public double getStartX() {
+            return startX;
+        }
 	}
 
 	public static class TextPieceComparator implements Comparator<TextPiece> {
