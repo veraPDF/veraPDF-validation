@@ -836,24 +836,9 @@ public class ChunkParser {
 					}
 				}
 			}
-            double previousEnd = 0;
-            double currentStart = 0;
-            List<TextPieces.TextPiece> spaces = new ArrayList<>();
-            for (TextPieces.TextPiece textPiece: textPieces.getTextPieces()) {
-                if (textPiece.equals(textPieces.getTextPieces().first())) {
-                    previousEnd = textPiece.getEndX();
-                    continue;
-                }
-                currentStart = textPiece.getStartX();
-                if (currentStart - previousEnd > graphicsState.getTextState().getTextFontSize() * TextChunkUtils.TEXT_LINE_SPACE_RATIO) {
-                    spaces.add(new TextPieces.TextPiece(" ", previousEnd,
-                            currentStart));
-                }
-                previousEnd = textPiece.getEndX();
-            }
-            for (TextPieces.TextPiece space: spaces) {
-                textPieces.add(space);
-            }
+            double threshold = graphicsState.getTextState().getTextFontSize() * TextChunkUtils.TEXT_LINE_SPACE_RATIO;
+            textPieces.addSpacesByShift(threshold);
+
 			unicodeValue.append(textPieces.getValue());
 			if (!textPieces.isEmpty()) {
 				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getStartX(), 0));
@@ -889,9 +874,9 @@ public class ChunkParser {
                 String value = graphicsState.getTextState().getTextFont().toUnicode(code);
 				if (symbolEnds != null) {
 					if (symbolEnds.isEmpty()) {
-						TextChunksHelper.updateSymbolEnds(symbolEnds,  width, 0, value != null ? value.length() : 0);
+						TextChunksHelper.updateSymbolEnds(symbolEnds, shift + width, 0, value != null ? value.length() : 0);
 					} else {
-						TextChunksHelper.updateSymbolEnds(symbolEnds,  width, symbolEnds.get(symbolEnds.size() - 1),
+						TextChunksHelper.updateSymbolEnds(symbolEnds, shift + width, symbolEnds.get(symbolEnds.size() - 1),
 						                                  value != null ? value.length() : 0);
 					}
 				}
@@ -906,7 +891,7 @@ public class ChunkParser {
 					unicodeValue.append(result);
 				} else {
 					textPieces.add(new TextPieces.TextPiece(result, textPieces.getCurrentX(),
-					                                        textPieces.getCurrentX() + width));
+					                                        textPieces.getCurrentX() + shift + width));
                     textPieces.shiftCurrentX(shift);
 				}
 			}

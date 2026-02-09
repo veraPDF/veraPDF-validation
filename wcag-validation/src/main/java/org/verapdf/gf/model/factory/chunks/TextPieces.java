@@ -20,6 +20,8 @@
  */
 package org.verapdf.gf.model.factory.chunks;
 
+import org.verapdf.wcag.algorithms.semanticalgorithms.utils.TextChunkUtils;
+
 import java.util.*;
 
 /**
@@ -80,6 +82,26 @@ public class TextPieces {
 		}
 		return ends;
 	}
+
+    public void addSpacesByShift(double threshold) {
+        List<TextPiece> spaces = new ArrayList<>();
+        Iterator<TextPiece> it = textPieces.iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        TextPiece prev = it.next();
+        double previousEnd = prev.getEndX();
+
+        while (it.hasNext()) {
+            TextPiece piece = it.next();
+            double currentStart = piece.getStartX();
+            if (currentStart - previousEnd > threshold) {
+                spaces.add(new TextPieces.TextPiece(" ", previousEnd, currentStart));
+            }
+            previousEnd = piece.getEndX();
+        }
+        textPieces.addAll(spaces);
+    }
 
 	public static class TextPiece {
 		private final String value;
