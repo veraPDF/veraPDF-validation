@@ -837,7 +837,7 @@ public class ChunkParser {
 				}
 			}
             double threshold = graphicsState.getTextState().getTextFontSize() * TextChunkUtils.TEXT_LINE_SPACE_RATIO;
-            textPieces.addSpacesByShift(threshold);
+            textPieces.addSpaces(threshold);
 
 			unicodeValue.append(textPieces.getValue());
 			if (!textPieces.isEmpty()) {
