@@ -810,24 +810,16 @@ public class ChunkParser {
 		}
 	}
 
-	private List<Double> parseTextShowArgument(COSBase argument, StringBuilder unicodeValue, Matrix textRenderingMatrix) {
+	private TextPieces parseTextShowArgument(COSBase argument) {
+		TextPieces textPieces = new TextPieces();
 		if (argument.getType() == COSObjType.COS_STRING) {
-			List<Double> symbolEnds = new ArrayList<>();
-			symbolEnds.add(0.0);
-			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
-			parseString((COSString) argument.getDirectBase(), unicodeValue, null, symbolEnds);
-			if (!symbolEnds.isEmpty()) {
-				textMatrix.concatenate(Matrix.getTranslateInstance(symbolEnds.get(symbolEnds.size() - 1), 0));
-			}
-			return symbolEnds;
-		}
-		if (argument.getType() == COSObjType.COS_ARRAY) {
+			parseString((COSString) argument.getDirectBase(), textPieces);
+		} else if (argument.getType() == COSObjType.COS_ARRAY) {
 			COSArray array = (COSArray) argument;
-			TextPieces textPieces = new TextPieces();
 			for (COSObject obj : array) {
 				if (obj != null) {
 					if (obj.getType() == COSObjType.COS_STRING) {
-						parseString((COSString) obj.getDirectBase(), unicodeValue, textPieces, null);
+						parseString((COSString) obj.getDirectBase(), textPieces);
 					} else if (obj.getType().isNumber()) {
 						double shift = - obj.getReal() / 1000 *
 								graphicsState.getTextState().getTextFontSize() *
@@ -840,23 +832,11 @@ public class ChunkParser {
                 double threshold = graphicsState.getTextState().getTextFontSize() * TextChunkUtils.TEXT_LINE_SPACE_RATIO;
                 textPieces.addSpaces(threshold);
             }
-
-			unicodeValue.append(textPieces.getValue());
-			if (!textPieces.isEmpty()) {
-				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getStartX(), 0));
-			}
-			textRenderingMatrix.concatenate(calculateTextRenderingMatrix());
-			if (!textPieces.isEmpty()) {
-				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getEndX() - textPieces.getStartX(), 0));
-			} else {
-				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX(), 0));
-			}
-			return textPieces.getSymbolEnds();
 		}
-		return Collections.emptyList();
+		return textPieces;
 	}
 
-	private void parseString(COSString string, StringBuilder unicodeValue, TextPieces textPieces, List<Double> symbolEnds) {
+	private void parseString(COSString string, TextPieces textPieces) {
 		byte[] bytes = string.get();
 		try (InputStream inputStream = new ByteArrayInputStream(bytes)) {
 			while (inputStream.available() > 0) {
@@ -874,14 +854,6 @@ public class ChunkParser {
                         graphicsState.getTextState().getTextFontSize() / 1000 *
                         graphicsState.getTextState().getHorizontalScaling();
                 String value = graphicsState.getTextState().getTextFont().toUnicode(code);
-				if (symbolEnds != null) {
-					if (symbolEnds.isEmpty()) {
-						TextChunksHelper.updateSymbolEnds(symbolEnds, shift + width, 0, value != null ? value.length() : 0);
-					} else {
-						TextChunksHelper.updateSymbolEnds(symbolEnds, shift + width, symbolEnds.get(symbolEnds.size() - 1),
-						                                  value != null ? value.length() : 0);
-					}
-				}
 				String result = value;
 				if (result == null) {
 					result = StaticContainers.getIsIgnoreCharactersWithoutUnicode() ? "" : REPLACEMENT_CHARACTER_STRING;
@@ -889,13 +861,9 @@ public class ChunkParser {
 						LOGGER.log(Level.WARNING, "The glyph can not be mapped to Unicode");
 					}
 				}
-				if (textPieces == null) {
-					unicodeValue.append(result);
-				} else {
-					textPieces.add(new TextPieces.TextPiece(result, textPieces.getCurrentX(),
-					                                        textPieces.getCurrentX() + width));
-                    textPieces.shiftCurrentX(shift);
-				}
+				textPieces.add(new TextPieces.TextPiece(result, textPieces.getCurrentX(), 
+						textPieces.getCurrentX() + width));
+				textPieces.shiftCurrentX(shift);
 			}
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Error processing text show operator's string argument : " + new String(bytes), e);
@@ -907,17 +875,23 @@ public class ChunkParser {
 		COSBase argument = TextChunksHelper.getArgument(arguments, operatorType);
 		if (font != null && argument != null && (argument.getType() == COSObjType.COS_STRING ||
 		        argument.getType() == COSObjType.COS_ARRAY) && this.textMatrix != null) {
-			StringBuilder unicodeValue = new StringBuilder();
-			Matrix textRenderingMatrixBefore = new Matrix();
-			List<Double> symbolEnds = parseTextShowArgument(argument, unicodeValue, textRenderingMatrixBefore);
+			TextPieces textPieces = parseTextShowArgument(argument);
+			if (textPieces.isEmpty()) {
+				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX(), 0));
+				return null;
+			}
+			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getStartX(), 0));
+			Matrix textRenderingMatrixBefore = calculateTextRenderingMatrix();
+			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getEndX() - textPieces.getStartX(), 0));
 			Matrix textRenderingMatrixAfter = calculateTextRenderingMatrix();
+			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX() - textPieces.getEndX(), 0));
 			TextChunk textChunk = new TextChunk(TextChunksHelper.calculateTextBoundingBox(textRenderingMatrixBefore,
-				textRenderingMatrixAfter, font, pageNumber), unicodeValue.toString(),
+				textRenderingMatrixAfter, font, pageNumber), textPieces.getValue(),
 				font.getNameWithoutSubset(), TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
 				TextChunksHelper.calculateFontWeight(graphicsState.getTextState().getRenderingMode(), font),
 				font.getFontDescriptor().getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
 				graphicsState.getFillColor(), textRenderingMatrixAfter.getRotationDegree());
-			textChunk.adjustSymbolEndsToBoundingBox(symbolEnds);
+			textChunk.adjustSymbolEndsToBoundingBox(textPieces.getSymbolEnds());
 			return textChunk;
 		}
 		return null;
