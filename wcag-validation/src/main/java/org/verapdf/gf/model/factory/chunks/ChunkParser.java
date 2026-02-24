@@ -96,7 +96,7 @@ public class ChunkParser {
 		return artifacts;
 	}
 
-	public void parseChunk(Operator rawOperator, List<COSBase> arguments) {
+	public void parseChunk(Operator rawOperator, List<COSBase> arguments, int operatorIndex) {
 		String operatorName = rawOperator.getOperator();
 		switch (operatorName) {
 			case Operators.BMC:
@@ -283,7 +283,7 @@ public class ChunkParser {
                 if (!processLayers()) {
                     break;
                 }
-				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW);
+				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW, operatorIndex);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
@@ -294,7 +294,7 @@ public class ChunkParser {
                 if (!processLayers()) {
                     break;
                 }
-				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW_POS);
+				TextChunk textChunk = createTextChunk(arguments, Operators.TJ_SHOW_POS, operatorIndex);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
@@ -306,7 +306,7 @@ public class ChunkParser {
                 if (!processLayers()) {
                     break;
                 }
-				TextChunk textChunk = createTextChunk(arguments, Operators.QUOTE);
+				TextChunk textChunk = createTextChunk(arguments, Operators.QUOTE, operatorIndex);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
@@ -321,7 +321,7 @@ public class ChunkParser {
                 if (!processLayers()) {
                     break;
                 }
-				TextChunk textChunk = createTextChunk(arguments, Operators.DOUBLE_QUOTE);
+				TextChunk textChunk = createTextChunk(arguments, Operators.DOUBLE_QUOTE, operatorIndex);
 				if (textChunk != null) {
 					putChunk(getMarkedContent(), textChunk);
 				}
@@ -365,13 +365,16 @@ public class ChunkParser {
 					this.graphicsState.getTextState().setTextRise(textRise);
 				}
 				break;
-			case Operators.BI:
+			case Operators.BI: {
 				processLineArts();
-                if (!processLayers()) {
-                    break;
-                }
-				putChunk(getMarkedContent(), new ImageChunk(parseImageBoundingBox()));
+				if (!processLayers()) {
+					break;
+				}
+				ImageChunk imageChunk = new ImageChunk(parseImageBoundingBox());
+				imageChunk.getOperatorIndexes().add(operatorIndex);
+				putChunk(getMarkedContent(), imageChunk);
 				break;
+			}
 			case Operators.C_CURVE_TO:
 				if (arguments.size() == 6 && arguments.get(0).getType().isNumber() &&
 						arguments.get(1).getType().isNumber() && arguments.get(2).getType().isNumber() &&
@@ -502,15 +505,17 @@ public class ChunkParser {
 			case Operators.Q_GSAVE:
 				this.graphicsStateStack.push(this.graphicsState.clone());
 				break;
-			case Operators.DO:
+			case Operators.DO: {
 				processLineArts();
-                if (!processLayers()) {
-                    break;
-                }
+				if (!processLayers()) {
+					break;
+				}
 				PDXObject xObject = resourceHandler.getXObject(getLastCOSName(arguments));
 				if (xObject != null) {
 					if (ASAtom.IMAGE.equals(xObject.getType())) {
-						putChunk(getMarkedContent(), new ImageChunk(parseImageBoundingBox()));
+						ImageChunk imageChunk = new ImageChunk(parseImageBoundingBox());
+						imageChunk.getOperatorIndexes().add(operatorIndex);
+						putChunk(getMarkedContent(), imageChunk);
 					} else if (ASAtom.FORM.equals(xObject.getType())) {
 						Long markedContent = getMarkedContent();
 						COSKey key = objectKey;
@@ -519,13 +524,14 @@ public class ChunkParser {
 							markedContent = parentMarkedContent;
 						}
 						GraphicsState xFormGraphicsState = graphicsState.clone();
-						xFormGraphicsState.getCTM().concatenate(new Matrix(((PDXForm)xObject).getMatrix()));
-						GFSAXForm xForm = new GFSAXForm((PDXForm)xObject, resourceHandler, xFormGraphicsState, pageNumber,
+						xFormGraphicsState.getCTM().concatenate(new Matrix(((PDXForm) xObject).getMatrix()));
+						GFSAXForm xForm = new GFSAXForm((PDXForm) xObject, resourceHandler, xFormGraphicsState, pageNumber,
 								key, markedContent);
 						artifacts.addAll(xForm.getArtifacts());
 					}
 				}
 				break;
+			}
 			case Operators.D1:
 				this.graphicsState.disableColorOperators();
 				break;
@@ -870,7 +876,7 @@ public class ChunkParser {
 		}
 	}
 
-	private TextChunk createTextChunk(List<COSBase> arguments, String operatorType) {
+	private TextChunk createTextChunk(List<COSBase> arguments, String operatorType, int operatorIndex) {
 		org.verapdf.pd.font.PDFont font = graphicsState.getTextState().getTextFont();
 		COSBase argument = TextChunksHelper.getArgument(arguments, operatorType);
 		if (font != null && argument != null && (argument.getType() == COSObjType.COS_STRING ||
@@ -892,6 +898,7 @@ public class ChunkParser {
 				font.getFontDescriptor().getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
 				graphicsState.getFillColor(), textRenderingMatrixAfter.getRotationDegree());
 			textChunk.adjustSymbolEndsToBoundingBox(textPieces.getSymbolEnds());
+			textChunk.getOperatorIndexes().add(operatorIndex);
 			return textChunk;
 		}
 		return null;
