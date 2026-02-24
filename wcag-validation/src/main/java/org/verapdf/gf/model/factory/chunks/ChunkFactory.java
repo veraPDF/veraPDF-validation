@@ -40,11 +40,12 @@ public final class ChunkFactory {
 		List<COSBase> arguments = new ArrayList<>();
 		ChunkParser parser = new ChunkParser(pageNumber, objectKey, inheritedGraphicState, resourceHandler,
 				parentObjectKey, markedContent);
-		for (Object rawToken : rawTokens) {
+		for (int operatorIndex = 0; operatorIndex < rawTokens.size(); operatorIndex++) {
+			Object rawToken = rawTokens.get(operatorIndex);
 			if (rawToken instanceof COSBase) {
 				arguments.add((COSBase) rawToken);
 			} else if (rawToken instanceof Operator) {
-				parser.parseChunk(((Operator) rawToken), arguments);
+				parser.parseChunk(((Operator) rawToken), arguments, operatorIndex);
 				arguments = new ArrayList<>();
 			}
 		}
