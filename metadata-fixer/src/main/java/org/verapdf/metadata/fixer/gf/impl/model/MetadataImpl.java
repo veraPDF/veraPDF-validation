@@ -168,7 +168,7 @@ public class MetadataImpl implements Metadata {
             if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
                 fixPropertyPrefix(resultBuilder, VeraPDFMeta.CORR, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
             }
-        } else if (PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_4)) {
+        } else if (PDFFlavours.isPDFA4RelatedFlavour(flavour)) {
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
             fixPropertyPrefix(resultBuilder, VeraPDFMeta.REVISION_YEAR, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
         }
@@ -278,7 +278,7 @@ public class MetadataImpl implements Metadata {
 
     public void addPDFAIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
         int part = flavour.getPart().getPartNumber();
-        String conformance = !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_4)  ? flavour.getLevel().getCode().toUpperCase() : null;
+        String conformance = (!PDFFlavours.isPDFA4RelatedFlavour(flavour)) ? flavour.getLevel().getCode().toUpperCase() : null;
         boolean isBadPart = true;
         boolean isMissingPart = false;
         try {
@@ -311,7 +311,7 @@ public class MetadataImpl implements Metadata {
     }
 
     private void fixRevProperty(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_4) &&
+        if (!PDFFlavours.isPDFA4RelatedFlavour(flavour) &&
                 !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_2)) {
             return;
         }
@@ -354,7 +354,7 @@ public class MetadataImpl implements Metadata {
     private boolean isWrongPDFAIdentification(PDFAFlavour flavour) {
         try {
             int part = flavour.getPart().getPartNumber();
-            String conformance = !PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFA_4) ? flavour.getLevel().getCode().toUpperCase() : null;
+            String conformance = (!PDFFlavours.isPDFA4RelatedFlavour(flavour)) ? flavour.getLevel().getCode().toUpperCase() : null;
             Integer schemaPart = this.metadata.getPDFAIdentificationPart();
             String schemaConformance = this.metadata.getPDFAIdentificationConformance();
             return schemaPart != part ||
