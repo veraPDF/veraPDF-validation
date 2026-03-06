@@ -834,10 +834,10 @@ public class ChunkParser {
 					}
 				}
 			}
-            if (StaticStorages.getIsAddSpacesBetweenTextPieces()) {
-                double threshold = graphicsState.getTextState().getTextFontSize() * TextChunkUtils.TEXT_LINE_SPACE_RATIO;
-                textPieces.addSpaces(threshold);
-            }
+		}
+		if (StaticStorages.getIsAddSpacesBetweenTextPieces()) {
+			double threshold = graphicsState.getTextState().getTextFontSize() * TextChunkUtils.TEXT_LINE_SPACE_RATIO;
+			textPieces.addSpaces(threshold);
 		}
 		return textPieces;
 	}
