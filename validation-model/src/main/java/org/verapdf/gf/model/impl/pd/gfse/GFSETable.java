@@ -163,7 +163,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
                 GFSETableCell cell = cells[rowNumber][columnNumber];
                 String type = cell.getstandardType();
                 if (!TaggedPDFConstants.TD.equals(type) || rowNumber != cell.getRowNumber() ||
-                        columnNumber != cell.getColumnNumber()) {
+                        columnNumber != cell.getColumnNumber() || (rowNumber == 0 && columnNumber == 0)) {
                     continue;
                 }
                 GFSETD tableCell = (GFSETD)cell;
