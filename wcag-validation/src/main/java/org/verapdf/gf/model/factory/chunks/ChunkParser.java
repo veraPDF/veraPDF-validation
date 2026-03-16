@@ -46,6 +46,7 @@ import org.verapdf.wcag.algorithms.entities.geometry.MultiBoundingBox;
 import org.verapdf.wcag.algorithms.entities.geometry.Vertex;
 import org.verapdf.wcag.algorithms.semanticalgorithms.containers.StaticContainers;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.NodeUtils;
+import org.verapdf.wcag.algorithms.semanticalgorithms.utils.StreamInfo;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.TextChunkUtils;
 
 import java.io.*;
@@ -80,9 +81,11 @@ public class ChunkParser {
 	private final LineArtContainer lineArtContainer;
 	private final COSKey parentObjectKey;
 	private final Long parentMarkedContent;
+	private final String xObjectName;
 
 	public ChunkParser(Integer pageNumber, COSKey objectKey, GraphicsState inheritedGraphicState,
-					   ResourceHandler resourceHandler, COSKey parentObjectKey, Long markedContent) {
+					   ResourceHandler resourceHandler, COSKey parentObjectKey, Long markedContent,
+					   String xObjectName) {
 		this.pageNumber = pageNumber;
 		lineArtContainer = new LineArtContainer(objectKey);
 		this.objectKey = objectKey;
@@ -90,6 +93,7 @@ public class ChunkParser {
 		this.resourceHandler = resourceHandler;
 		this.parentObjectKey = parentObjectKey;
 		this.parentMarkedContent = markedContent;
+		this.xObjectName = xObjectName;
 	}
 
 	public List<IChunk> getArtifacts() {
@@ -371,7 +375,9 @@ public class ChunkParser {
 					break;
 				}
 				ImageChunk imageChunk = new ImageChunk(parseImageBoundingBox());
-				imageChunk.getOperatorIndexes().add(operatorIndex);
+				if (StaticContainers.isDataLoader()) {
+					imageChunk.getStreamInfos().add(new StreamInfo(operatorIndex, xObjectName));
+				}
 				putChunk(getMarkedContent(), imageChunk);
 				break;
 			}
@@ -510,11 +516,14 @@ public class ChunkParser {
 				if (!processLayers()) {
 					break;
 				}
-				PDXObject xObject = resourceHandler.getXObject(getLastCOSName(arguments));
+				COSName xObjectName = getLastCOSName(arguments);
+				PDXObject xObject = resourceHandler.getXObject(xObjectName);
 				if (xObject != null) {
 					if (ASAtom.IMAGE.equals(xObject.getType())) {
 						ImageChunk imageChunk = new ImageChunk(parseImageBoundingBox());
-						imageChunk.getOperatorIndexes().add(operatorIndex);
+						if (StaticContainers.isDataLoader()) {
+							imageChunk.getStreamInfos().add(new StreamInfo(operatorIndex, this.xObjectName));
+						}
 						putChunk(getMarkedContent(), imageChunk);
 					} else if (ASAtom.FORM.equals(xObject.getType())) {
 						Long markedContent = getMarkedContent();
@@ -526,7 +535,7 @@ public class ChunkParser {
 						GraphicsState xFormGraphicsState = graphicsState.clone();
 						xFormGraphicsState.getCTM().concatenate(new Matrix(((PDXForm) xObject).getMatrix()));
 						GFSAXForm xForm = new GFSAXForm((PDXForm) xObject, resourceHandler, xFormGraphicsState, pageNumber,
-								key, markedContent);
+								key, markedContent, xObjectName.getName().getValue());
 						artifacts.addAll(xForm.getArtifacts());
 					}
 				}
@@ -898,7 +907,9 @@ public class ChunkParser {
 				font.getFontDescriptor().getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
 				graphicsState.getFillColor(), textRenderingMatrixAfter.getRotationDegree());
 			textChunk.adjustSymbolEndsToBoundingBox(textPieces.getSymbolEnds());
-			textChunk.getOperatorIndexes().add(operatorIndex);
+			if (StaticContainers.isDataLoader()) {
+				textChunk.getStreamInfos().addAll(textPieces.getStreamInfos(operatorIndex, xObjectName));
+			}
 			return textChunk;
 		}
 		return null;
