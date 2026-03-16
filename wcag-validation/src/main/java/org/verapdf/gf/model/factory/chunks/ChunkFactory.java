@@ -36,10 +36,10 @@ public final class ChunkFactory {
 
 	public static List<IChunk> chunksFromTokens(Integer pageNumber, COSKey objectKey, List<Object> rawTokens,
 										 GraphicsState inheritedGraphicState, ResourceHandler resourceHandler,
-										 COSKey parentObjectKey, Long markedContent) {
+										 COSKey parentObjectKey, Long markedContent, String xObjectName) {
 		List<COSBase> arguments = new ArrayList<>();
 		ChunkParser parser = new ChunkParser(pageNumber, objectKey, inheritedGraphicState, resourceHandler,
-				parentObjectKey, markedContent);
+				parentObjectKey, markedContent, xObjectName);
 		for (int operatorIndex = 0; operatorIndex < rawTokens.size(); operatorIndex++) {
 			Object rawToken = rawTokens.get(operatorIndex);
 			if (rawToken instanceof COSBase) {

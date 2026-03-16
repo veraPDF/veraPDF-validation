@@ -20,6 +20,8 @@
  */
 package org.verapdf.gf.model.factory.chunks;
 
+import org.verapdf.wcag.algorithms.semanticalgorithms.utils.StreamInfo;
+
 import java.util.*;
 
 /**
@@ -29,9 +31,12 @@ public class TextPieces {
 
 	private final SortedSet<TextPiece> textPieces = new TreeSet<>(new TextPieceComparator());
 	private double currentX = 0;
+	private int currentIndex = 0;
 
 	public void add(TextPiece textPiece) {
 		textPieces.add(textPiece);
+		textPiece.startIndex = currentIndex;
+		currentIndex += textPiece.value.length();
 		currentX = textPiece.endX;
 	}
 
@@ -96,11 +101,34 @@ public class TextPieces {
         }
         textPieces.addAll(spaces);
     }
+	
+	public List<StreamInfo> getStreamInfos(int operatorIndex, String xObjectName) {
+		List<StreamInfo> streamInfos = new ArrayList<>();
+		StreamInfo previousStreamInfo = null;
+		for (TextPiece textPiece : textPieces) {
+			if (textPiece.startIndex == null) {
+				streamInfos.add(new StreamInfo(-1, null, 0, 
+						textPiece.value.length()));
+				previousStreamInfo = null;
+			} else {
+				if (previousStreamInfo != null && previousStreamInfo.getEndIndex() == textPiece.startIndex) {
+					previousStreamInfo.setEndIndex(textPiece.startIndex + textPiece.value.length());
+				} else {
+					StreamInfo currentStreamInfo = new StreamInfo(operatorIndex, xObjectName, textPiece.startIndex,
+							textPiece.startIndex + textPiece.value.length(), currentIndex, null);
+					streamInfos.add(currentStreamInfo);
+					previousStreamInfo = currentStreamInfo;
+				}
+			}
+		}
+		return streamInfos;
+	} 
 
 	public static class TextPiece {
 		private final String value;
 		private final double startX;
 		private final double endX;
+		private Integer startIndex;
 
 		public TextPiece(String value, double startX, double endX) {
 			this.value = value;
