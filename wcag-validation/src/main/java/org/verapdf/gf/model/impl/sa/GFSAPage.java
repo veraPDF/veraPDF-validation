@@ -157,7 +157,7 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 			GraphicsState graphicsState = new GraphicsState(resourceHandler);
 			graphicsState.setCTM(createCurrentTransformationMatrix(pdPage));
 			pdContentStream = new GFSAContentStream(pdPage.getContent(), graphicsState, resourceHandler,
-					pdPage.getPageNumber(), pdPage.getObject().getKey(), null, null);
+					pdPage.getPageNumber(), pdPage.getObject().getKey(), null, null, null);
 		}
 		this.contentStream = pdContentStream;
 	}
