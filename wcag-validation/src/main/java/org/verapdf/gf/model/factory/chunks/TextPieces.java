@@ -49,7 +49,7 @@ public class TextPieces {
 	}
 
 	public double getStartX() {
-		return textPieces.first().startX;
+		return textPieces.isEmpty() ? 0.0d : textPieces.first().startX;
 	}
 
 	public double getEndX() {
@@ -74,9 +74,10 @@ public class TextPieces {
 
 	public List<Double> getSymbolEnds() {
 		List<Double> ends = new ArrayList<>();
-		ends.add(0.0);
+		double startX = getStartX();
+		ends.add(0.0d);
 		for (TextPiece textPiece : textPieces) {
-			TextChunksHelper.updateSymbolEnds(ends, textPiece.endX - textPiece.startX, textPiece.startX,
+			TextChunksHelper.updateSymbolEnds(ends, textPiece.endX - textPiece.startX, textPiece.startX - startX,
 			                                  textPiece.value != null ? textPiece.value.length() : 0);
 		}
 		return ends;
