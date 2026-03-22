@@ -144,13 +144,17 @@ public class TextPieces {
         public double getStartX() {
             return startX;
         }
+		
+		public double getCenterX() {
+			return (getStartX() + getEndX()) / 2;
+		}
 	}
 
 	public static class TextPieceComparator implements Comparator<TextPiece> {
 
 		@Override
 		public int compare(TextPiece textPiece1, TextPiece textPiece2){
-			int res = Double.compare(textPiece1.startX, textPiece2.startX);
+			int res = Double.compare(textPiece1.getCenterX(), textPiece2.getCenterX());
 			if (res != 0) {
 				return res;
 			}
