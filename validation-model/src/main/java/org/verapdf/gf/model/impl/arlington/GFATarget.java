@@ -200,14 +200,6 @@ public class GFATarget extends GFAObject implements ATarget {
 		return Annots;
 	}
 
-	public COSObject getparentTValue() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
-			return null;
-		}
-		COSObject T = this.parentObject.getKey(ASAtom.getASAtom("T"));
-		return T;
-	}
-
 	public COSObject gettrailerCatalogNamesEmbeddedFilesValue() {
 		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
 		if (trailer == null || !trailer.getType().isDictionaryBased()) {
@@ -263,17 +255,17 @@ public class GFATarget extends GFAObject implements ATarget {
 	}
 
 	@Override
-	public Boolean getparentTIsNameTreetrailerCatalogNamesEmbeddedFilesValue() {
-		COSObject parentT = getparentTValue();
+	public Boolean getNIsNameTreetrailerCatalogNamesEmbeddedFilesIndex() {
+		COSObject N = getNValue();
 		COSObject trailerCatalogNamesEmbeddedFiles = gettrailerCatalogNamesEmbeddedFilesValue();
-		if (parentT == null) {
+		if (N == null || N.getType() != COSObjType.COS_STRING) {
 			return false;
 		}
 		if (trailerCatalogNamesEmbeddedFiles == null || trailerCatalogNamesEmbeddedFiles.getType() != COSObjType.COS_DICT) {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesEmbeddedFiles);
-		return nameTreeNode.containsValue(parentT);
+		return nameTreeNode.containsKey(N.getString());
 	}
 
 	@Override
