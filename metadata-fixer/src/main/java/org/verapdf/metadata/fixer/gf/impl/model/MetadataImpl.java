@@ -56,8 +56,7 @@ public class MetadataImpl implements Metadata {
     private static final Logger LOGGER = Logger.getLogger(MetadataImpl.class.getCanonicalName());
 
     private static final String YEAR_2020 = "2020";
-    private static final String YEAR_202X = "0000";
-    private static final String YEAR_REGEX = "^\\d{4}$";
+    private static final String YEAR_2024 = "2024";
     
     private static final String ADD_PROPERTY_MESSAGE = "Added property '%s' with value '%s' to Identification schema";
     private static final String REMOVE_PROPERTY_MESSAGE = "Removed property '%s' from Identification schema";
@@ -316,16 +315,16 @@ public class MetadataImpl implements Metadata {
             return;
         }
         String namespaceURI = PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_2) ? XMPConst.NS_PDFUA_ID : XMPConst.NS_PDFA_ID;
+        String expectedRev = PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_2) ? YEAR_2024 : YEAR_2020;
         try {
             VeraPDFXMPNode rev = this.metadata.getProperty(namespaceURI, VeraPDFMeta.REVISION_YEAR);
-            if (rev == null) {
-                this.metadata.setIdentificationRevisionYear(namespaceURI, YEAR_202X);
+            if (rev == null || !expectedRev.equals(rev.getValue())) {
+                this.metadata.setIdentificationRevisionYear(namespaceURI, expectedRev);
                 this.setNeedToBeUpdated(true);
-                resultBuilder.addFix(String.format(ADD_PROPERTY_MESSAGE, VeraPDFMeta.REVISION_YEAR, YEAR_2020));
-            } else if (!rev.getValue().matches(YEAR_REGEX)) {
-                this.metadata.setIdentificationRevisionYear(namespaceURI, YEAR_202X);
-                this.setNeedToBeUpdated(true);
-                resultBuilder.addFix(String.format(SET_PROPERTY_MESSAGE, VeraPDFMeta.REVISION_YEAR, YEAR_2020));
+                String message = (rev == null)
+                        ? String.format(ADD_PROPERTY_MESSAGE, VeraPDFMeta.REVISION_YEAR, expectedRev)
+                        : String.format(SET_PROPERTY_MESSAGE, VeraPDFMeta.REVISION_YEAR, expectedRev);
+                resultBuilder.addFix(message);
             }
         } catch (XMPException e) {
             LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
