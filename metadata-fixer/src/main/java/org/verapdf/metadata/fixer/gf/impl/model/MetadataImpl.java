@@ -321,9 +321,7 @@ public class MetadataImpl implements Metadata {
             if (rev == null || !expectedRev.equals(rev.getValue())) {
                 this.metadata.setIdentificationRevisionYear(namespaceURI, expectedRev);
                 this.setNeedToBeUpdated(true);
-                String message = (rev == null)
-                        ? String.format(ADD_PROPERTY_MESSAGE, VeraPDFMeta.REVISION_YEAR, expectedRev)
-                        : String.format(SET_PROPERTY_MESSAGE, VeraPDFMeta.REVISION_YEAR, expectedRev);
+                String message = String.format((rev == null) ? ADD_PROPERTY_MESSAGE : SET_PROPERTY_MESSAGE, VeraPDFMeta.REVISION_YEAR, expectedRev);
                 resultBuilder.addFix(message);
             }
         } catch (XMPException e) {
