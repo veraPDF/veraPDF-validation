@@ -88,10 +88,20 @@ public class GFGlyph extends GenericModelObject implements Glyph {
         this.structureElementAccessObject = structureElementAccessObject;
 
         if (font instanceof PDSimpleFont) {
-            Encoding encoding = font.getEncodingMapping();
+            Encoding encoding = (font instanceof PDTrueTypeFont && font.isSymbolic())
+                    ? Encoding.empty() // ISO 32000, 9.6.6.4: Symbolic flag -> Encoding entry is ignored
+                    : font.getEncodingMapping();
             this.name = encoding == null ? null : encoding.getName(glyphCode);
-            if (this.name == null && glyphCode == 0 && font instanceof PDTrueTypeFont) {
-                this.name = ".notdef";
+            if (this.name == null && font instanceof PDTrueTypeFont) {
+                if (fontProgram != null) {
+                    this.name = fontProgram.getGlyphName(glyphCode);
+                    if (this.name == null) {
+                        this.name = fontProgram.containsCode(glyphCode) ? null : ".notdef";
+                    }
+                } else if (glyphCode == 0) {
+                    // font program unavailable, assume .notdef for code 0
+                    this.name = ".notdef";
+                }
             }
         } else if (font instanceof PDType0Font) {
             try {
