@@ -209,7 +209,7 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 				return true;
 			}
 			if (PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0) && 
-					TaggedPDFHelper.isCircularMappingExist(type)) {
+					new TaggedPDFHelper().isCircularMappingExist(type)) {
 				return true;
 			}
 			return false;
