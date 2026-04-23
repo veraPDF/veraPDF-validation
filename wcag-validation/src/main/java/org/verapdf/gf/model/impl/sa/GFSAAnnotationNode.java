@@ -119,7 +119,7 @@ public class GFSAAnnotationNode extends AnnotationNode {
 		} else if (destination.getType() == COSObjType.COS_NAME) {
 			COSObject dests = StaticResources.getDocument().getCatalog().getDests();
 			if (dests != null) {
-				destination = dests.getKey(destination.getDirectBase().getName());
+				destination = dests.getKey(destination.getName());
 				if (destination == null) {
 					return null;
 				}
