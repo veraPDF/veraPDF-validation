@@ -299,7 +299,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 			if (structureElement != null) {
 				COSObject baseAlt = structureElement.getKey(ASAtom.ALT);
 				if (baseAlt != null && baseAlt.getType() == COSObjType.COS_STRING) {
-					return baseAlt.getDirectBase().toString();
+					return baseAlt.getString();
 				}
 			}
 		}
