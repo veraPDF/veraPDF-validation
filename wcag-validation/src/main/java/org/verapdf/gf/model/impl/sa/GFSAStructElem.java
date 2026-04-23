@@ -177,7 +177,7 @@ public class GFSAStructElem extends GFSAObject implements SAStructElem {
                         }
 					}
 				} else if (element instanceof COSObject && ((COSObject)element).getType() == COSObjType.COS_INTEGER) {
-					chunks.addAll(getChunks(getPageObjectNumber(), (((COSObject)element).getDirectBase()).getInteger()));
+					chunks.addAll(getChunks(getPageObjectNumber(), ((COSObject)element).getInteger()));
 				}
 			}
 			addChunksToChildren(chunks);

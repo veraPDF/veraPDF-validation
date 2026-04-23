@@ -110,7 +110,7 @@ public class GFPDObject extends GenericModelObject implements PDObject {
 	@Override
 	public String getentries() {
 		if (this.simpleCOSObject != null && !this.simpleCOSObject.empty()) {
-			return this.simpleCOSObject.getDirectBase().getKeySet().stream()
+			return this.simpleCOSObject.getKeySet().stream()
 					.map(ASAtom::getValue)
 					.collect(Collectors.joining("&"));
 		}
