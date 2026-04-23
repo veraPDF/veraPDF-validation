@@ -116,7 +116,7 @@ public class GFSAAnnotation extends GenericModelObject implements SAAnnotation {
 			if (structureElement != null) {
 				COSObject baseAlt = structureElement.getKey(ASAtom.ALT);
 				if (baseAlt != null && baseAlt.getType() == COSObjType.COS_STRING) {
-					return baseAlt.getDirectBase().toString();
+					return baseAlt.getString();
 				}
 			}
 		}
