@@ -308,13 +308,7 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 
 	@Override
 	public Boolean getisOutsideCropBox() {
-		double[] cropBox = page.getCropBox();
-		double[] rectangle = ((PDAnnotation)simplePDObject).getRect();
-		if (rectangle != null && rectangle.length >= 4) {
-			return cropBox[1] >= rectangle[3] || cropBox[0] >= rectangle[2]
-					|| cropBox[3] <= rectangle[1] || cropBox[2] <= rectangle[0];
-		}
-		return null;
+        return PDAnnotation.isOutsideCropBox(page, (PDAnnotation)simplePDObject);
 	}
 
 	private static Double getDifference(double[] array, int shift) {
