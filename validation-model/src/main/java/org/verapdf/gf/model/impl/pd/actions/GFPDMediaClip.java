@@ -21,8 +21,6 @@
 package org.verapdf.gf.model.impl.pd.actions;
 
 import org.verapdf.as.ASAtom;
-import org.verapdf.cos.COSArray;
-import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
 import org.verapdf.model.pdlayer.PDMediaClip;
@@ -51,20 +49,6 @@ public class GFPDMediaClip extends GFPDObject implements PDMediaClip {
 
     @Override
     public Boolean gethasCorrectAlt() {
-        COSObject object = simplePDObject.getKey(ASAtom.ALT);
-        if (object == null || object.getType() != COSObjType.COS_ARRAY) {
-            return false;
-        }
-        COSArray array = (COSArray)object.getDirectBase();
-        if (array.size() % 2 != 0) {
-            return false;
-        }
-        for (int i = 0; i < array.size(); i++) {
-            COSObject elem = array.at(i);
-            if (elem.getType() != COSObjType.COS_STRING || (i % 2 == 1 && elem.getString().isEmpty())) {
-                return false;
-            }
-        }
-        return true;
+        return ((org.verapdf.pd.actions.PDMediaClip)simplePDObject).hasCorrectAlt();
     }
 }
