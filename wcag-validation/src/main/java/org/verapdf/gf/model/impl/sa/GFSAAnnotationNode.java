@@ -25,8 +25,6 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
 import org.verapdf.pd.PDAnnotation;
-import org.verapdf.pd.PDNameTreeNode;
-import org.verapdf.pd.PDNamesDictionary;
 import org.verapdf.pd.PDPage;
 import org.verapdf.pd.actions.PDAction;
 import org.verapdf.tools.StaticResources;
@@ -104,34 +102,6 @@ public class GFSAAnnotationNode extends AnnotationNode {
 		if (destination == null || destination.empty()) {
 			return null;
 		}
-		if (destination.getType() == COSObjType.COS_STRING) {
-			PDNamesDictionary namesDictionary = StaticResources.getDocument().getCatalog().getNamesDictionary();
-			if (namesDictionary == null) {
-				return null;
-			}
-			PDNameTreeNode dests = namesDictionary.getDests();
-			if (dests != null) {
-				destination = dests.getObject(destination.getString());
-				if (destination == null) {
-					return null;
-				}
-			}
-		} else if (destination.getType() == COSObjType.COS_NAME) {
-			COSObject dests = StaticResources.getDocument().getCatalog().getDests();
-			if (dests != null) {
-				destination = dests.getKey(destination.getName());
-				if (destination == null) {
-					return null;
-				}
-			}
-		}
-		if (destination.getType() == COSObjType.COS_DICT) {
-			destination = destination.getKey(key);
-		}
-		COSObject obj = null;
-		if (destination.getType() == COSObjType.COS_ARRAY && destination.size() > 0) {
-			obj = destination.at(0);
-		}
-		return obj;
+		return PDAnnotation.getPageFromDestination(destination, key);
 	}
 }
