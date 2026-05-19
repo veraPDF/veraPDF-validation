@@ -30,13 +30,13 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDAcroForm;
 import org.verapdf.model.pdlayer.PDFormField;
+import org.verapdf.xmp.tools.SecureXML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -104,8 +104,7 @@ public class GFPDAcroForm extends GFPDObject implements PDAcroForm {
         }
         if (object != null && object.getType() == COSObjType.COS_STREAM) {
             try (ASInputStream asInputStream = object.getData(COSStream.FilterFlags.DECODE)) {
-                DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-                builder.setErrorHandler(null);
+                DocumentBuilder builder = SecureXML.newSafeDocumentBuilder();
                 Document doc = builder.parse(new InputSource(new ByteBuffer(asInputStream).getByteStream()));
                 Node configParent = getProperty(doc, XDP);
                 if (configParent == null) {
