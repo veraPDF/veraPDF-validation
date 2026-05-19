@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.tools;
 
+import org.verapdf.xmp.tools.SecureXML;
 import org.xml.sax.InputSource;
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.*;
@@ -29,7 +30,6 @@ import org.w3c.dom.NodeList;
 import org.verapdf.xmp.impl.ByteBuffer;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,8 +67,7 @@ public class DictionaryKeysHelper {
             } else {
                 return null;
             }
-            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            builder.setErrorHandler(null);
+            DocumentBuilder builder = SecureXML.newSafeDocumentBuilder();
             Document doc = builder.parse(new InputSource(inputStream));
             return getAllNodeText(doc);
         } catch (Exception e) {
