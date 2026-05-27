@@ -64,19 +64,7 @@ public class GFPDType1Font extends GFPDSimpleFont implements PDType1Font {
                 StaticResources.getDocument().getDocument().getResourceHandler().addResource(
                         program.getFontProgramResource());
             }
-            if (program != null) {
-                try {
-                    if (!program.isAttemptedParsing()) {
-                        program.parseFont();
-                    }
-                    this.fontProgramParsed = program.isSuccessfulParsing();
-                    this.pdFont.setSuccessfullyParsed(program.isSuccessfulParsing());
-                } catch (IOException e) {
-                    LOGGER.log(Level.WARNING, "Can't parse font program of font " + pdFont.getName(), e);
-                    this.fontProgramParsed = false;
-                    this.pdFont.setSuccessfullyParsed(false);
-                }
-            }
+            this.fontProgramParsed = pdFont.parseFontProgram();
         }
     }
 
