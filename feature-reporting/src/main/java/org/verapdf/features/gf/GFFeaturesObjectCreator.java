@@ -228,7 +228,7 @@ public final class GFFeaturesObjectCreator {
 	/**
 	 * Constructs new GFTilingPatternFeaturesObjectAdapter
 	 *
-	 * @param tilingPattern   PDTilingPattern which represents tilling pattern for feature report
+	 * @param tilingPattern   PDTilingPattern which represents tiling pattern for feature report
 	 * @param id              id of the object
 	 * @param extGStateChild  set of external graphics state id which contains in resource dictionary of this pattern
 	 * @param colorSpaceChild set of ColorSpace id which contains in resource dictionary of this pattern
