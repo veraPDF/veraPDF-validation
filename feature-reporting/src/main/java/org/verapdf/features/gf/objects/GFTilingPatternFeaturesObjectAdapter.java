@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Feature object for tilling pattern
+ * Feature object for tiling pattern
  *
  * @author Maksim Bezrukov
  */
@@ -45,9 +45,9 @@ public class GFTilingPatternFeaturesObjectAdapter implements TilingPatternFeatur
 	private final Set<String> propertiesChild;
 
 	/**
-	 * Constructs new tilling pattern features object
+	 * Constructs new tiling pattern features object
 	 *
-	 * @param tilingPattern   PDTilingPattern which represents tilling pattern for feature report
+	 * @param tilingPattern   PDTilingPattern which represents tiling pattern for feature report
 	 * @param id              id of the object
 	 * @param extGStateChild  set of external graphics state id which contains in resource dictionary of this pattern
 	 * @param colorSpaceChild set of ColorSpace id which contains in resource dictionary of this pattern
