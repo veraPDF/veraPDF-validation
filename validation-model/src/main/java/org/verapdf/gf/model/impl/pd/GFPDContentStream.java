@@ -172,7 +172,7 @@ public class GFPDContentStream extends GFPDObject implements PDContentStream {
 					this.operators = Collections.emptyList();
 				}
 			} catch (IOException e) {
-				LOGGER.log(Level.FINE, "Error while parsing content stream. " + e.getMessage(), e);
+				LOGGER.log(Level.WARNING, "Error while parsing content stream. " + e.getMessage(), e);
 				this.operators = Collections.emptyList();
 			}
 		}
