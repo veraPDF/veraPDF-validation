@@ -93,7 +93,7 @@ public class GFSAContentStream {
 					}
 				}
 			} catch (IOException e) {
-				LOGGER.log(Level.FINE, "Error while parsing content stream. " + e.getMessage(), e);
+				LOGGER.log(Level.WARNING, "Error while parsing content stream. " + e.getMessage(), e);
 				this.artifacts = Collections.emptyList();
 			}
 		}
