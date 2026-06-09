@@ -35,6 +35,7 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDDeviceCMYK;
 import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
+import org.verapdf.pd.font.PDFontDescriptor;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXObject;
 import org.verapdf.pd.optionalcontent.PDOCMDDictionary;
@@ -62,6 +63,7 @@ public class ChunkParser {
 	private static final Logger LOGGER = Logger.getLogger(ChunkParser.class.getName());
 	
 	public static final String REPLACEMENT_CHARACTER_STRING = "\uFFFD";
+    public static final Map<String, String> fontNameToFontFamilyMap = new HashMap<>();
 
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
@@ -900,12 +902,21 @@ public class ChunkParser {
 			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getEndX() - textPieces.getStartX(), 0));
 			Matrix textRenderingMatrixAfter = calculateTextRenderingMatrix();
 			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX() - textPieces.getEndX(), 0));
-			TextChunk textChunk = new TextChunk(TextChunksHelper.calculateTextBoundingBox(textRenderingMatrixBefore,
+            PDFontDescriptor descriptor = font.getFontDescriptor();
+            String fontNameWithoutSubset = font.getNameWithoutSubset();
+            TextChunk textChunk = new TextChunk(TextChunksHelper.calculateTextBoundingBox(textRenderingMatrixBefore,
 				textRenderingMatrixAfter, font, pageNumber), textPieces.getValue(),
-				font.getNameWithoutSubset(), TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
+                    fontNameWithoutSubset, TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
 				TextChunksHelper.calculateFontWeight(graphicsState.getTextState().getRenderingMode(), font),
-				font.getFontDescriptor().getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
+                    descriptor.getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
 				graphicsState.getFillColor(), textRenderingMatrixAfter.getRotationDegree());
+            if (StaticContainers.isDataLoader() && !fontNameToFontFamilyMap.containsKey(fontNameWithoutSubset)) {
+                String fontFamily = descriptor.getFontFamily();
+                if (fontFamily == null || fontFamily.isEmpty()) {
+                    fontFamily = PDFontDescriptor.extractFontFamilyFromFontName(fontNameWithoutSubset);
+                }
+                fontNameToFontFamilyMap.put(fontNameWithoutSubset, fontFamily);
+            }
 			textChunk.adjustSymbolEndsToBoundingBox(textPieces.getSymbolEnds());
 			if (StaticContainers.isDataLoader()) {
 				textChunk.getStreamInfos().addAll(textPieces.getStreamInfos(operatorIndex, xObjectName));
