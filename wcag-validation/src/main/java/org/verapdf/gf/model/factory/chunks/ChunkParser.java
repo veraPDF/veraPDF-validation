@@ -63,7 +63,7 @@ public class ChunkParser {
 	private static final Logger LOGGER = Logger.getLogger(ChunkParser.class.getName());
 	
 	public static final String REPLACEMENT_CHARACTER_STRING = "\uFFFD";
-    public static final Map<String, String> fontNameFamilyMap = new HashMap<>();
+    public static final Map<String, String> fontNameToFontFamilyMap = new HashMap<>();
 
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
@@ -903,19 +903,19 @@ public class ChunkParser {
 			Matrix textRenderingMatrixAfter = calculateTextRenderingMatrix();
 			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX() - textPieces.getEndX(), 0));
             PDFontDescriptor descriptor = font.getFontDescriptor();
-            String fontName = font.getNameWithoutSubset();
+            String fontNameWithoutSubset = font.getNameWithoutSubset();
             TextChunk textChunk = new TextChunk(TextChunksHelper.calculateTextBoundingBox(textRenderingMatrixBefore,
 				textRenderingMatrixAfter, font, pageNumber), textPieces.getValue(),
-                    fontName, TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
+                    fontNameWithoutSubset, TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
 				TextChunksHelper.calculateFontWeight(graphicsState.getTextState().getRenderingMode(), font),
                     descriptor.getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
 				graphicsState.getFillColor(), textRenderingMatrixAfter.getRotationDegree());
-            if (!fontNameFamilyMap.containsKey(fontName)) {
+            if (StaticContainers.isDataLoader() && !fontNameToFontFamilyMap.containsKey(fontNameWithoutSubset)) {
                 String fontFamily = descriptor.getFontFamily();
                 if (fontFamily == null || fontFamily.isEmpty()) {
-                    fontFamily = PDFontDescriptor.extractFontFamily(fontName);
+                    fontFamily = PDFontDescriptor.extractFontFamilyFromFontName(fontNameWithoutSubset);
                 }
-                fontNameFamilyMap.put(fontName, fontFamily);
+                fontNameToFontFamilyMap.put(fontNameWithoutSubset, fontFamily);
             }
 			textChunk.adjustSymbolEndsToBoundingBox(textPieces.getSymbolEnds());
 			if (StaticContainers.isDataLoader()) {
