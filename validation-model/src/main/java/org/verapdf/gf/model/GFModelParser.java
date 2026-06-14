@@ -255,7 +255,7 @@ public class GFModelParser implements PDFAParser {
 
 	private static void initializeStaticContainers(final PDDocument document, final EnumSet<ExtensionObjectType> enabledExtensions) {
 		StaticResources.setDocument(document);
-		StaticContainers.setEnabledExtensions(enabledExtensions);
+		StaticCoreContainers.setEnabledExtensions(enabledExtensions);
 		StaticResources.setFlavour(Collections.singletonList(PDFFlavour.NO_FLAVOUR));
 	}
 	

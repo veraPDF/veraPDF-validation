@@ -67,8 +67,6 @@ public class StaticContainers {
 	//PDXForm
 	private static final ThreadLocal<Set<COSKey>> xFormKeysSet = new ThreadLocal<>();
 
-	private static final ThreadLocal<EnumSet<ExtensionObjectType>> enabledExtensions = new ThreadLocal<>();
-
 	public static void clearAllContainers() {
 		flavour.set(new LinkedList<>());
 		separations.set(new HashMap<>());
@@ -84,7 +82,6 @@ public class StaticContainers {
 		lastHeadingNestingLevel.set(0);
 		currentTransparencyColorSpace.set(null);
 		xFormKeysSet.set(new HashSet<>());
-		enabledExtensions.set(EnumSet.noneOf(ExtensionObjectType.class));
 	}
 
 	public static List<PDFAFlavour> getFlavours() {
@@ -234,16 +231,5 @@ public class StaticContainers {
 
 	public static void setCachedGlyphs(Map<String, Map<String, Glyph>> cachedGlyphs) {
 		StaticContainers.cachedGlyphs.set(cachedGlyphs);
-	}
-
-	public static EnumSet<ExtensionObjectType> getEnabledExtensions() {
-		if (enabledExtensions.get() == null) {
-			enabledExtensions.set(EnumSet.noneOf(ExtensionObjectType.class));
-		}
-		return enabledExtensions.get();
-	}
-
-	public static void setEnabledExtensions(EnumSet<ExtensionObjectType> enabledExtensions) {
-		StaticContainers.enabledExtensions.set(enabledExtensions);
 	}
 }
