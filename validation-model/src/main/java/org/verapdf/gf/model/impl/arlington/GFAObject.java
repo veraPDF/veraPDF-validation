@@ -3,6 +3,7 @@ package org.verapdf.gf.model.impl.arlington;
 import org.verapdf.cos.*;
 import org.verapdf.model.alayer.*;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
+import org.verapdf.containers.StaticCoreContainers;
 import org.verapdf.extensions.ExtensionObjectType;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.pd.PDDocument;
@@ -326,92 +327,92 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	@Override
 	public Boolean gethasExtensionAAPL() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.AAPL);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.AAPL);
 	}
 
 	@Override
 	public Boolean gethasExtensionADBE_Extn3() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ADBE_Extn3);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ADBE_Extn3);
 	}
 
 	@Override
 	public Boolean gethasExtensionC2PA() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.C2PA);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.C2PA);
 	}
 
 	@Override
 	public Boolean gethasExtensionEAPDF_1() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.EAPDF_1);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.EAPDF_1);
 	}
 
 	@Override
 	public Boolean gethasExtensionETSI_PAdES() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ETSI_PAdES);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ETSI_PAdES);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_19005_3() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_19005_3);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_19005_3);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_19593() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_19593);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_19593);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_21812() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_21812);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_21812);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_24064() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_24064);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_24064);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_24654() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_24654);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_24654);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_32001() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32001);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32001);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_32003() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32003);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32003);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_32004() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32004);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32004);
 	}
 
 	@Override
 	public Boolean gethasExtensionISO_TS_32007() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32007);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.ISO_TS_32007);
 	}
 
 	@Override
 	public Boolean gethasExtensionMalforms() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.Malforms);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.Malforms);
 	}
 
 	@Override
 	public Boolean gethasExtensionOpenOffice() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.OpenOffice);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.OpenOffice);
 	}
 
 	@Override
 	public Boolean gethasExtensionPDF_VT2() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.PDF_VT2);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.PDF_VT2);
 	}
 
 	@Override
 	public Boolean gethasExtensionWTPDF() {
-		return StaticContainers.getEnabledExtensions().contains(ExtensionObjectType.WTPDF);
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.WTPDF);
 	}
 
 	public static Boolean getHasTypeArray(COSObject object) {
