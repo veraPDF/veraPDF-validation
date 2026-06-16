@@ -38,6 +38,8 @@ import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.font.PDFontDescriptor;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXObject;
+import org.verapdf.pd.font.PDFont;
+import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.optionalcontent.PDOCMDDictionary;
 import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 import org.verapdf.tools.StaticResources;
@@ -856,6 +858,7 @@ public class ChunkParser {
 	private void parseString(COSString string, TextPieces textPieces) {
 		byte[] bytes = string.get();
 		try (InputStream inputStream = new ByteArrayInputStream(bytes)) {
+			double glyphSpaceToTextSpace = getGlyphWidthToTextSpaceScale(graphicsState.getTextState().getTextFont());
 			while (inputStream.available() > 0) {
 				int code = graphicsState.getTextState().getTextFont().readCode(inputStream);
 				Double width = graphicsState.getTextState().getTextFont().getWidth(code);
@@ -868,7 +871,7 @@ public class ChunkParser {
 								graphicsState.getTextState().getWordSpacing() : 0)) *
 								graphicsState.getTextState().getHorizontalScaling();
                 width = width *
-                        graphicsState.getTextState().getTextFontSize() / 1000 *
+                        graphicsState.getTextState().getTextFontSize() * glyphSpaceToTextSpace *
                         graphicsState.getTextState().getHorizontalScaling();
                 String value = graphicsState.getTextState().getTextFont().toUnicode(code);
 				String result = value;
@@ -885,6 +888,16 @@ public class ChunkParser {
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Error processing text show operator's string argument : " + new String(bytes), e);
 		}
+	}
+
+		private static double getGlyphWidthToTextSpaceScale(PDFont font) {
+		if (font instanceof PDType3Font) {
+			double[] fontMatrix = ((PDType3Font) font).getFontMatrix();
+			if (fontMatrix != null && fontMatrix.length >= 1 && fontMatrix[0] != 0.0) {
+				return fontMatrix[0];
+			}
+		}
+		return 1.0 / 1000.0;
 	}
 
 	private TextChunk createTextChunk(List<COSBase> arguments, String operatorType, int operatorIndex) {
