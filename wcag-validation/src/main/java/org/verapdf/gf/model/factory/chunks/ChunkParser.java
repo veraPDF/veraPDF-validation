@@ -827,18 +827,18 @@ public class ChunkParser {
 		}
 	}
 
-	private TextPieces parseTextShowArgument(COSBase argument) {
+	private TextPieces parseTextShowArgument(COSBase argument, double horizontalScalingFactor) {
 		TextPieces textPieces = new TextPieces();
 		if (argument.getType() == COSObjType.COS_STRING) {
-			parseString((COSString) argument.getDirectBase(), textPieces);
+			parseString((COSString) argument.getDirectBase(), textPieces, horizontalScalingFactor);
 		} else if (argument.getType() == COSObjType.COS_ARRAY) {
 			COSArray array = (COSArray) argument;
 			for (COSObject obj : array) {
 				if (obj != null) {
 					if (obj.getType() == COSObjType.COS_STRING) {
-						parseString((COSString) obj.getDirectBase(), textPieces);
+						parseString((COSString) obj.getDirectBase(), textPieces, horizontalScalingFactor);
 					} else if (obj.getType().isNumber()) {
-						double shift = - obj.getReal() / 1000 *
+						double shift = - obj.getReal() * horizontalScalingFactor *
 								graphicsState.getTextState().getTextFontSize() *
 								graphicsState.getTextState().getHorizontalScaling();
                         textPieces.shiftCurrentX(shift);
@@ -853,7 +853,7 @@ public class ChunkParser {
 		return textPieces;
 	}
 
-	private void parseString(COSString string, TextPieces textPieces) {
+	private void parseString(COSString string, TextPieces textPieces, double horizontalScalingFactor) {
 		byte[] bytes = string.get();
 		try (InputStream inputStream = new ByteArrayInputStream(bytes)) {
 			while (inputStream.available() > 0) {
@@ -868,7 +868,7 @@ public class ChunkParser {
 								graphicsState.getTextState().getWordSpacing() : 0)) *
 								graphicsState.getTextState().getHorizontalScaling();
                 width = width *
-                        graphicsState.getTextState().getTextFontSize() / 1000 *
+                        graphicsState.getTextState().getTextFontSize() * horizontalScalingFactor *
                         graphicsState.getTextState().getHorizontalScaling();
                 String value = graphicsState.getTextState().getTextFont().toUnicode(code);
 				String result = value;
@@ -892,7 +892,8 @@ public class ChunkParser {
 		COSBase argument = TextChunksHelper.getArgument(arguments, operatorType);
 		if (font != null && argument != null && (argument.getType() == COSObjType.COS_STRING ||
 		        argument.getType() == COSObjType.COS_ARRAY) && this.textMatrix != null) {
-			TextPieces textPieces = parseTextShowArgument(argument);
+			double horizontalScalingFactor = TextChunksHelper.getHorizontalScalingFactor(font);
+			TextPieces textPieces = parseTextShowArgument(argument, horizontalScalingFactor);
 			if (textPieces.isEmpty()) {
 				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX(), 0));
 				return null;
@@ -905,7 +906,7 @@ public class ChunkParser {
             PDFontDescriptor descriptor = font.getFontDescriptor();
             String fontNameWithoutSubset = font.getNameWithoutSubset();
             TextChunk textChunk = new TextChunk(TextChunksHelper.calculateTextBoundingBox(textRenderingMatrixBefore,
-				textRenderingMatrixAfter, font, pageNumber), textPieces.getValue(),
+				textRenderingMatrixAfter, font, pageNumber, horizontalScalingFactor), textPieces.getValue(),
                     fontNameWithoutSubset, TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
 				TextChunksHelper.calculateFontWeight(graphicsState.getTextState().getRenderingMode(), font),
                     descriptor.getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
