@@ -23,6 +23,7 @@ package org.verapdf.gf.model.factory.chunks;
 import org.verapdf.cos.COSBase;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.pd.font.PDFont;
+import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.NodeUtils;
 
@@ -45,7 +46,7 @@ public class TextChunksHelper {
 	}
 
 	protected static BoundingBox calculateTextBoundingBox(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter,
-												 PDFont font, Integer pageNumber) {
+												 PDFont font, Integer pageNumber, double horizontalScalingFactor) {
 		double[] fontBoundingBox = font.getBoundingBox();
 		Double descent = font.getDescent();
 		if (descent == null) {
@@ -55,37 +56,58 @@ public class TextChunksHelper {
 		if (ascent == null) {
 			ascent = fontBoundingBox[3];
 		}
+		double verticalScalingFactor = TextChunksHelper.getVerticalScalingFactor(font);
 		double x1;
 		double x2;
 		if (textRenderingMatrixBefore.getScaleX() >= 0 && textRenderingMatrixBefore.getShearX() >= 0) {
-			x1 = textRenderingMatrixBefore.getTranslateX() + descent * textRenderingMatrixBefore.getShearX() / 1000;
-			x2 = textRenderingMatrixAfter.getTranslateX() + ascent * textRenderingMatrixAfter.getShearX() / 1000;
+			x1 = textRenderingMatrixBefore.getTranslateX() + descent * textRenderingMatrixBefore.getShearX() * horizontalScalingFactor;
+			x2 = textRenderingMatrixAfter.getTranslateX() + ascent * textRenderingMatrixAfter.getShearX() * horizontalScalingFactor;
 		} else if (textRenderingMatrixBefore.getScaleX() < 0 && textRenderingMatrixBefore.getShearX() < 0) {
-			x1 = textRenderingMatrixAfter.getTranslateX() + ascent * textRenderingMatrixAfter.getShearX() / 1000;
-			x2 = textRenderingMatrixBefore.getTranslateX() + descent * textRenderingMatrixBefore.getShearX() / 1000;
+			x1 = textRenderingMatrixAfter.getTranslateX() + ascent * textRenderingMatrixAfter.getShearX() * horizontalScalingFactor;
+			x2 = textRenderingMatrixBefore.getTranslateX() + descent * textRenderingMatrixBefore.getShearX() * horizontalScalingFactor;
 		} else if (textRenderingMatrixBefore.getScaleX() >= 0) {
-			x1 = textRenderingMatrixBefore.getTranslateX() + ascent * textRenderingMatrixBefore.getShearX() / 1000;
-			x2 = textRenderingMatrixAfter.getTranslateX() + descent * textRenderingMatrixAfter.getShearX() / 1000;
+			x1 = textRenderingMatrixBefore.getTranslateX() + ascent * textRenderingMatrixBefore.getShearX() * horizontalScalingFactor;
+			x2 = textRenderingMatrixAfter.getTranslateX() + descent * textRenderingMatrixAfter.getShearX() * horizontalScalingFactor;
 		} else {
-			x1 = textRenderingMatrixAfter.getTranslateX() + descent * textRenderingMatrixAfter.getShearX() / 1000;
-			x2 = textRenderingMatrixBefore.getTranslateX() + ascent * textRenderingMatrixBefore.getShearX() / 1000;
+			x1 = textRenderingMatrixAfter.getTranslateX() + descent * textRenderingMatrixAfter.getShearX() * horizontalScalingFactor;
+			x2 = textRenderingMatrixBefore.getTranslateX() + ascent * textRenderingMatrixBefore.getShearX() * horizontalScalingFactor;
 		}
 		double y1;
 		double y2;
 		if (textRenderingMatrixBefore.getScaleY() >= 0 && textRenderingMatrixBefore.getShearY() >= 0) {
-			y1 = textRenderingMatrixBefore.getTranslateY() + descent * textRenderingMatrixBefore.getScaleY() / 1000;
-			y2 = textRenderingMatrixAfter.getTranslateY() + ascent * textRenderingMatrixAfter.getScaleY() / 1000;
+			y1 = textRenderingMatrixBefore.getTranslateY() + descent * textRenderingMatrixBefore.getScaleY() * verticalScalingFactor;
+			y2 = textRenderingMatrixAfter.getTranslateY() + ascent * textRenderingMatrixAfter.getScaleY() * verticalScalingFactor;
 		} else if (textRenderingMatrixBefore.getScaleY() < 0 && textRenderingMatrixBefore.getShearY() < 0) {
-			y1 = textRenderingMatrixAfter.getTranslateY() + ascent * textRenderingMatrixAfter.getScaleY() / 1000;
-			y2 = textRenderingMatrixBefore.getTranslateY() + descent * textRenderingMatrixBefore.getScaleY() / 1000;
+			y1 = textRenderingMatrixAfter.getTranslateY() + ascent * textRenderingMatrixAfter.getScaleY() * verticalScalingFactor;
+			y2 = textRenderingMatrixBefore.getTranslateY() + descent * textRenderingMatrixBefore.getScaleY() * verticalScalingFactor;
 		} else if (textRenderingMatrixBefore.getScaleY() >= 0) {
-			y1 = textRenderingMatrixAfter.getTranslateY() + descent * textRenderingMatrixAfter.getScaleY() / 1000;
-			y2 = textRenderingMatrixBefore.getTranslateY() + ascent * textRenderingMatrixBefore.getScaleY() / 1000;
+			y1 = textRenderingMatrixAfter.getTranslateY() + descent * textRenderingMatrixAfter.getScaleY() * verticalScalingFactor;
+			y2 = textRenderingMatrixBefore.getTranslateY() + ascent * textRenderingMatrixBefore.getScaleY() * verticalScalingFactor;
 		} else {
-			y1 = textRenderingMatrixBefore.getTranslateY() + ascent * textRenderingMatrixBefore.getScaleY() / 1000;
-			y2 = textRenderingMatrixAfter.getTranslateY() + descent * textRenderingMatrixAfter.getScaleY() / 1000;
+			y1 = textRenderingMatrixBefore.getTranslateY() + ascent * textRenderingMatrixBefore.getScaleY() * verticalScalingFactor;
+			y2 = textRenderingMatrixAfter.getTranslateY() + descent * textRenderingMatrixAfter.getScaleY() * verticalScalingFactor;
 		}
 		return new BoundingBox(pageNumber, x1, y1, x2, y2);
+	}
+
+	public static double getHorizontalScalingFactor(PDFont font) {
+		if (font instanceof PDType3Font) {
+			double[] fontMatrix = ((PDType3Font) font).getFontMatrix();
+			if (fontMatrix != null && fontMatrix.length > 0 && fontMatrix[0] != 0.0) {
+				return fontMatrix[0];
+			}
+		}
+		return 1.0 / 1000.0;
+	}
+
+	public static double getVerticalScalingFactor(PDFont font) {
+		if (font instanceof PDType3Font) {
+			double[] fontMatrix = ((PDType3Font) font).getFontMatrix();
+			if (fontMatrix != null && fontMatrix.length > 3 && fontMatrix[3] != 0.0) {
+				return fontMatrix[3];
+			}
+		}
+		return 1.0 / 1000.0;
 	}
 	
 	protected static double calculateTextBaseLine(Matrix textMatrix) {
