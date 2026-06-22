@@ -195,7 +195,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 		return ((org.verapdf.pd.font.PDType0Font) this.pdFont).getType0FontDict().getNameKeyStringValue(ASAtom.SUBTYPE);
 	}
 
-	private boolean isRegistryCompatible() {
+    public boolean isRegistryCompatible() {
 		String fontRegistry = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo()
 				.getStringKey(ASAtom.REGISTRY);
 		String cMapRegistry = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getRegistry();
@@ -206,7 +206,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 		return fontRegistry.equals(cMapRegistry);
 	}
 
-	private boolean isOrderingCompatible() {
+    public boolean isOrderingCompatible() {
 		String fontOrdering = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo()
 				.getStringKey(ASAtom.ORDERING);
 		String cMapOrdering = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getOrdering();
