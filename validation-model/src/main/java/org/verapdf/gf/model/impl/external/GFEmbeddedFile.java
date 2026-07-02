@@ -27,7 +27,6 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.GFModelParser;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.GFPDSeparation;
-import org.verapdf.parser.PDFFlavour;
 import org.verapdf.tools.TaggedPDFRoleMapHelper;
 import org.verapdf.model.external.EmbeddedFile;
 import org.verapdf.model.operator.Glyph;
@@ -131,7 +130,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private Set<String> noteIDSet;
 	private Set<COSKey> xFormKeysSet;
 	private Set<COSKey> fileSpecificationKeys;
-	private Map<COSKey, Set<COSKey>> destinationToStructParentsMap;
+	private Map<COSKey, Map<COSKey, String>> structParentToDestinationToAnnotMap;
 	private Stack<COSKey> transparencyVisitedContentStreams;
 	private Map<String, PDFont> cachedPDFonts;
 	private Map<String, Map<String, Glyph>> cachedGlyphs;
@@ -157,7 +156,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		this.cachedColorSpaces = StaticContainers.getCachedColorSpaces();
 		this.cachedPDFonts = StaticContainers.getCachedFonts();
 		this.fileSpecificationKeys = StaticContainers.getFileSpecificationKeys();
-		this.destinationToStructParentsMap = StaticContainers.getDestinationToStructParentsMap();
+		this.structParentToDestinationToAnnotMap = StaticContainers.getStructParentToDestinationToAnnotMap();
 		this.noteIDSet = StaticContainers.getNoteIDSet();
 		this.xFormKeysSet = StaticContainers.getXFormKeysSet();
 		this.transparencyVisitedContentStreams = StaticContainers.getTransparencyVisitedContentStreams();
@@ -187,7 +186,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		StaticContainers.setCachedColorSpaces(this.cachedColorSpaces);
 		StaticContainers.setCachedFonts(this.cachedPDFonts);
 		StaticContainers.setFileSpecificationKeys(this.fileSpecificationKeys);
-		StaticContainers.setDestinationToStructParentsMap(this.destinationToStructParentsMap);
+		StaticContainers.setStructParentToDestinationToAnnotMap(this.structParentToDestinationToAnnotMap);
 		StaticContainers.setNoteIDSet(this.noteIDSet);
 		StaticContainers.setXFormKeysSet(this.xFormKeysSet);
 		StaticContainers.setTransparencyVisitedContentStreams(this.transparencyVisitedContentStreams);
