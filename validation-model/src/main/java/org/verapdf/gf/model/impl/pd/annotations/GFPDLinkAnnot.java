@@ -94,22 +94,15 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 			return;
 		}
 		COSKey structDestinationKey = structDestination.getKey();
-		for (Map.Entry<COSKey, Set<COSKey>> entry : StaticContainers.getDestinationToStructParentsMap().entrySet()) {
-			if (structDestinationKey.equals(entry.getKey())) {
-				continue;
-			}
-			for (COSKey structParentObjectKey : entry.getValue()) {
-				if (structParentKey.equals(structParentObjectKey)) {
-					differentTargetAnnotObjectKey = structParentObjectKey.toString();
-					break;
-				}
-			}
-			if (differentTargetAnnotObjectKey != null) {
+		Map<COSKey, String> destinationToAnnotMap = StaticContainers.getStructParentToDestinationToAnnotMap()
+				.computeIfAbsent(structParentKey, k -> new HashMap<>());
+		for (Map.Entry<COSKey, String> entry : destinationToAnnotMap.entrySet()) {
+			if (!structDestinationKey.equals(entry.getKey())) {
+				differentTargetAnnotObjectKey = entry.getValue();
 				break;
 			}
 		}
-		StaticContainers.getDestinationToStructParentsMap().computeIfAbsent(structDestinationKey,
-				k -> new HashSet<>()).add(structParentKey);
+		StaticContainers.getStructParentToDestinationToAnnotMap().get(structParentKey).put(structDestinationKey, getobjectKey());
 	}
 	
 	private COSObject getStructureDestinationObject() {
