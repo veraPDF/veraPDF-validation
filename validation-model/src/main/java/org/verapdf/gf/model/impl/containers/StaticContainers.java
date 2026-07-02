@@ -51,7 +51,7 @@ public class StaticContainers {
 
 	private static final ThreadLocal<Set<COSKey>> fileSpecificationKeys = new ThreadLocal<>();
 
-	private static final ThreadLocal<Map<COSKey, Set<COSKey>>> destinationToStructParentsMap = new ThreadLocal<>();
+	private static final ThreadLocal<Map<COSKey, Map<COSKey, String>>> structParentToDestinationToAnnotMap = new ThreadLocal<>();
 
 	private static final ThreadLocal<Stack<COSKey>> transparencyVisitedContentStreams = new ThreadLocal<>();
 
@@ -75,7 +75,7 @@ public class StaticContainers {
 		cachedColorSpaces.set(new HashMap<>());
 		cachedFonts.set(new HashMap<>());
 		fileSpecificationKeys.set(new HashSet<>());
-		destinationToStructParentsMap.set(new HashMap<>());
+		structParentToDestinationToAnnotMap.set(new HashMap<>());
 		transparencyVisitedContentStreams.set(new Stack<>());
 		cachedGlyphs.set(new HashMap<>());
 		noteIDSet.set(new HashSet<>());
@@ -129,15 +129,15 @@ public class StaticContainers {
 		StaticContainers.inconsistentSeparations.set(inconsistentSeparations);
 	}
 
-	public static Map<COSKey, Set<COSKey>> getDestinationToStructParentsMap() {
-		if (destinationToStructParentsMap.get() == null) {
-			destinationToStructParentsMap.set(new HashMap<>());
+	public static Map<COSKey, Map<COSKey, String>> getStructParentToDestinationToAnnotMap() {
+		if (structParentToDestinationToAnnotMap.get() == null) {
+			structParentToDestinationToAnnotMap.set(new HashMap<>());
 		}
-		return destinationToStructParentsMap.get();
+		return structParentToDestinationToAnnotMap.get();
 	}
 
-	public static void setDestinationToStructParentsMap(Map<COSKey, Set<COSKey>> destinationToStructParentsMap) {
-		StaticContainers.destinationToStructParentsMap.set(destinationToStructParentsMap);
+	public static void setStructParentToDestinationToAnnotMap(Map<COSKey, Map<COSKey, String>> structParentToDestinationToAnnotMap) {
+		StaticContainers.structParentToDestinationToAnnotMap.set(structParentToDestinationToAnnotMap);
 	}
 
 	public static Map<String, PDColorSpace> getCachedColorSpaces() {
