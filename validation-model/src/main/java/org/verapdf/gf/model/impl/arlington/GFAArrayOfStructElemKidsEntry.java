@@ -99,4 +99,9 @@ public class GFAArrayOfStructElemKidsEntry extends GFAObject implements AArrayOf
 		return getHasTypeInteger(entry);
 	}
 
+	@Override
+	public Boolean getcontainsparentPg() {
+		return this.parentParentObject.knownKey(ASAtom.getASAtom("Pg"));
+	}
+
 }
