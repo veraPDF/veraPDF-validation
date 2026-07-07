@@ -41,6 +41,7 @@ import org.verapdf.pd.images.PDXObject;
 import org.verapdf.pd.optionalcontent.PDOCMDDictionary;
 import org.verapdf.pd.optionalcontent.PDOptionalContentProperties;
 import org.verapdf.tools.StaticResources;
+import org.verapdf.wcag.algorithms.entities.ObjectKey;
 import org.verapdf.wcag.algorithms.entities.content.*;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 import org.verapdf.wcag.algorithms.entities.geometry.MultiBoundingBox;
@@ -378,7 +379,7 @@ public class ChunkParser {
 				}
 				ImageChunk imageChunk = new ImageChunk(parseImageBoundingBox());
 				if (StaticContainers.isDataLoader()) {
-					imageChunk.getStreamInfos().add(new StreamInfo(operatorIndex, xObjectName));
+					imageChunk.getStreamInfos().add(new StreamInfo(operatorIndex, xObjectName, null));
 				}
 				putChunk(getMarkedContent(), imageChunk);
 				break;
@@ -524,7 +525,9 @@ public class ChunkParser {
 					if (ASAtom.IMAGE.equals(xObject.getType())) {
 						ImageChunk imageChunk = new ImageChunk(parseImageBoundingBox());
 						if (StaticContainers.isDataLoader()) {
-							imageChunk.getStreamInfos().add(new StreamInfo(operatorIndex, this.xObjectName));
+							COSKey key = xObject.getObject().getObjectKey();
+							imageChunk.getStreamInfos().add(new StreamInfo(operatorIndex, this.xObjectName, 
+									key != null ? new ObjectKey(key.getNumber(), key.getGeneration()) : null));
 						}
 						putChunk(getMarkedContent(), imageChunk);
 					} else if (ASAtom.FORM.equals(xObject.getType())) {

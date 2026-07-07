@@ -115,7 +115,7 @@ public class TextPieces {
 				if (previousStreamInfo != null && previousStreamInfo.getEndIndex() == textPiece.startIndex) {
 					previousStreamInfo.setEndIndex(textPiece.startIndex + textPiece.value.length());
 				} else {
-					StreamInfo currentStreamInfo = new StreamInfo(operatorIndex, xObjectName, textPiece.startIndex,
+					StreamInfo currentStreamInfo = new StreamInfo(operatorIndex, xObjectName, null, textPiece.startIndex,
 							textPiece.startIndex + textPiece.value.length(), currentIndex, null);
 					streamInfos.add(currentStreamInfo);
 					previousStreamInfo = currentStreamInfo;
