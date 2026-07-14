@@ -35,7 +35,7 @@ import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.colors.PDDeviceCMYK;
 import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
-import org.verapdf.pd.font.PDFontDescriptor;
+import org.verapdf.pd.font.PDCIDFont;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXObject;
 import org.verapdf.pd.optionalcontent.PDOCMDDictionary;
@@ -830,21 +830,34 @@ public class ChunkParser {
 		}
 	}
 
-	private TextPieces parseTextShowArgument(COSBase argument, double horizontalScalingFactor) {
-		TextPieces textPieces = new TextPieces();
+	private TextPieces parseTextShowArgument(COSBase argument) {
+		TextState textState = graphicsState.getTextState();
+		org.verapdf.pd.font.PDFont font = textState.getTextFont();
+		boolean isVertical = font instanceof PDCIDFont && ((PDCIDFont) font).isVertical();
+		TextPieces textPieces = new TextPieces(isVertical);
 		if (argument.getType() == COSObjType.COS_STRING) {
-			parseString((COSString) argument.getDirectBase(), textPieces, horizontalScalingFactor);
+			parseString((COSString) argument.getDirectBase(), textPieces);
 		} else if (argument.getType() == COSObjType.COS_ARRAY) {
 			COSArray array = (COSArray) argument;
 			for (COSObject obj : array) {
 				if (obj != null) {
 					if (obj.getType() == COSObjType.COS_STRING) {
-						parseString((COSString) obj.getDirectBase(), textPieces, horizontalScalingFactor);
+						parseString((COSString) obj.getDirectBase(), textPieces);
 					} else if (obj.getType().isNumber()) {
-						double shift = - obj.getReal() * horizontalScalingFactor *
-								graphicsState.getTextState().getTextFontSize() *
-								graphicsState.getTextState().getHorizontalScaling();
-                        textPieces.shiftCurrentX(shift);
+						if (isVertical) {
+							double verticalScalingFactor = TextChunksHelper.getVerticalScalingFactor(font);
+							textPieces.shiftCurrent(
+								-obj.getReal() * verticalScalingFactor *
+									textState.getTextFontSize()
+							);
+						} else {
+							double horizontalScalingFactor = TextChunksHelper.getHorizontalScalingFactor(font);
+							textPieces.shiftCurrent(
+								-obj.getReal() * horizontalScalingFactor *
+									textState.getTextFontSize() *
+									textState.getHorizontalScaling()
+							);
+						}
 					}
 				}
 			}
@@ -856,34 +869,53 @@ public class ChunkParser {
 		return textPieces;
 	}
 
-	private void parseString(COSString string, TextPieces textPieces, double horizontalScalingFactor) {
+	private void parseString(COSString string, TextPieces textPieces) {
 		byte[] bytes = string.get();
 		try (InputStream inputStream = new ByteArrayInputStream(bytes)) {
 			while (inputStream.available() > 0) {
-				int code = graphicsState.getTextState().getTextFont().readCode(inputStream);
-				Double width = graphicsState.getTextState().getTextFont().getWidth(code);
-				if (width == null) {
-					LOGGER.log(Level.SEVERE, "Missing width of glyph with code " + code +
-							" in font" + graphicsState.getTextState().getTextFont().getName());
-					width = 0.0;
-				}
-				double shift = (graphicsState.getTextState().getCharacterSpacing() + (code == 32 ?
-								graphicsState.getTextState().getWordSpacing() : 0)) *
-								graphicsState.getTextState().getHorizontalScaling();
-                width = width *
-                        graphicsState.getTextState().getTextFontSize() * horizontalScalingFactor *
-                        graphicsState.getTextState().getHorizontalScaling();
-                String value = graphicsState.getTextState().getTextFont().toUnicode(code);
-				String result = value;
-				if (result == null) {
-					result = StaticContainers.getIsIgnoreCharactersWithoutUnicode() ? "" : REPLACEMENT_CHARACTER_STRING;
+				double current = textPieces.getCurrent();
+				TextState textState = graphicsState.getTextState();
+				org.verapdf.pd.font.PDFont font = textState.getTextFont();
+				double characterSpacing = textState.getCharacterSpacing(),
+							 wordSpacing = textState.getWordSpacing(),
+							 fontSize = textState.getTextFontSize();
+
+				int code = textState.getTextFont().readCode(inputStream);
+				String value = font.toUnicode(code);
+				if (value == null) {
+					value = StaticContainers.getIsIgnoreCharactersWithoutUnicode() ? "" : REPLACEMENT_CHARACTER_STRING;
 					if (StaticContainers.isDataLoader()) {
 						LOGGER.log(Level.WARNING, "The glyph can not be mapped to Unicode");
 					}
 				}
-				textPieces.add(new TextPieces.TextPiece(result, textPieces.getCurrentX(), 
-						textPieces.getCurrentX() + width));
-				textPieces.shiftCurrentX(shift);
+
+				if (font instanceof PDCIDFont && ((PDCIDFont) font).isVertical()) {
+					PDCIDFont cidFont = (PDCIDFont) font;
+					double verticalScalingFactor = TextChunksHelper.getVerticalScalingFactor(font);
+					double shiftY = characterSpacing + (code == 32 ? wordSpacing : 0);
+					Double widthY = cidFont.getVerticalWidth(code);
+					if (widthY != null) widthY = widthY * fontSize * verticalScalingFactor;
+					else {
+						LOGGER.log(Level.SEVERE, "Missing vertical width of glyph with code " + code + " in font" + font.getName());
+						widthY = 0.0;
+					}
+
+					textPieces.add(new TextPieces.TextPiece(value, current, current + widthY));
+					textPieces.shiftCurrent(shiftY);
+				} else {
+					double horizontalScaling = textState.getHorizontalScaling();
+					double horizontalScalingFactor = TextChunksHelper.getHorizontalScalingFactor(font);
+					double shiftX = (characterSpacing + (code == 32 ? wordSpacing : 0)) * horizontalScaling;
+					Double widthX = font.getWidth(code);
+					if (widthX != null) widthX = widthX * fontSize * horizontalScalingFactor * horizontalScaling;
+					else {
+						LOGGER.log(Level.SEVERE, "Missing width of glyph with code " + code + " in font" + font.getName());
+						widthX = 0.0;
+					}
+
+					textPieces.add(new TextPieces.TextPiece(value, current, current + widthX));
+					textPieces.shiftCurrent(shiftX);
+				}
 			}
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Error processing text show operator's string argument : " + new String(bytes), e);
@@ -895,32 +927,40 @@ public class ChunkParser {
 		COSBase argument = TextChunksHelper.getArgument(arguments, operatorType);
 		if (font != null && argument != null && (argument.getType() == COSObjType.COS_STRING ||
 		        argument.getType() == COSObjType.COS_ARRAY) && this.textMatrix != null) {
-			double horizontalScalingFactor = TextChunksHelper.getHorizontalScalingFactor(font);
-			TextPieces textPieces = parseTextShowArgument(argument, horizontalScalingFactor);
+			TextPieces textPieces = parseTextShowArgument(argument);
+			double startX = 0, startY = 0, currentX = 0, currentY = 0, endX = 0, endY = 0;
 			if (textPieces.isEmpty()) {
-				textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX(), 0));
+				textMatrix.concatenate(
+					textPieces.isVertical
+						? Matrix.getTranslateInstance(0, textPieces.getCurrent())
+						: Matrix.getTranslateInstance(textPieces.getCurrent(), 0)
+				);
 				return null;
 			}
-			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getStartX(), 0));
+			if (textPieces.isVertical) {
+				currentY = textPieces.getCurrent();
+				startY = textPieces.getStart();
+				endY = textPieces.getEnd();
+			} else {
+				currentX = textPieces.getCurrent();
+				startX = textPieces.getStart();
+				endX = textPieces.getEnd();
+			}
+			textMatrix.concatenate(Matrix.getTranslateInstance(startX, startY));
 			Matrix textRenderingMatrixBefore = calculateTextRenderingMatrix();
-			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getEndX() - textPieces.getStartX(), 0));
+			textMatrix.concatenate(Matrix.getTranslateInstance(endX - startX, endY - startY));
 			Matrix textRenderingMatrixAfter = calculateTextRenderingMatrix();
-			textMatrix.concatenate(Matrix.getTranslateInstance(textPieces.getCurrentX() - textPieces.getEndX(), 0));
-            PDFontDescriptor descriptor = font.getFontDescriptor();
-            String fontNameWithoutSubset = font.getNameWithoutSubset();
-            TextChunk textChunk = new TextChunk(TextChunksHelper.calculateTextBoundingBox(textRenderingMatrixBefore,
-				textRenderingMatrixAfter, font, pageNumber, horizontalScalingFactor), textPieces.getValue(),
-                    fontNameWithoutSubset, TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
+			textMatrix.concatenate(Matrix.getTranslateInstance(currentX - endX, currentY - endY));
+
+			boolean isVertical = font instanceof PDCIDFont && ((PDCIDFont) font).isVertical();
+			TextChunk textChunk = new TextChunk(
+				isVertical ? TextChunksHelper.calculateTextBoundingBoxV(textRenderingMatrixBefore, textRenderingMatrixAfter, font, pageNumber)
+									 : TextChunksHelper.calculateTextBoundingBoxH(textRenderingMatrixBefore, textRenderingMatrixAfter, font, pageNumber),
+				textPieces.getValue(), font.getNameWithoutSubset(), TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
 				TextChunksHelper.calculateFontWeight(graphicsState.getTextState().getRenderingMode(), font),
-                    descriptor.getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
+				font.getFontDescriptor().getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),
 				graphicsState.getFillColor(), textRenderingMatrixAfter.getRotationDegree());
-            if (StaticContainers.isDataLoader() && !fontNameToFontFamilyMap.containsKey(fontNameWithoutSubset)) {
-                String fontFamily = descriptor.getFontFamily();
-                if (fontFamily == null || fontFamily.isEmpty()) {
-                    fontFamily = PDFontDescriptor.extractFontFamilyFromFontName(fontNameWithoutSubset);
-                }
-                fontNameToFontFamilyMap.put(fontNameWithoutSubset, fontFamily);
-            }
+
 			textChunk.adjustSymbolEndsToBoundingBox(textPieces.getSymbolEnds());
 			if (StaticContainers.isDataLoader()) {
 				textChunk.getStreamInfos().addAll(textPieces.getStreamInfos(operatorIndex, xObjectName));
