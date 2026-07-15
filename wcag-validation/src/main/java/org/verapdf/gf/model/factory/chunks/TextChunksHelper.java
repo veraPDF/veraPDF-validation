@@ -27,7 +27,6 @@ import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.NodeUtils;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -46,7 +45,14 @@ public class TextChunksHelper {
 		return null;
 	}
 
-	protected static BoundingBox calculateTextBoundingBoxH(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter, PDFont font, Integer pageNumber) {
+	protected static BoundingBox calculateTextBoundingBox(boolean isVertical, Matrix textRenderingMatrixBefore, 
+														  Matrix textRenderingMatrixAfter, PDFont font, Integer pageNumber) {
+		return isVertical ? TextChunksHelper.calculateTextBoundingBoxV(textRenderingMatrixBefore, textRenderingMatrixAfter, pageNumber)
+				: TextChunksHelper.calculateTextBoundingBoxH(textRenderingMatrixBefore, textRenderingMatrixAfter, font, pageNumber);
+	}
+
+	private static BoundingBox calculateTextBoundingBoxH(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter, 
+														   PDFont font, Integer pageNumber) {
 		double[] fontBoundingBox = font.getBoundingBox();
 		Double descent = font.getDescent();
 		if (descent == null) {
@@ -91,16 +97,8 @@ public class TextChunksHelper {
 		return new BoundingBox(pageNumber, x1, y1, x2, y2);
 	}
 
-	protected static BoundingBox calculateTextBoundingBoxV(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter, PDFont font, Integer pageNumber) {
-		double[] fontBoundingBox = font.getBoundingBox();
-		Double descent = font.getDescent();
-		if (descent == null) {
-			descent = fontBoundingBox[1];
-		}
-		Double ascent = font.getAscent();
-		if (ascent == null) {
-			ascent = fontBoundingBox[3];
-		}
+	private static BoundingBox calculateTextBoundingBoxV(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter, 
+														   Integer pageNumber) {
 		double x1;
 		double x2;
 		if (textRenderingMatrixBefore.getScaleX() >= 0 && textRenderingMatrixBefore.getShearX() <= 0) {

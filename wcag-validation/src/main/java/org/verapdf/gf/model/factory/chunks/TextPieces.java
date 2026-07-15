@@ -36,19 +36,15 @@ public class TextPieces {
 
 	TextPieces(boolean isVertical) {
 		this.isVertical = isVertical;
-		this.comparator = isVertical
-			? (p1, p2) -> -Double.compare(p1, p2)
-			: (p1, p2) -> Double.compare(p1, p2);
-		textPieces = isVertical
-			? new TreeSet<>(new TextPieceComparatorV())
-			: new TreeSet<>(new TextPieceComparatorH());
+		this.comparator = (p1, p2) -> isVertical ? -Double.compare(p1, p2) : Double.compare(p1, p2);
+		textPieces = new TreeSet<>(isVertical ? new TextPieceComparatorV() : new TextPieceComparatorH());
 		currentIndex = 0;
 		current = 0;
 	}
 
 	public void add(TextPiece textPiece) {
-		textPieces.add(textPiece);
 		textPiece.startIndex = currentIndex;
+		textPieces.add(textPiece);
 		currentIndex += textPiece.value.length();
 		current = textPiece.end;
 	}
@@ -100,18 +96,18 @@ public class TextPieces {
 		List<TextPiece> spaces = new ArrayList<>();
 		Iterator<TextPiece> validation = textPieces.iterator();
 		if (!validation.hasNext()) {
-				return;
+			return;
 		}
 		TextPiece prev = validation.next();
 		double previousEnd = prev.end;
 
 		while (validation.hasNext()) {
-				TextPiece piece = validation.next();
-				double currentStart = piece.start;
-				if (currentStart - previousEnd > threshold) {
-						spaces.add(new TextPieces.TextPiece(" ", previousEnd, currentStart));
-				}
-				previousEnd = piece.end;
+			TextPiece piece = validation.next();
+			double currentStart = piece.start;
+			if ((isVertical ? previousEnd - currentStart : currentStart - previousEnd) > threshold) {
+				spaces.add(new TextPieces.TextPiece(" ", previousEnd, currentStart));
+			}
+			previousEnd = piece.end;
 		}
 		textPieces.addAll(spaces);
 	}
@@ -140,7 +136,6 @@ public class TextPieces {
 
 	public static class TextPiece {
 		private final String value;
-
 		private final double start;
 		private final double center;
 		private final double end;
@@ -162,7 +157,11 @@ public class TextPieces {
 			if (res != 0) {
 				return res;
 			}
-			return Double.compare(textPiece1.end, textPiece2.end);
+			res = Double.compare(textPiece1.end, textPiece2.end);
+			if (res != 0) {
+				return res;
+			}
+			return Integer.compare(textPiece1.startIndex, textPiece2.startIndex);
 		}
 	}
 
@@ -173,7 +172,11 @@ public class TextPieces {
 			if (res != 0) {
 				return res;
 			}
-			return -Double.compare(textPiece1.end, textPiece2.end);
+			res = -Double.compare(textPiece1.end, textPiece2.end);
+			if (res != 0) {
+				return res;
+			}
+			return Integer.compare(textPiece1.startIndex, textPiece2.startIndex);
 		}
 	}
 }
