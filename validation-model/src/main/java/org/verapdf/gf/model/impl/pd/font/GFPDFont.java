@@ -50,11 +50,13 @@ public class GFPDFont extends GFPDResource implements PDFont {
 
     protected boolean fontProgramParsed;
     protected final RenderingMode renderingMode;
+    private final String resourceName;
 
     protected GFPDFont(org.verapdf.pd.font.PDFont font,
-                       RenderingMode renderingMode, final String type) {
+                       RenderingMode renderingMode, String resourceName, final String type) {
         super(font, type);
         this.renderingMode = renderingMode;
+        this.resourceName = resourceName;
     }
 
     /**
@@ -189,4 +191,9 @@ public class GFPDFont extends GFPDResource implements PDFont {
     public Encoding getEncodingMapping() {
         return this.pdFont.getEncodingMapping();
     }
+    
+    @Override
+    public String getExtraContext() {
+        return resourceName;
+    } 
 }

@@ -34,8 +34,8 @@ import org.verapdf.model.pdlayer.PDSimpleFont;
 public abstract class GFPDSimpleFont extends GFPDFont implements PDSimpleFont {
 
     protected GFPDSimpleFont(org.verapdf.pd.font.PDSimpleFont font,
-                             RenderingMode renderingMode, final String type) {
-        super(font, renderingMode, type);
+                             RenderingMode renderingMode, String fontResourceName, final String type) {
+        super(font, renderingMode, fontResourceName, type);
     }
 
     /**

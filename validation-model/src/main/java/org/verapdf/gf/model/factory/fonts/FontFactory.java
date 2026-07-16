@@ -56,7 +56,7 @@ public class FontFactory {
 		// Disable default constructor
 	}
 
-	public static PDFont parseFont(org.verapdf.pd.font.PDFont rawFont, RenderingMode renderingMode,
+	public static PDFont parseFont(org.verapdf.pd.font.PDFont rawFont, String fontResourceName, RenderingMode renderingMode,
 								   PDResourcesHandler resources, GraphicState inheritedGraphicState) {
 		if (rawFont == null) {
 			return new GFPDEmptyFont();
@@ -64,21 +64,21 @@ public class FontFactory {
 		if (TYPE_3.equals(rawFont.getSubtype().getValue())) {
 			PDResources fontResources = ((PDType3Font) rawFont).getResources();
 			PDResourcesHandler pdResources = resources.getExtendedResources(fontResources);
-			return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources, inheritedGraphicState);
+			return new GFPDType3Font((PDType3Font) rawFont, renderingMode, pdResources, inheritedGraphicState, fontResourceName);
 		}
 		String id = GFIDGenerator.generateID(rawFont, renderingMode);
 		PDFont res = StaticContainers.getCachedFonts().get(id);
 		if (res == null) {
 			switch (rawFont.getSubtype().getValue()) {
 				case TYPE_0:
-					res = new GFPDType0Font((PDType0Font) rawFont, renderingMode);
+					res = new GFPDType0Font((PDType0Font) rawFont, renderingMode, fontResourceName);
 					break;
 				case TYPE_1:
 				case MM_TYPE_1:
-					res = new GFPDType1Font((PDType1Font) rawFont, renderingMode);
+					res = new GFPDType1Font((PDType1Font) rawFont, renderingMode, fontResourceName);
 					break;
 				case TRUE_TYPE:
-					res = new GFPDTrueTypeFont((PDTrueTypeFont) rawFont, renderingMode);
+					res = new GFPDTrueTypeFont((PDTrueTypeFont) rawFont, renderingMode, fontResourceName);
 					break;
 			}
 			StaticContainers.getCachedFonts().put(id, res);

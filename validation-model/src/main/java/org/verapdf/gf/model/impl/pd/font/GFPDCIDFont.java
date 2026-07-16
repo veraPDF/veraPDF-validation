@@ -57,8 +57,8 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
     public static final int bufferSize = 2048;
     private final String externalFontID;
 
-    public GFPDCIDFont(PDFont font, RenderingMode renderingMode, String externalFontID) {
-        super(font, renderingMode, CID_FONT_TYPE);
+    public GFPDCIDFont(PDFont font, RenderingMode renderingMode, String externalFontID, String fontResourceName) {
+        super(font, renderingMode, fontResourceName, CID_FONT_TYPE);
         this.externalFontID = externalFontID;
         if (font != null) {
             FontProgram program = font.getFontProgram();

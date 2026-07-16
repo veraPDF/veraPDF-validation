@@ -38,6 +38,7 @@ public class GraphicState implements Cloneable {
 	private PDColorSpace strokeLastPatternUnderlyingColorSpace = null;
 	private RenderingMode renderingMode = RenderingMode.FILL;
 	private PDFont font;
+	private String fontResourceName;
 	private boolean overprintingFlagStroke = false;
 	private boolean overprintingFlagNonStroke = false;
 	private int opm = 0;
@@ -101,6 +102,14 @@ public class GraphicState implements Cloneable {
 		this.font = font;
 	}
 
+	public String getFontResourceName() {
+		return fontResourceName;
+	}
+
+	public void setFontResourceName(String fontResourceName) {
+		this.fontResourceName = fontResourceName;
+	}
+
 	public Double getScaleFactor() {
 		return scaleFactor;
 	}
@@ -157,6 +166,7 @@ public class GraphicState implements Cloneable {
 		this.strokeLastPatternUnderlyingColorSpace = graphicState.getStrokeLastPatternUnderlyingColorSpace();
 		this.renderingMode = graphicState.getRenderingMode();
 		this.font = graphicState.getFont();
+		this.fontResourceName = graphicState.getFontResourceName();
 		this.overprintingFlagStroke = graphicState.isOverprintingFlagStroke();
 		this.overprintingFlagNonStroke = graphicState.isOverprintingFlagNonStroke();
 		this.opm = graphicState.getOpm();
@@ -170,6 +180,7 @@ public class GraphicState implements Cloneable {
 			if (font != null) {
 				this.font = font;
 			}
+			this.fontResourceName = null;
 			COSNumber fontSize = extGState.getCOSFontSize();
 			if (fontSize != null) {
 				this.scaleFactor = fontSize.getReal();
@@ -198,6 +209,7 @@ public class GraphicState implements Cloneable {
 		clone.strokeLastPatternUnderlyingColorSpace = this.strokeLastPatternUnderlyingColorSpace;
 		clone.renderingMode = this.renderingMode;
 		clone.font = this.font;
+		clone.fontResourceName = this.fontResourceName;
 		clone.scaleFactor = this.scaleFactor;
 		clone.overprintingFlagStroke = this.overprintingFlagStroke;
 		clone.overprintingFlagNonStroke = this.overprintingFlagNonStroke;
