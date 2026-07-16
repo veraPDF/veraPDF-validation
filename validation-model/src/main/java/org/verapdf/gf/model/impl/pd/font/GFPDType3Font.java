@@ -62,8 +62,8 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
 
     public GFPDType3Font(org.verapdf.pd.font.type3.PDType3Font font,
                          RenderingMode renderingMode, PDResourcesHandler resources,
-                         GraphicState inheritedGraphicState) {
-        super(font, renderingMode, TYPE3_FONT_TYPE);
+                         GraphicState inheritedGraphicState, String fontResourceName) {
+        super(font, renderingMode, fontResourceName, TYPE3_FONT_TYPE);
         this.resources = resources;
         this.inheritedGraphicState = inheritedGraphicState;
     }

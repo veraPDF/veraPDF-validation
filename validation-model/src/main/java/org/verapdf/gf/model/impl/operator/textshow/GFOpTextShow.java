@@ -69,6 +69,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	public static final String STROKE_COLOR_SPACE = "strokeCS";
 
 	private final org.verapdf.pd.font.PDFont font;
+	private final String fontResourceName;
 	private final Double scaleFactor;
 
 	private final RenderingMode renderingMode;
@@ -90,6 +91,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 						   boolean isRealContent, final String opType) {
 		super(arguments, opType);
 		this.font = state.getFont();
+		this.fontResourceName = state.getFontResourceName();
 		this.scaleFactor = state.getScaleFactor();
 		this.renderingMode = state.getRenderingMode();
 		this.resourcesHandler = resourcesHandler;
@@ -190,7 +192,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 	}
 
 	private List<PDFont> parseFont() {
-		PDFont font = FontFactory.parseFont(this.font, renderingMode, this.resourcesHandler, this.inheritedGraphicState);
+		PDFont font = FontFactory.parseFont(this.font, this.fontResourceName, renderingMode, this.resourcesHandler, this.inheritedGraphicState);
 		if (font != null) {
 			List<PDFont> result = new ArrayList<>(MAX_NUMBER_OF_ELEMENTS);
 			result.add(font);

@@ -47,8 +47,8 @@ public class GFPDTrueTypeFont extends GFPDSimpleFont implements PDTrueTypeFont {
     public static final String TRUETYPE_FONT_TYPE = "PDTrueTypeFont";
 
     public GFPDTrueTypeFont(org.verapdf.pd.font.truetype.PDTrueTypeFont font,
-                            RenderingMode renderingMode) {
-        super(font, renderingMode, TRUETYPE_FONT_TYPE);
+                            RenderingMode renderingMode, String fontResourceName) {
+        super(font, renderingMode, fontResourceName, TRUETYPE_FONT_TYPE);
         if (font != null) {
             this.fontProgramParsed = font.parseFontProgram();
         }

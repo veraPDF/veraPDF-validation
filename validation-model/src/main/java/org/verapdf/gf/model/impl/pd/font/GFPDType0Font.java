@@ -54,8 +54,8 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 	private final PDCIDFont descendantFont;
 	private org.verapdf.pd.font.PDCIDFont cidFont;
 
-	public GFPDType0Font(org.verapdf.pd.font.PDType0Font font, RenderingMode renderingMode) {
-		super(font, renderingMode, TYPE_0_FONT_TYPE);
+	public GFPDType0Font(org.verapdf.pd.font.PDType0Font font, RenderingMode renderingMode, String fontResourceName) {
+		super(font, renderingMode, fontResourceName, TYPE_0_FONT_TYPE);
 		this.descendantFont = this.calculateDescendantFont();
 		((org.verapdf.pd.font.PDType0Font) this.pdFont).setFontProgramFromDescendant(this.cidFont);
 		this.fontProgramParsed = this.descendantFont != null
@@ -98,7 +98,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 					((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getCMapFile(),
 					this.pdFont.getFontProgram(), this.pdFont.isSuccessfullyParsed());
 			this.cidFont = cidFont;
-			return new GFPDCIDFont(cidFont, renderingMode, GFIDGenerator.generateID(this.pdFont));
+			return new GFPDCIDFont(cidFont, renderingMode, GFIDGenerator.generateID(this.pdFont), null);
 		}
 		return null;
 	}
