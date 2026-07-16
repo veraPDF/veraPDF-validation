@@ -368,7 +368,11 @@ class OperatorParser {
 				processedOperators.add(new GFOp_Tr(arguments));
 				break;
 			case Operators.TF:
-				this.graphicState.setFont(resourcesHandler.getFont(getFirstCOSName(arguments)));
+				COSName fontResourceName = getFirstCOSName(arguments);
+				if (fontResourceName != null) {
+					this.graphicState.setFontResourceName(fontResourceName.getString());
+				}
+				this.graphicState.setFont(resourcesHandler.getFont(fontResourceName));
 				if (arguments.size() > 1) {
 					COSBase scaleFactor = arguments.get(1);
 					if (scaleFactor.getType().isNumber()) {
