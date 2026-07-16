@@ -31,7 +31,7 @@ import java.util.List;
 public class GFPDEmptyFont extends GFPDFont {
 
     public GFPDEmptyFont() {
-        super(null, RenderingMode.NEITHER, RESOURCE_TYPE);
+        super(null, RenderingMode.NEITHER, null, RESOURCE_TYPE);
     }
 
     @Override
