@@ -28,16 +28,25 @@ import java.util.*;
  * @author Maxim Plushchov
  */
 public class TextPieces {
+	private final Comparator<? super Double> comparator;
+	private final SortedSet<TextPiece> textPieces;
+	public final boolean isVertical;
+	private int currentIndex;
+	private double current;
 
-	private final SortedSet<TextPiece> textPieces = new TreeSet<>(new TextPieceComparator());
-	private double currentX = 0;
-	private int currentIndex = 0;
+	TextPieces(boolean isVertical) {
+		this.isVertical = isVertical;
+		this.comparator = (p1, p2) -> isVertical ? -Double.compare(p1, p2) : Double.compare(p1, p2);
+		textPieces = new TreeSet<>(isVertical ? new TextPieceComparatorV() : new TextPieceComparatorH());
+		currentIndex = 0;
+		current = 0;
+	}
 
 	public void add(TextPiece textPiece) {
-		textPieces.add(textPiece);
 		textPiece.startIndex = currentIndex;
+		textPieces.add(textPiece);
 		currentIndex += textPiece.value.length();
-		currentX = textPiece.endX;
+		current = textPiece.end;
 	}
 
 	public String getValue() {
@@ -48,60 +57,60 @@ public class TextPieces {
 		return unicodeValue.toString();
 	}
 
-	public double getStartX() {
-		return textPieces.isEmpty() ? 0.0d : textPieces.first().startX;
+	public double getStart() {
+		return textPieces.isEmpty() ? 0.0d : textPieces.first().start;
 	}
 
-	public double getEndX() {
-		return textPieces.stream().map(TextPiece::getEndX).max(Double::compare).orElse(getStartX());
+	public double getEnd() {
+		return textPieces.stream().map(tp -> tp.end).max(comparator).orElse(getStart());
 	}
 
-	public double getCurrentX() {
-		return currentX;
+	public double getCurrent() {
+		return current;
 	}
 
-	public void shiftCurrentX(double shift) {
-		currentX += shift;
+	public void setCurrent(double current) {
+		this.current = current;
+	}
+
+	public void shiftCurrent(double shift) {
+		current += shift;
 	}
 	
 	public boolean isEmpty() {
 		return textPieces.isEmpty();
 	}
 
-	public void setCurrentX(double currentX) {
-		this.currentX = currentX;
-	}
-
 	public List<Double> getSymbolEnds() {
 		List<Double> ends = new ArrayList<>();
-		double startX = getStartX();
+		double start = getStart();
 		ends.add(0.0d);
 		for (TextPiece textPiece : textPieces) {
-			TextChunksHelper.updateSymbolEnds(ends, textPiece.endX - textPiece.startX, textPiece.startX - startX,
+			TextChunksHelper.updateSymbolEnds(ends, textPiece.end - textPiece.start, textPiece.start - start,
 			                                  textPiece.value != null ? textPiece.value.length() : 0);
 		}
 		return ends;
 	}
 
-    public void addSpaces(double threshold) {
-        List<TextPiece> spaces = new ArrayList<>();
-        Iterator<TextPiece> validation = textPieces.iterator();
-        if (!validation.hasNext()) {
-            return;
-        }
-        TextPiece prev = validation.next();
-        double previousEnd = prev.getEndX();
+	public void addSpaces(double threshold) {
+		List<TextPiece> spaces = new ArrayList<>();
+		Iterator<TextPiece> validation = textPieces.iterator();
+		if (!validation.hasNext()) {
+			return;
+		}
+		TextPiece prev = validation.next();
+		double previousEnd = prev.end;
 
-        while (validation.hasNext()) {
-            TextPiece piece = validation.next();
-            double currentStart = piece.getStartX();
-            if (currentStart - previousEnd > threshold) {
-                spaces.add(new TextPieces.TextPiece(" ", previousEnd, currentStart));
-            }
-            previousEnd = piece.getEndX();
-        }
-        textPieces.addAll(spaces);
-    }
+		while (validation.hasNext()) {
+			TextPiece piece = validation.next();
+			double currentStart = piece.start;
+			if ((isVertical ? previousEnd - currentStart : currentStart - previousEnd) > threshold) {
+				spaces.add(new TextPieces.TextPiece(" ", previousEnd, currentStart));
+			}
+			previousEnd = piece.end;
+		}
+		textPieces.addAll(spaces);
+	}
 	
 	public List<StreamInfo> getStreamInfos(int operatorIndex, String xObjectName) {
 		List<StreamInfo> streamInfos = new ArrayList<>();
@@ -127,38 +136,47 @@ public class TextPieces {
 
 	public static class TextPiece {
 		private final String value;
-		private final double startX;
-		private final double endX;
+		private final double start;
+		private final double center;
+		private final double end;
+
 		private Integer startIndex;
 
-		public TextPiece(String value, double startX, double endX) {
+		public TextPiece(String value, double start, double end) {
 			this.value = value;
-			this.startX = startX;
-			this.endX = endX;
-		}
-
-		public double getEndX() {
-			return endX;
-		}
-
-        public double getStartX() {
-            return startX;
-        }
-		
-		public double getCenterX() {
-			return (getStartX() + getEndX()) / 2;
+			this.start = start;
+			this.center = (start + end) / 2;
+			this.end = end;
 		}
 	}
 
-	public static class TextPieceComparator implements Comparator<TextPiece> {
-
+	public static class TextPieceComparatorH implements Comparator<TextPiece> {
 		@Override
 		public int compare(TextPiece textPiece1, TextPiece textPiece2){
-			int res = Double.compare(textPiece1.getCenterX(), textPiece2.getCenterX());
+			int res = Double.compare(textPiece1.center, textPiece2.center);
 			if (res != 0) {
 				return res;
 			}
-			return Double.compare(textPiece1.endX, textPiece2.endX);
+			res = Double.compare(textPiece1.end, textPiece2.end);
+			if (res != 0) {
+				return res;
+			}
+			return Integer.compare(textPiece1.startIndex, textPiece2.startIndex);
+		}
+	}
+
+	public static class TextPieceComparatorV implements Comparator<TextPiece> {
+		@Override
+		public int compare(TextPiece textPiece1, TextPiece textPiece2){
+			int res = -Double.compare(textPiece1.center, textPiece2.center);
+			if (res != 0) {
+				return res;
+			}
+			res = -Double.compare(textPiece1.end, textPiece2.end);
+			if (res != 0) {
+				return res;
+			}
+			return Integer.compare(textPiece1.startIndex, textPiece2.startIndex);
 		}
 	}
 }

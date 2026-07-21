@@ -45,8 +45,14 @@ public class TextChunksHelper {
 		return null;
 	}
 
-	protected static BoundingBox calculateTextBoundingBox(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter,
-												 PDFont font, Integer pageNumber, double horizontalScalingFactor) {
+	protected static BoundingBox calculateTextBoundingBox(boolean isVertical, Matrix textRenderingMatrixBefore, 
+														  Matrix textRenderingMatrixAfter, PDFont font, Integer pageNumber) {
+		return isVertical ? TextChunksHelper.calculateTextBoundingBoxV(textRenderingMatrixBefore, textRenderingMatrixAfter, pageNumber)
+				: TextChunksHelper.calculateTextBoundingBoxH(textRenderingMatrixBefore, textRenderingMatrixAfter, font, pageNumber);
+	}
+
+	private static BoundingBox calculateTextBoundingBoxH(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter, 
+														   PDFont font, Integer pageNumber) {
 		double[] fontBoundingBox = font.getBoundingBox();
 		Double descent = font.getDescent();
 		if (descent == null) {
@@ -56,9 +62,9 @@ public class TextChunksHelper {
 		if (ascent == null) {
 			ascent = fontBoundingBox[3];
 		}
-		double verticalScalingFactor = TextChunksHelper.getVerticalScalingFactor(font);
 		double x1;
 		double x2;
+		double horizontalScalingFactor = TextChunksHelper.getHorizontalScalingFactor(font);
 		if (textRenderingMatrixBefore.getScaleX() >= 0 && textRenderingMatrixBefore.getShearX() >= 0) {
 			x1 = textRenderingMatrixBefore.getTranslateX() + descent * textRenderingMatrixBefore.getShearX() * horizontalScalingFactor;
 			x2 = textRenderingMatrixAfter.getTranslateX() + ascent * textRenderingMatrixAfter.getShearX() * horizontalScalingFactor;
@@ -74,6 +80,7 @@ public class TextChunksHelper {
 		}
 		double y1;
 		double y2;
+		double verticalScalingFactor = TextChunksHelper.getVerticalScalingFactor(font);
 		if (textRenderingMatrixBefore.getScaleY() >= 0 && textRenderingMatrixBefore.getShearY() >= 0) {
 			y1 = textRenderingMatrixBefore.getTranslateY() + descent * textRenderingMatrixBefore.getScaleY() * verticalScalingFactor;
 			y2 = textRenderingMatrixAfter.getTranslateY() + ascent * textRenderingMatrixAfter.getScaleY() * verticalScalingFactor;
@@ -86,6 +93,41 @@ public class TextChunksHelper {
 		} else {
 			y1 = textRenderingMatrixBefore.getTranslateY() + ascent * textRenderingMatrixBefore.getScaleY() * verticalScalingFactor;
 			y2 = textRenderingMatrixAfter.getTranslateY() + descent * textRenderingMatrixAfter.getScaleY() * verticalScalingFactor;
+		}
+		return new BoundingBox(pageNumber, x1, y1, x2, y2);
+	}
+
+	private static BoundingBox calculateTextBoundingBoxV(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter, 
+														   Integer pageNumber) {
+		double x1;
+		double x2;
+		if (textRenderingMatrixBefore.getScaleX() >= 0 && textRenderingMatrixBefore.getShearX() <= 0) {
+			x1 = textRenderingMatrixBefore.getTranslateX() - 0.5 * textRenderingMatrixBefore.getScaleX();
+			x2 = textRenderingMatrixAfter.getTranslateX() + 0.5 * textRenderingMatrixAfter.getScaleX();
+		} else if (textRenderingMatrixBefore.getScaleX() < 0 && textRenderingMatrixBefore.getShearX() > 0) {
+			x1 = textRenderingMatrixAfter.getTranslateX() + 0.5 * textRenderingMatrixAfter.getScaleX();
+			x2 = textRenderingMatrixBefore.getTranslateX() - 0.5 * textRenderingMatrixBefore.getScaleX();
+		} else if (textRenderingMatrixBefore.getScaleX() >= 0) {
+			x1 = textRenderingMatrixBefore.getTranslateX() + 0.5 * textRenderingMatrixBefore.getScaleX();
+			x2 = textRenderingMatrixAfter.getTranslateX() - 0.5 * textRenderingMatrixAfter.getScaleX();
+		} else {
+			x1 = textRenderingMatrixAfter.getTranslateX() - 0.5 * textRenderingMatrixAfter.getScaleX();
+			x2 = textRenderingMatrixBefore.getTranslateX() + 0.5 * textRenderingMatrixBefore.getScaleX();
+		}
+		double y1;
+		double y2;
+		if (textRenderingMatrixBefore.getScaleY() >= 0 && textRenderingMatrixBefore.getShearY() <= 0) {
+			y1 = textRenderingMatrixBefore.getTranslateY() - 0.5 * textRenderingMatrixBefore.getShearY();
+			y2 = textRenderingMatrixAfter.getTranslateY() + 0.5 * textRenderingMatrixAfter.getShearY();
+		} else if (textRenderingMatrixBefore.getScaleY() < 0 && textRenderingMatrixBefore.getShearY() > 0) {
+			y1 = textRenderingMatrixAfter.getTranslateY() + 0.5 * textRenderingMatrixAfter.getShearY();
+			y2 = textRenderingMatrixBefore.getTranslateY() - 0.5 * textRenderingMatrixBefore.getShearY();
+		} else if (textRenderingMatrixBefore.getScaleY() >= 0) {
+			y1 = textRenderingMatrixAfter.getTranslateY() - 0.5 * textRenderingMatrixAfter.getShearY();
+			y2 = textRenderingMatrixBefore.getTranslateY() + 0.5 * textRenderingMatrixBefore.getShearY();
+		} else {
+			y1 = textRenderingMatrixBefore.getTranslateY() + 0.5 * textRenderingMatrixBefore.getShearY();
+			y2 = textRenderingMatrixAfter.getTranslateY() - 0.5 * textRenderingMatrixAfter.getShearY();
 		}
 		return new BoundingBox(pageNumber, x1, y1, x2, y2);
 	}
