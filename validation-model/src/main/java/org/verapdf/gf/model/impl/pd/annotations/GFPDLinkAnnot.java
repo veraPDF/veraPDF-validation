@@ -40,6 +40,7 @@ import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,8 +54,10 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 	public static final String LINK_ANNOTATION_TYPE = "PDLinkAnnot";
 
 	public static final String DEST = "Dest";
-	
-	private String differentTargetAnnotObjectKey;
+
+	private COSKey structDestinationKey = null;
+
+	private Entry<COSKey, String> differentTargetAnnot = null;
 
 	public GFPDLinkAnnot(PDAnnotation annot, PDResourcesHandler pageResources, PDPage page) {
 		super(annot, pageResources, page, LINK_ANNOTATION_TYPE);
@@ -93,12 +96,12 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 		if (structDestination == null || structDestination.getKey() == null) {
 			return;
 		}
-		COSKey structDestinationKey = structDestination.getKey();
+		structDestinationKey = structDestination.getKey();
 		Map<COSKey, String> destinationToAnnotMap = StaticContainers.getStructParentToDestinationToAnnotMap()
 				.computeIfAbsent(structParentKey, k -> new HashMap<>());
 		for (Map.Entry<COSKey, String> entry : destinationToAnnotMap.entrySet()) {
 			if (!structDestinationKey.equals(entry.getKey())) {
-				differentTargetAnnotObjectKey = entry.getValue();
+				differentTargetAnnot = entry;
 				break;
 			}
 		}
@@ -158,7 +161,20 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 	}
 
 	@Override
+	public String getstructDestinationKey() {
+		if (structDestinationKey == null) return null;
+		return structDestinationKey.toString();
+	}
+
+	@Override
 	public String getdifferentTargetAnnotObjectKey() {
-		return differentTargetAnnotObjectKey;
+		if (differentTargetAnnot == null) return null;
+		return differentTargetAnnot.getValue();
+	}
+
+	@Override
+	public String getdifferentTargetAnnotDestinationKey() {
+		if (differentTargetAnnot == null) return null;
+		return differentTargetAnnot.getKey().toString();
 	}
 }
