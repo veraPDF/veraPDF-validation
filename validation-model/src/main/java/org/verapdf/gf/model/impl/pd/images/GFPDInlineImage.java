@@ -160,4 +160,14 @@ public class GFPDInlineImage extends GFPDResource implements PDInlineImage {
 	public Boolean getisMask() {
 		return false;
 	}
+
+    @Override
+    public Long getL() {
+        return ((org.verapdf.pd.images.PDInlineImage) this.simplePDObject).getL();
+    }
+
+    @Override
+    public Long getstreamLength() {
+        return ((org.verapdf.pd.images.PDInlineImage) this.simplePDObject).getStreamLength();
+    }
 }
