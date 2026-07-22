@@ -24,6 +24,7 @@
 package org.verapdf.gf.model.factory.operators;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.as.io.ASMemoryInStream;
 import org.verapdf.cos.*;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
@@ -74,6 +75,7 @@ import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.StaticResources;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.logging.*;
 
@@ -623,9 +625,15 @@ class OperatorParser {
 		    && (gs.isProcessColorOperators() || Boolean.TRUE.equals(imageParameters.getBooleanKey(ASAtom.IM)))) {
 
 			arguments.add(imageParameters);
-			processedOperators.add(new GFOp_BI(new ArrayList<>()));
+            long streamLength = 0;
+            try {
+                streamLength = ((ASMemoryInStream) rawOperator.getImageData()).getStreamLength();
+            } catch (IOException e) {
+                LOGGER.log(Level.SEVERE, "Error during computing inline image data stream length", e);
+            }
+            processedOperators.add(new GFOp_BI(new ArrayList<>()));
 			processedOperators.add(new GFOp_ID(arguments));
-			processedOperators.add(new GFOp_EI(arguments, resourcesHandler, gs.getFillColorSpace()));
+			processedOperators.add(new GFOp_EI(arguments, resourcesHandler, gs.getFillColorSpace(), streamLength));
 		}
 	}
 
