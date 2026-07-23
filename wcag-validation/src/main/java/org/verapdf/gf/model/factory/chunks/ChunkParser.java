@@ -850,7 +850,7 @@ public class ChunkParser {
 			}
 		}
 		if (StaticStorages.getIsAddSpacesBetweenTextPieces()) {
-			double threshold = graphicsState.getTextState().getTextFontSize() * TextChunkUtils.TEXT_LINE_SPACE_RATIO;
+			double threshold = graphicsState.getTextState().getTextFontSize() * StaticContainers.getTextLineSpaceRatio();
 			textPieces.addSpaces(threshold);
 		}
 		return textPieces;
