@@ -39,6 +39,12 @@ public class GFAGTS_ProcStepsGroup extends GFAObject implements AGTS_ProcStepsGr
 	}
 
 	@Override
+	public String getGTS_ProcStepsColorantsNameValue() {
+		COSObject GTS_ProcStepsColorants = getGTS_ProcStepsColorantsValue();
+		return getNameValue(GTS_ProcStepsColorants);
+	}
+
+	@Override
 	public Boolean getcontainsGTS_ProcStepsGroup() {
 		return this.baseObject.knownKey(ASAtom.getASAtom("GTS_ProcStepsGroup"));
 	}
