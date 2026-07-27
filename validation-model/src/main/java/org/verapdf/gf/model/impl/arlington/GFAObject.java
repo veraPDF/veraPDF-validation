@@ -9,6 +9,7 @@ import org.verapdf.model.GenericModelObject;
 import org.verapdf.pd.PDDocument;
 import org.verapdf.pd.PDCatalog;
 import org.verapdf.pd.PDNamesDictionary;
+import java.util.regex.Pattern;
 import org.verapdf.tools.StaticResources;
 import java.util.*;
 import org.verapdf.pd.PDNameTreeNode;
@@ -19,7 +20,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 
 	private static final List<String> standardFonts = new LinkedList<>();
 	private static final ThreadLocal<Set<COSKey>> keysSet = new ThreadLocal<>();
-	protected static final String PDF_DATE_FORMAT_REGEX = "(D:)?(\\d\\d){2,7}(([Z+-]\\d\\d'(\\d\\d'?)?)?|Z)";
+	protected static final Pattern PDF_DATE_FORMAT_REGEX_PATTERN = Pattern.compile("(D:)?(\\d\\d){2,7}(([Z+-]\\d\\d'(\\d\\d'?)?)?|Z)");
 	protected final COSBase baseObject;
 	protected COSBase parentObject;
 	protected String keyName;
@@ -442,14 +443,14 @@ public class GFAObject extends GenericModelObject implements AObject {
 	}
 
 	public static String getDateValue(COSObject object) {
-		if (object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(GFAObject.PDF_DATE_FORMAT_REGEX)) {
+		if (object != null && object.getType() == COSObjType.COS_STRING && PDF_DATE_FORMAT_REGEX_PATTERN.matcher(object.getString()).matches()) {
 			return object.getString();
 		}
 		return null;
 	}
 
 	public static Boolean getHasTypeDate(COSObject object) {
-		return object != null && object.getType() == COSObjType.COS_STRING && object.getString().matches(PDF_DATE_FORMAT_REGEX);
+		return object != null && object.getType() == COSObjType.COS_STRING && PDF_DATE_FORMAT_REGEX_PATTERN.matcher(object.getString()).matches();
 	}
 
 	public static Boolean getHasTypeDictionary(COSObject object) {
