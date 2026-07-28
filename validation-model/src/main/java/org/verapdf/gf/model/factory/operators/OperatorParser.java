@@ -625,11 +625,11 @@ class OperatorParser {
 		    && (gs.isProcessColorOperators() || Boolean.TRUE.equals(imageParameters.getBooleanKey(ASAtom.IM)))) {
 
 			arguments.add(imageParameters);
-            long streamLength = 0;
+            Long streamLength = null;
             try {
                 streamLength = ((ASMemoryInStream) rawOperator.getImageData()).getStreamLength();
             } catch (IOException e) {
-                LOGGER.log(Level.SEVERE, "Error during computing inline image data stream length", e);
+                LOGGER.log(Level.SEVERE, "Error during computing inline image data stream length");
             }
             processedOperators.add(new GFOp_BI(new ArrayList<>()));
 			processedOperators.add(new GFOp_ID(arguments));
