@@ -43,7 +43,7 @@ public class GFOp_EI extends GFOpInlineImage implements Op_EI {
 
 	private final PDResourcesHandler resourcesHandler;
 	private final org.verapdf.pd.colors.PDColorSpace inheritedFillCS;
-    private final long dataStreamLength;
+    private final Long dataStreamLength;
 
 	public GFOp_EI(List<COSBase> arguments, PDResourcesHandler resourcesHandler,
 				   org.verapdf.pd.colors.PDColorSpace inheritedFillCS, Long dataStreamLength) {
