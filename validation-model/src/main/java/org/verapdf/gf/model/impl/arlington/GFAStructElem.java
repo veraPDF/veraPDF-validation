@@ -818,6 +818,18 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 		return getNameValue(Type);
 	}
 
+	public COSObject getKTypeValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject K = this.baseObject.getKey(ASAtom.getASAtom("K"));
+		if (K == null || !K.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Type = K.getKey(ASAtom.getASAtom("Type"));
+		return Type;
+	}
+
 	public COSObject gettrailerCatalogStructTreeRootNamespacesValue() {
 		COSObject trailer = StaticResources.getDocument().getDocument().getTrailer().getObject();
 		if (trailer == null || !trailer.getType().isDictionaryBased()) {
@@ -850,6 +862,18 @@ public class GFAStructElem extends GFAObject implements AStructElem {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public String getKTypeNameValue() {
+		COSObject KType = getKTypeValue();
+		return getNameValue(KType);
+	}
+
+	@Override
+	public Boolean getcontainsKPg() {
+		COSObject K = getKValue();
+		return K.knownKey(ASAtom.getASAtom("Pg"));
 	}
 
 }

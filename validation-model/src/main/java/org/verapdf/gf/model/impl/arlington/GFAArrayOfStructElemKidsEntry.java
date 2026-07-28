@@ -99,6 +99,38 @@ public class GFAArrayOfStructElemKidsEntry extends GFAObject implements AArrayOf
 		return getHasTypeInteger(entry);
 	}
 
+	public COSObject getEntryValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject baseObject = new COSObject(this.baseObject);
+		return baseObject;
+	}
+
+	public COSObject getEntryTypeValue() {
+		if (this.baseObject == null || !this.baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject baseObject = new COSObject(this.baseObject);
+		if (baseObject == null || !baseObject.getType().isDictionaryBased()) {
+			return null;
+		}
+		COSObject Type = baseObject.getKey(ASAtom.getASAtom("Type"));
+		return Type;
+	}
+
+	@Override
+	public String getEntryTypeNameValue() {
+		COSObject EntryType = getEntryTypeValue();
+		return getNameValue(EntryType);
+	}
+
+	@Override
+	public Boolean getcontainsEntryPg() {
+		COSObject Entry = getEntryValue();
+		return Entry.knownKey(ASAtom.getASAtom("Pg"));
+	}
+
 	@Override
 	public Boolean getcontainsparentPg() {
 		return this.parentParentObject.knownKey(ASAtom.getASAtom("Pg"));
