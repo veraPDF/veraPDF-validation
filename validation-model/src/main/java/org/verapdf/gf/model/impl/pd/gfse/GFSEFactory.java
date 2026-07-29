@@ -141,7 +141,7 @@ public class GFSEFactory {
             case TaggedPDFConstants.WT:
                 return new GFSEWT(structElemDictionary);
             default:
-                if (standardType.matches(TaggedPDFConstants.HN_REGEXP)) {
+                if (TaggedPDFConstants.HN_REGEXP_PATTERN.matcher(standardType).matches()) {
                     return new GFSEHn(structElemDictionary, standardType);
                 } else {
                     return new GFSENonStandard(structElemDictionary, standardType);

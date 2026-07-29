@@ -137,7 +137,7 @@ public class GFSAFactory {
             case TaggedPDFConstants.WT:
                 return new GFSAWT(structElemDictionary, parentsStandardTypes);
             default:
-                if (standardType.matches(TaggedPDFConstants.HN_REGEXP)) {
+                if (TaggedPDFConstants.HN_REGEXP_PATTERN.matcher(standardType).matches()) {
                     return new GFSAHn(structElemDictionary, standardType, parentsStandardTypes);
                 } else {
                     return new GFSANonStandard(structElemDictionary, standardType, parentsStandardTypes);
