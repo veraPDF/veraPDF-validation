@@ -84,7 +84,7 @@ public class GFPDSeparation extends GFPDColorSpace implements PDSeparation {
                 COSObject tintTransformCurrent =
                         ((org.verapdf.pd.colors.PDSeparation) simplePDObject).getCosTintTransform();
 
-                if (!alternateSpaceToCompare.equals(alternateSpaceCurrent) || !tintTransformToCompare.equals(tintTransformCurrent)) {
+                if (!alternateSpaceToCompare.isEquivalentTo(alternateSpaceCurrent) || !tintTransformToCompare.isEquivalentTo(tintTransformCurrent)) {
                     StaticContainers.getInconsistentSeparations().add(name);
                     return Boolean.FALSE;
                 }
