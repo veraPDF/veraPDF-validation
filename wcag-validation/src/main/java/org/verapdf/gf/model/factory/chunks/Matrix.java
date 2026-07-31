@@ -56,7 +56,7 @@ public class Matrix implements Cloneable {
             Double d = (arg != null) ? arg.getReal() : null;
             if (d == null) {
                 matrixArray = new double[] {1, 0, 0, 1, 0, 0};
-                LOGGER.log(Level.WARNING,"Null real value for matrix argument at index {} in COSArray. " +
+                LOGGER.log(Level.WARNING,"Null real value for matrix argument at index {0} in COSArray. " +
                         "Defaulting to matrix [1,0,0,1,0,0].", i);
                 return;
             }
@@ -71,7 +71,7 @@ public class Matrix implements Cloneable {
             Double d = (arg != null) ? arg.getReal() : null;
             if (d == null) {
                 matrixArray = new double[] {1, 0, 0, 1, 0, 0};
-                LOGGER.log(Level.WARNING,"Null real value for matrix argument at index {} in List of arguments. " +
+                LOGGER.log(Level.WARNING,"Null real value for matrix argument at index {0} in List of arguments. " +
                                 "Defaulting to matrix [1,0,0,1,0,0].", i);
                 return;
             }
