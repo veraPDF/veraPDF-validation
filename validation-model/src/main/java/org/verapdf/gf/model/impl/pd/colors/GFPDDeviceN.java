@@ -176,7 +176,7 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 		List<PDSeparation> result = new LinkedList<>();
 		List<org.verapdf.pd.colors.PDColorSpace> colorants = ((org.verapdf.pd.colors.PDDeviceN) this.simplePDObject).getColorants();
 		for (org.verapdf.pd.colors.PDColorSpace colorSpace : colorants) {
-			if (ASAtom.SEPARATION.equals(colorSpace.getType())) {
+			if (colorSpace != null && ASAtom.SEPARATION.equals(colorSpace.getType())) {
 				result.add((GFPDSeparation) ColorSpaceFactory.getColorSpace(colorSpace));
 			}
 		}
