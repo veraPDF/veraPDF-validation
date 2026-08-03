@@ -20,6 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd;
 
+import org.verapdf.as.ASAtom;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.OutputIntents;
@@ -93,5 +94,16 @@ public class GFOutputIntents extends GenericModelObject implements OutputIntents
             }
         }
         return null;
+    }
+
+    @Override
+    public Long getnumberOfPDFAOutputIntents() {
+        int number = 0;
+        for (org.verapdf.pd.PDOutputIntent outputIntent : outInts) {
+            if (ASAtom.GTS_PDFA1.getValue().equals(outputIntent.getSubtype())) {
+                number++;
+            }
+        }
+        return (long) number;
     }
 }
