@@ -29,8 +29,7 @@ import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
-import org.verapdf.gf.model.tools.GFIDGenerator;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDType3Font;
@@ -108,8 +107,6 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
             COSKey objectKey = this.pdFont.getKey(ASAtom.CHAR_PROCS).getObjectKey();
             Set<ASAtom> keySet = charProcDict.getKeySet();
             Map<String, PDContentStream> map = new HashMap<>(keySet.size());
-//fix: move to Type3Glyph it's real???
-//String fontID = GFIDGenerator.generateID(pdFont);
             for (ASAtom glyphName : keySet) {
                 COSObject charProcStream = charProcDict.getKey(glyphName);
                 if (!charProcStream.empty() && charProcDict.getType() == COSObjType.COS_DICT) {

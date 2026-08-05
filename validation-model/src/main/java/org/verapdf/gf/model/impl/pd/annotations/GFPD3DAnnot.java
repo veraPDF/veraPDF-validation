@@ -22,7 +22,7 @@ package org.verapdf.gf.model.impl.pd.annotations;
 
 import org.verapdf.gf.model.impl.pd.GFPD3DStream;
 import org.verapdf.gf.model.impl.pd.GFPDAnnot;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PD3DAnnot;
 import org.verapdf.model.pdlayer.PD3DStream;

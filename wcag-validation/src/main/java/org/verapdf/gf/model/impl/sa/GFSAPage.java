@@ -22,7 +22,7 @@ package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.gf.model.factory.chunks.GraphicsState;
 import org.verapdf.gf.model.factory.chunks.Matrix;
-import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.GenericModelObject;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.salayer.SAAnnotation;
@@ -153,10 +153,10 @@ public class GFSAPage extends GenericModelObject implements SAPage, IPage {
 	private void parseContentStream() {
 		GFSAContentStream pdContentStream = null;
 		if (pdPage.getContent() != null) {
-			ResourceHandler resourceHandler = ResourceHandler.getInstance(pdPage.getResources());
-			GraphicsState graphicsState = new GraphicsState(resourceHandler);
+			PDResourcesHandler resourcesHandler = PDResourcesHandler.getInstance(pdPage.getResources(), pdPage.isInheritedResources());
+			GraphicsState graphicsState = new GraphicsState(resourcesHandler);
 			graphicsState.setCTM(createCurrentTransformationMatrix(pdPage));
-			pdContentStream = new GFSAContentStream(pdPage.getContent(), graphicsState, resourceHandler,
+			pdContentStream = new GFSAContentStream(pdPage.getContent(), graphicsState, resourcesHandler,
 					pdPage.getPageNumber(), pdPage.getObject().getKey(), null, null, null);
 		}
 		this.contentStream = pdContentStream;

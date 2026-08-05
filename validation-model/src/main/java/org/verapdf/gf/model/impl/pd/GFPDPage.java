@@ -25,7 +25,7 @@ import org.verapdf.cos.COSArray;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.cos.GFCosBBox;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBBox;
 import org.verapdf.model.pdlayer.*;

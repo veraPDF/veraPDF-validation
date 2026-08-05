@@ -22,7 +22,7 @@ package org.verapdf.gf.model.impl.sa;
 
 import org.verapdf.cos.COSKey;
 import org.verapdf.gf.model.factory.chunks.GraphicsState;
-import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 
 import java.util.List;
@@ -34,11 +34,11 @@ public class GFSAXForm {
 
 	private final GFSAContentStream contentStream;
 
-	public GFSAXForm(org.verapdf.pd.images.PDXForm xForm, ResourceHandler resourceHandler,
+	public GFSAXForm(org.verapdf.pd.images.PDXForm xForm, PDResourcesHandler resourcesHandler,
 					 GraphicsState inheritedGraphicsState, Integer pageNumber, COSKey parentObjectKey,
 					 Long markedContent, String xObjectName) {
 		this.contentStream = new GFSAContentStream(xForm, inheritedGraphicsState,
-				resourceHandler.getExtendedResources(xForm.getResources()), pageNumber, xForm.getObject().getKey(),
+				resourcesHandler.getExtendedResources(xForm.getResources()), pageNumber, xForm.getObject().getKey(),
 				parentObjectKey, markedContent, xObjectName);
 	}
 
