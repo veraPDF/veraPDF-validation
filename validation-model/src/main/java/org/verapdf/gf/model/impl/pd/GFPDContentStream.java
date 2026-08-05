@@ -30,7 +30,7 @@ import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.OperatorFactory;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.operator.Operator;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDResources;

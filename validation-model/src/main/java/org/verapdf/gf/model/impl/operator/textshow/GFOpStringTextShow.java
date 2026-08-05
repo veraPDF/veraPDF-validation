@@ -26,7 +26,7 @@ import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.cos.GFCosString;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosString;
 import org.verapdf.pd.structure.StructureElementAccessObject;

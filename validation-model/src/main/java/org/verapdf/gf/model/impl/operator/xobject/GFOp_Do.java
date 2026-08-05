@@ -25,7 +25,7 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.gf.model.impl.pd.images.GFPDXObject;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Op_Do;
 import org.verapdf.model.pdlayer.PDXObject;

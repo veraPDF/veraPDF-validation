@@ -24,7 +24,7 @@ import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.operator.OpPathPaint;
 import org.verapdf.pd.colors.PDColorSpace;
 

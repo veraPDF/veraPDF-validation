@@ -27,7 +27,7 @@ import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.operator.base.GFOperator;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.operator.Glyph;
 import org.verapdf.model.operator.OpTextShow;

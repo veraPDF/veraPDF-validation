@@ -22,7 +22,7 @@ package org.verapdf.gf.model.factory.operators;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSNumber;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.PDFont;

@@ -29,7 +29,7 @@ import org.verapdf.gf.model.impl.pd.GFPDContentStream;
 import org.verapdf.gf.model.impl.pd.GFPDGroup;
 import org.verapdf.gf.model.impl.pd.GFPDSemanticContentStream;
 import org.verapdf.gf.model.impl.pd.GFTransparencyColorSpace;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDGroup;

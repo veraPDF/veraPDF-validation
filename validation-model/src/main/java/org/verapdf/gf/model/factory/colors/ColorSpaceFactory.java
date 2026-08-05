@@ -25,7 +25,7 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.colors.*;
 import org.verapdf.gf.model.impl.pd.patterns.GFPDShadingPattern;
 import org.verapdf.gf.model.impl.pd.patterns.GFPDTilingPattern;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDColorSpace;
 import org.verapdf.pd.colors.*;
 import org.verapdf.pd.patterns.PDPattern;
