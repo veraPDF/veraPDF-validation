@@ -29,7 +29,7 @@ import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDContentStream;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDContentStream;
 import org.verapdf.model.pdlayer.PDType3Font;

@@ -30,7 +30,7 @@ import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_BMC;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOp_EMC;
 import org.verapdf.gf.model.impl.pd.gfse.contents.GFSEMarkedContent;
 import org.verapdf.gf.model.impl.pd.gfse.contents.GFSEUnmarkedContent;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDSemanticContentStream;
 import org.verapdf.model.selayer.SEContentItem;
 import org.verapdf.pd.structure.StructureElementAccessObject;

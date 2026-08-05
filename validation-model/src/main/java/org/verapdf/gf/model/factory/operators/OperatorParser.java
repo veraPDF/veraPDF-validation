@@ -56,7 +56,7 @@ import org.verapdf.gf.model.impl.operator.xobject.GFOp_Do;
 import org.verapdf.gf.model.impl.pd.colors.GFPDColorSpace;
 import org.verapdf.gf.model.impl.pd.font.GFPDFont;
 import org.verapdf.gf.model.impl.pd.images.GFPDXObject;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.gf.model.tools.FileSpecificationKeysHelper;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.operator.InlineImageOperator;

@@ -27,7 +27,7 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDAnnot;
 import org.verapdf.gf.model.impl.pd.GFPDDestination;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDDestination;
 import org.verapdf.model.pdlayer.PDLinkAnnot;

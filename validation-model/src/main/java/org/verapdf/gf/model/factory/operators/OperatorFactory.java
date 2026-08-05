@@ -23,7 +23,7 @@ package org.verapdf.gf.model.factory.operators;
 import org.verapdf.cos.COSBase;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObject;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.gf.model.tools.TransparencyBehaviour;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.operator.Operator;
