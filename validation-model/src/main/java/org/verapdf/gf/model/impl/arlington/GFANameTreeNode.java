@@ -180,4 +180,15 @@ public class GFANameTreeNode extends GFAObject implements ANameTreeNode {
 		return getHasTypeArray(Names);
 	}
 
+	@Override
+	public Boolean getisNamesArraySortAscending2() {
+		COSObject Names = getNamesValue();
+		return getisArraySortAscending(Names, 2);
+	}
+
+	@Override
+	public Boolean getcontainsparentKids() {
+		return this.parentObject.knownKey(ASAtom.getASAtom("Kids"));
+	}
+
 }

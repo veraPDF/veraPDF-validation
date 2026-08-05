@@ -188,15 +188,25 @@ public class GFAObject extends GenericModelObject implements AObject {
 			return false;
 		}
 		Long previousNumber = null;
+		String previousString = null;
 		for (int i = 0; i < object.size(); i += number) {
 			COSObject elem = object.at(i);
-			if (elem == null || elem.getType() != COSObjType.COS_INTEGER) {
+			if (elem == null) {
 				return false;
 			}
-			if (previousNumber != null && previousNumber > elem.getInteger()) {
+			if (elem.getType() == COSObjType.COS_INTEGER) {
+				if (previousNumber != null && previousNumber > elem.getInteger()) {
+					return false;
+				}
+				previousNumber = elem.getInteger();
+			} else if (elem.getType() == COSObjType.COS_STRING) {
+				if (previousString != null && previousString.compareTo(elem.getString()) >= 0) {
+					return false;
+				}
+				previousString = elem.getString();
+			} else {
 				return false;
 			}
-			previousNumber = elem.getInteger();
 		}
 		return true;
 	}
