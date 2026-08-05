@@ -22,7 +22,7 @@ package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSNumber;
-import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.pd.PDExtGState;
 import org.verapdf.pd.colors.PDColorSpace;
 import org.verapdf.pd.font.PDFont;
@@ -45,8 +45,8 @@ public class GraphicsState implements Cloneable {
 
 	}
 
-	public GraphicsState(ResourceHandler resourceHandler) {
-		this.fillColorSpace = resourceHandler.getColorSpace(ASAtom.DEVICEGRAY);
+	public GraphicsState(PDResourcesHandler resourcesHandler) {
+		this.fillColorSpace = resourcesHandler.getColorSpace(ASAtom.DEVICEGRAY);
 	}
 
 	public PDColorSpace getFillColorSpace() {

@@ -20,7 +20,7 @@
  */
 package org.verapdf.gf.model.impl.pd.images;
 
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.pdlayer.PDMaskImage;
 import org.verapdf.pd.images.PDXImage;

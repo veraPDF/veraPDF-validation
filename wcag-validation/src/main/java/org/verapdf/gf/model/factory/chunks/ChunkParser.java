@@ -23,7 +23,7 @@ package org.verapdf.gf.model.factory.chunks;
 import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.gf.model.impl.sa.GFSAXForm;
-import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.tools.constants.Operators;
 import org.verapdf.cos.*;
 import org.verapdf.operator.Operator;
@@ -50,7 +50,6 @@ import org.verapdf.wcag.algorithms.entities.geometry.Vertex;
 import org.verapdf.wcag.algorithms.semanticalgorithms.containers.StaticContainers;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.NodeUtils;
 import org.verapdf.wcag.algorithms.semanticalgorithms.utils.StreamInfo;
-import org.verapdf.wcag.algorithms.semanticalgorithms.utils.TextChunkUtils;
 
 import java.io.*;
 import java.util.*;
@@ -77,7 +76,7 @@ public class ChunkParser {
 	private final COSKey objectKey;
 	private Matrix textMatrix = null;
 	private Matrix textLineMatrix = null;
-	private final ResourceHandler resourceHandler;
+	private final PDResourcesHandler resourcesHandler;
 	private final GraphicsState graphicsState;
 	private final Path path = new Path();
 	private final List<IChunk> artifacts = new LinkedList<>();
@@ -88,13 +87,13 @@ public class ChunkParser {
 	private final String xObjectName;
 
 	public ChunkParser(Integer pageNumber, COSKey objectKey, GraphicsState inheritedGraphicState,
-					   ResourceHandler resourceHandler, COSKey parentObjectKey, Long markedContent,
+					   PDResourcesHandler resourcesHandler, COSKey parentObjectKey, Long markedContent,
 					   String xObjectName) {
 		this.pageNumber = pageNumber;
 		lineArtContainer = new LineArtContainer(objectKey);
 		this.objectKey = objectKey;
 		this.graphicsState = inheritedGraphicState.clone();
-		this.resourceHandler = resourceHandler;
+		this.resourcesHandler = resourcesHandler;
 		this.parentObjectKey = parentObjectKey;
 		this.parentMarkedContent = markedContent;
 		this.xObjectName = xObjectName;
@@ -110,9 +109,9 @@ public class ChunkParser {
 			case Operators.BMC:
 			case Operators.BDC:
 				processLineArts();
-				Long mcid = getMCID(arguments, resourceHandler);
+				Long mcid = getMCID(arguments, resourcesHandler);
                 if (StaticStorages.getIsFilterInvisibleLayers()) {
-                    visibleContentStack.push(getLayerVisibility(arguments, resourceHandler));
+                    visibleContentStack.push(getLayerVisibility(arguments, resourcesHandler));
                 }
 				if (mcid != null) {
 					if (processedMCIDs.contains(mcid)) {
@@ -136,7 +135,7 @@ public class ChunkParser {
 				break;
 			case Operators.G_FILL: {
 				if (this.graphicsState.isProcessColorOperators()) {
-					processColorSpace(this.graphicsState, resourceHandler, PDDeviceGray.INSTANCE,
+					processColorSpace(this.graphicsState, resourcesHandler, PDDeviceGray.INSTANCE,
 					                  ASAtom.DEVICEGRAY, false);
 					if (isProcessColorSpace(this.graphicsState.getFillColorSpace())) {
 						Double fillColor = getValueOfLastNumber(arguments);
@@ -151,7 +150,7 @@ public class ChunkParser {
 			}
 			case Operators.RG_FILL: {
 				if (this.graphicsState.isProcessColorOperators()) {
-					processColorSpace(this.graphicsState, resourceHandler, PDDeviceRGB.INSTANCE,
+					processColorSpace(this.graphicsState, resourcesHandler, PDDeviceRGB.INSTANCE,
 					                  ASAtom.DEVICERGB, false);
 					if (isProcessColorSpace(this.graphicsState.getFillColorSpace())) {
 						if (arguments.size() == 3 && arguments.get(0).getType().isNumber() &&
@@ -167,7 +166,7 @@ public class ChunkParser {
 			}
 			case Operators.K_FILL: {
 				if (this.graphicsState.isProcessColorOperators()) {
-					processColorSpace(this.graphicsState, resourceHandler, PDDeviceCMYK.INSTANCE,
+					processColorSpace(this.graphicsState, resourcesHandler, PDDeviceCMYK.INSTANCE,
 					                  ASAtom.DEVICECMYK, false);
 					if (isProcessColorSpace(this.graphicsState.getFillColorSpace())) {
 						if (arguments.size() == 4 && arguments.get(0).getType().isNumber() &&
@@ -242,7 +241,7 @@ public class ChunkParser {
 				break;
 			case Operators.CS_FILL:
 				if (this.graphicsState.isProcessColorOperators()) {
-					this.graphicsState.setFillColorSpace(resourceHandler.getColorSpace(getLastCOSName(arguments)));
+					this.graphicsState.setFillColorSpace(resourcesHandler.getColorSpace(getLastCOSName(arguments), false));
 				}
 				break;
 			case Operators.ET:
@@ -341,7 +340,7 @@ public class ChunkParser {
 				}
 				break;
 			case Operators.TF:
-				this.graphicsState.getTextState().setTextFont(resourceHandler.getFont(getFirstCOSName(arguments)));
+				this.graphicsState.getTextState().setTextFont(resourcesHandler.getFont(getFirstCOSName(arguments)));
 				if (arguments.size() > 1) {
 					COSBase textFontSize = arguments.get(1);
 					if (textFontSize.getType().isNumber()) {
@@ -409,7 +408,7 @@ public class ChunkParser {
 				processf();
 				break;
 			case Operators.GS:
-				PDExtGState extGState = this.resourceHandler.getExtGState(getLastCOSName(arguments));
+				PDExtGState extGState = this.resourcesHandler.getExtGState(getLastCOSName(arguments));
 				this.graphicsState.copyPropertiesFromExtGState(extGState);
 				break;
 			case Operators.L_LINE_TO:
@@ -521,7 +520,7 @@ public class ChunkParser {
 					break;
 				}
 				COSName xObjectName = getLastCOSName(arguments);
-				PDXObject xObject = resourceHandler.getXObject(xObjectName);
+				PDXObject xObject = resourcesHandler.getXObject(xObjectName);
 				if (xObject != null) {
 					if (ASAtom.IMAGE.equals(xObject.getType())) {
 						ImageChunk imageChunk = new ImageChunk(parseImageBoundingBox());
@@ -540,7 +539,7 @@ public class ChunkParser {
 						}
 						GraphicsState xFormGraphicsState = graphicsState.clone();
 						xFormGraphicsState.getCTM().concatenate(new Matrix(((PDXForm) xObject).getMatrix()));
-						GFSAXForm xForm = new GFSAXForm((PDXForm) xObject, resourceHandler, xFormGraphicsState, pageNumber,
+						GFSAXForm xForm = new GFSAXForm((PDXForm) xObject, resourcesHandler, xFormGraphicsState, pageNumber,
 								key, markedContent, xObjectName.getName().getValue());
 						artifacts.addAll(xForm.getArtifacts());
 					}
@@ -968,7 +967,7 @@ public class ChunkParser {
 		return null;
 	}
 
-	private static Long getMCID(List<COSBase> arguments, ResourceHandler resources) {
+	private static Long getMCID(List<COSBase> arguments, PDResourcesHandler resources) {
 		if (StaticStorages.getIsIgnoreMCIDs()) {
 			return null;
 		}
@@ -986,7 +985,7 @@ public class ChunkParser {
 		return null;
 	}
 
-    private static boolean getLayerVisibility(List<COSBase> arguments, ResourceHandler resources) {
+    private static boolean getLayerVisibility(List<COSBase> arguments, PDResourcesHandler resources) {
         if (arguments != null && !arguments.isEmpty() && resources != null) {
             COSBase firstArg = arguments.get(0);
             if (firstArg.getType() == COSObjType.COS_NAME && firstArg.getName().equals(ASAtom.OC)) {
@@ -1018,7 +1017,7 @@ public class ChunkParser {
         return true;
     }
 
-    private static COSBase getPropertyByName(ASAtom name, ResourceHandler resources) {
+    private static COSBase getPropertyByName(ASAtom name, PDResourcesHandler resources) {
         PDResource properties = resources.getProperties(name);
         if (properties != null) {
             return properties.getObject().getDirectBase();
@@ -1035,9 +1034,9 @@ public class ChunkParser {
 				lineWidth * graphicsState.getCTM().getScaleValue(), lineCap);
 	}
 
-	private static void processColorSpace(GraphicsState graphicState, ResourceHandler resourcesHandler,
+	private static void processColorSpace(GraphicsState graphicState, PDResourcesHandler resourcesHandler,
 	                                      PDColorSpace defaultCS, ASAtom name, boolean stroke) {
-		PDColorSpace colorSpace = resourcesHandler.getColorSpace(name);
+		PDColorSpace colorSpace = resourcesHandler.getColorSpace(name, false);
 		if (colorSpace == null) {
 			colorSpace = defaultCS;
 		}
