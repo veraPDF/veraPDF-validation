@@ -183,4 +183,9 @@ public class GFANumberTreeNode extends GFAObject implements ANumberTreeNode {
 		return getisArraySortAscending(Nums, 2);
 	}
 
+	@Override
+	public Boolean getcontainsparentKids() {
+		return this.parentObject.knownKey(ASAtom.getASAtom("Kids"));
+	}
+
 }
