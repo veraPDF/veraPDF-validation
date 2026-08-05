@@ -22,7 +22,7 @@ package org.verapdf.gf.model.impl.operator.pathpaint;
 
 import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.factory.operators.GraphicState;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.operator.Op_bstar_closepath_eofill_stroke;
 
 import java.util.List;

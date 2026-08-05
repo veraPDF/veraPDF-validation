@@ -24,7 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.pd.GFPDResource;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.pdlayer.PDXObject;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXImage;

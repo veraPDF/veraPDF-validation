@@ -24,7 +24,7 @@ import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.factory.operators.RenderingMode;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.font.*;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.gf.model.tools.GFIDGenerator;
 import org.verapdf.model.pdlayer.PDFont;
 import org.verapdf.pd.PDResources;

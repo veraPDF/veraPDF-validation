@@ -22,7 +22,7 @@ package org.verapdf.gf.model.impl.pd.annotations;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.gf.model.impl.pd.GFPDAnnot;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.gf.model.tools.DictionaryKeysHelper;
 import org.verapdf.model.pdlayer.PDMarkupAnnot;
 import org.verapdf.pd.PDAnnotation;
