@@ -27,7 +27,7 @@ import org.verapdf.cos.COSObject;
 import org.verapdf.cos.COSStream;
 import org.verapdf.gf.model.factory.chunks.ChunkFactory;
 import org.verapdf.gf.model.factory.chunks.GraphicsState;
-import org.verapdf.gf.model.impl.sa.util.ResourceHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.parser.PDFStreamParser;
 import org.verapdf.wcag.algorithms.entities.content.IChunk;
 
@@ -47,7 +47,7 @@ public class GFSAContentStream {
 	private final Integer pageNumber;
 	private final COSKey objectKey;
 	private List<IChunk> artifacts = null;
-	private final ResourceHandler resourceHandler;
+	private final PDResourcesHandler resourcesHandler;
 	private final GraphicsState inheritedGraphicsState;
 	private final org.verapdf.pd.PDContentStream contentStream;
 	private final Long markedContent;
@@ -55,12 +55,12 @@ public class GFSAContentStream {
 	private final String xObjectName;
 
 	public GFSAContentStream(org.verapdf.pd.PDContentStream contentStream, GraphicsState inheritedGraphicsState,
-							 ResourceHandler resourceHandler, Integer pageNumber, COSKey objectKey,
+							 PDResourcesHandler resourcesHandler, Integer pageNumber, COSKey objectKey,
 							 COSKey parentObjectKey, Long markedContent, String xObjectName) {
 		this.pageNumber = pageNumber;
 		this.objectKey = objectKey;
 		this.contentStream = contentStream;
-		this.resourceHandler = resourceHandler;
+		this.resourcesHandler = resourcesHandler;
 		this.inheritedGraphicsState = inheritedGraphicsState;
 		this.markedContent = markedContent;
 		this.parentObjectKey = parentObjectKey;
@@ -87,7 +87,7 @@ public class GFSAContentStream {
 						try (PDFStreamParser streamParser = new PDFStreamParser(opStream)) {
 							streamParser.parseTokens();
 							this.artifacts = ChunkFactory.chunksFromTokens(pageNumber, objectKey,
-									streamParser.getTokens(), inheritedGraphicsState, resourceHandler,
+									streamParser.getTokens(), inheritedGraphicsState, resourcesHandler,
 									parentObjectKey, markedContent, xObjectName);
 						}
 					}

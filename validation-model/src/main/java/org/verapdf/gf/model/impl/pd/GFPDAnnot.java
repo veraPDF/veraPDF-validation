@@ -29,7 +29,7 @@ import org.verapdf.gf.model.impl.pd.actions.GFPDAction;
 import org.verapdf.gf.model.impl.pd.actions.GFPDAdditionalActions;
 import org.verapdf.gf.model.impl.pd.annotations.*;
 import org.verapdf.gf.model.impl.pd.images.GFPDXForm;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosBM;
 import org.verapdf.model.coslayer.CosLang;

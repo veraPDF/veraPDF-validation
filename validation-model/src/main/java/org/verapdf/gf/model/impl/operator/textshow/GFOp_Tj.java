@@ -23,7 +23,7 @@ package org.verapdf.gf.model.impl.operator.textshow;
 import org.verapdf.cos.COSBase;
 import org.verapdf.gf.model.factory.operators.GraphicState;
 import org.verapdf.gf.model.impl.operator.markedcontent.GFOpMarkedContent;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.operator.Op_Tj;
 import org.verapdf.pd.structure.StructureElementAccessObject;
 

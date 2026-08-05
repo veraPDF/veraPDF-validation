@@ -28,7 +28,7 @@ import org.verapdf.gf.model.factory.colors.ColorSpaceFactory;
 import org.verapdf.gf.model.impl.cos.GFCosRenderingIntent;
 import org.verapdf.gf.model.impl.external.GFJPEG2000;
 import org.verapdf.gf.model.impl.pd.GFPDObject;
-import org.verapdf.gf.model.impl.pd.util.PDResourcesHandler;
+import org.verapdf.pd.PDResourcesHandler;
 import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.coslayer.CosRenderingIntent;
 import org.verapdf.model.external.JPEG2000;
