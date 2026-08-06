@@ -97,9 +97,9 @@ public final class XMPChecker {
         } catch (IOException e) {
             LOGGER.log(Level.FINE,
                     "Problems with document parsing or structure. "
-                            + e.getMessage(), e);
+                            + e.getMessage());
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Problems with XMP parsing. " + e.getMessage(), e);
+            LOGGER.log(Level.FINE, "Problems with XMP parsing. " + e.getMessage());
         }
 
         return Boolean.FALSE;

@@ -101,7 +101,7 @@ public class GFICCProfileFeaturesObjectAdapter implements ICCProfileFeaturesObje
                 }
 
             } catch (IOException e) {
-                LOGGER.log(Level.FINE, "Reading byte array from InputStream error", e);
+                LOGGER.log(Level.FINE, "Reading byte array from InputStream error");
                 errors.add(e.getMessage());
             }
         }

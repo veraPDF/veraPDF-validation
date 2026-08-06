@@ -158,7 +158,7 @@ public abstract class GFOpTextShow extends GFOperator implements OpTextShow {
 					res.add(glyph);
 				}
 			} catch (IOException e) {
-				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string), e);
+				LOGGER.log(Level.FINE, "Error processing text show operator's string argument : " + new String(string));
 			}
 		}
 		return Collections.unmodifiableList(res);

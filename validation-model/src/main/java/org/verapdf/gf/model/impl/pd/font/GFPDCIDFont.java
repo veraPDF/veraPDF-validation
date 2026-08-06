@@ -145,7 +145,7 @@ public class GFPDCIDFont extends GFPDFont implements PDCIDFont {
                 }
             }
         } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Error while parsing embedded font program. " + e.getMessage(), e);
+            LOGGER.log(Level.FINE, "Error while parsing embedded font program. " + e.getMessage());
             return Boolean.FALSE;
         }
         return Boolean.TRUE;

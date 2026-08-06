@@ -46,7 +46,7 @@ public class DublinCoreSchemaImpl extends BasicSchemaImpl implements DublinCore 
 		try {
 			return this.meta.getTitle();
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not get title.", e);
+			LOGGER.log(Level.FINE, "Can not get title.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -56,7 +56,7 @@ public class DublinCoreSchemaImpl extends BasicSchemaImpl implements DublinCore 
 		try {
 			this.meta.setTitle(title);
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not set title.", e);
+			LOGGER.log(Level.FINE, "Can not set title.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -66,7 +66,7 @@ public class DublinCoreSchemaImpl extends BasicSchemaImpl implements DublinCore 
 		try {
 			return this.meta.getDescription();
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not get subject.", e);
+			LOGGER.log(Level.FINE, "Can not get subject.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -76,7 +76,7 @@ public class DublinCoreSchemaImpl extends BasicSchemaImpl implements DublinCore 
 		try {
 			this.meta.setDescription(description);
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not set description.", e);
+			LOGGER.log(Level.FINE, "Can not set description.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -100,7 +100,7 @@ public class DublinCoreSchemaImpl extends BasicSchemaImpl implements DublinCore 
 			}
 			return creators.isEmpty() ? null : creators.get(0);
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not get creator.", e);
+			LOGGER.log(Level.FINE, "Can not get creator.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -124,7 +124,7 @@ public class DublinCoreSchemaImpl extends BasicSchemaImpl implements DublinCore 
 			res.add(creator);
 			this.meta.setCreator(res);
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not set creator.", e);
+			LOGGER.log(Level.FINE, "Can not set creator.");
 			throw new IllegalStateException(e);
 		}
 	}
