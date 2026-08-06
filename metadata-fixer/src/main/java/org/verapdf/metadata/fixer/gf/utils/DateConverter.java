@@ -101,7 +101,7 @@ public class DateConverter {
 		} catch (XMPException e) {
 			// This exception should not be thrown because of logic of metadata fixer should use this method only
 			// with arguments date obtained from DateConverter.toXMPDateFormat(Calendar) method
-			throw new IllegalStateException("Problems with parsing utc date", e);
+			throw new IllegalStateException("Problems with parsing utc date");
 		}
 	}
 

@@ -78,7 +78,7 @@ public class GFColorSpaceFeaturesObjectAdapter implements ColorSpaceFeaturesObje
 				byte[] lookupData = GFAdapterHelper.inputStreamToByteArray(stream);
 				this.lookup = DatatypeConverter.printHexBinary(lookupData);
 			} catch (IOException e) {
-				LOGGER.log(Level.FINE, e.getMessage(), e);
+				LOGGER.log(Level.FINE, e.getMessage());
 				this.errors = new ArrayList<>();
 				this.errors.add("Problem during converting lookup value to hex string");
 			}

@@ -99,7 +99,7 @@ public class PDFDocumentImpl implements PDFDocument {
 			return new MetadataImpl(xmp, meta.getObject(),
 					document.getDocument(), false);
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Problems with XMP parsing. " + e.getMessage(), e);
+			LOGGER.log(Level.FINE, "Problems with XMP parsing. " + e.getMessage());
 		}
 		return null;
 	}
@@ -160,7 +160,7 @@ public class PDFDocumentImpl implements PDFDocument {
 				builder.status(status);
 			}
 		} catch (Exception e) {
-			LOGGER.log(Level.FINE, e.getMessage(), e);
+			LOGGER.log(Level.FINE, e.getMessage());
 			builder.status(FIX_ERROR).addFix("Problems with document save. " + e.getMessage());
 		}
 		return builder.build();
@@ -185,7 +185,7 @@ public class PDFDocumentImpl implements PDFDocument {
 					stream.setFilters(new COSFilters());
 					res++;
 				} catch (IOException e) {
-					LOGGER.log(Level.FINE, "Error when removing filter from stream", e);
+					LOGGER.log(Level.FINE, "Error when removing filter from stream");
 					return -1;
 				}
 			}
