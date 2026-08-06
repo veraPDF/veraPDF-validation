@@ -211,7 +211,7 @@ public class ChunkParser {
 								this.graphicsState.setFillColor(colorSpace.toRGB(colorArguments));
 							}
 						} catch (Exception e) {
-							LOGGER.log(Level.WARNING, "Error setting fill color with scn operator", e);
+							LOGGER.log(Level.WARNING, "Error setting fill color with scn operator");
 						}
 					} else {
 						this.graphicsState.setFillColor(new double[0]);
@@ -240,7 +240,7 @@ public class ChunkParser {
 								this.graphicsState.setFillColor(colorSpace.toRGB(colorArguments));
 							}
 						} catch (Exception e) {
-							LOGGER.log(Level.WARNING, "Error setting fill color with sc operator", e);
+							LOGGER.log(Level.WARNING, "Error setting fill color with sc operator");
 						}
 					} else {
 						this.graphicsState.setFillColor(new double[0]);
@@ -934,7 +934,7 @@ public class ChunkParser {
 				textPieces.shiftCurrent(shift);
 			}
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Error processing text show operator's string argument : " + new String(bytes), e);
+			LOGGER.log(Level.SEVERE, "Error processing text show operator's string argument : " + new String(bytes));
 		}
 	}
 

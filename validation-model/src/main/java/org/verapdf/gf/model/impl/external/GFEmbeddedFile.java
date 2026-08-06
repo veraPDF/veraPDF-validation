@@ -109,7 +109,7 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		try (InputStream unfilteredStream = stream.getData(COSStream.FilterFlags.DECODE)) {
 			retVal = isValidPdfaStream(unfilteredStream, flavours);
 		} catch (VeraPDFException | IOException e) {
-			LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
+			LOGGER.log(Level.FINE, "Exception during validation of embedded file");
 		}
 		restoreSavedSCState();
 		return retVal;

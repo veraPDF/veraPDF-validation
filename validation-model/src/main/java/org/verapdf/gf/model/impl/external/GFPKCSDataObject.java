@@ -53,7 +53,7 @@ public class GFPKCSDataObject extends GFExternal implements PKCSDataObject {
         try {
             pkcs7 = new PKCS7(pkcsData.get());
         } catch (IOException | ArrayIndexOutOfBoundsException e) {
-            LOGGER.log(Level.FINE, "Passed PKCS7 object can't be read", e);
+            LOGGER.log(Level.FINE, "Passed PKCS7 object can't be read");
             pkcs7 = getEmptyPKCS7();
         }
     }

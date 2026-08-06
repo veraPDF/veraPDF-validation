@@ -56,7 +56,7 @@ public class GFTrueTypeFontProgram extends GFFontProgram implements TrueTypeFont
             }
             this.trueTypeFont.parseFont();
         } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Error in parsing embedded True Type font file", e);
+            LOGGER.log(Level.FINE, "Error in parsing embedded True Type font file");
         }
     }
 

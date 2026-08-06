@@ -137,7 +137,7 @@ public class GFModelParser implements PDFAParser {
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
-			throw new ModelParsingException("Couldn't parse stream", e);
+			throw new ModelParsingException("Couldn't parse stream");
 		}
 	}
 
@@ -164,7 +164,7 @@ public class GFModelParser implements PDFAParser {
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
-			throw new ModelParsingException("Couldn't parse stream", e);
+			throw new ModelParsingException("Couldn't parse stream");
 		}
 	}
 
@@ -227,7 +227,7 @@ public class GFModelParser implements PDFAParser {
 			}
 			return PDFAFlavour.byFlavourId(identificationPart + identificationConformance);
 		} catch (XMPException e) {
-			logger.log(Level.FINE, e.getMessage(), e);
+			logger.log(Level.FINE, e.getMessage());
 			return PDFAFlavour.NO_FLAVOUR;
 		}
 	}
@@ -248,7 +248,7 @@ public class GFModelParser implements PDFAParser {
 			Integer identificationPart = veraPDFMeta.getPDFUAIdentificationPart();
 			return PDFAFlavour.byFlavourId(PDFUA_PREFIX + identificationPart);
 		} catch (XMPException e) {
-			logger.log(Level.FINE, e.getMessage(), e);
+			logger.log(Level.FINE, e.getMessage());
 			return PDFAFlavour.NO_FLAVOUR;
 		}
 	}

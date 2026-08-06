@@ -140,7 +140,7 @@ public class MetadataImpl implements Metadata {
                 resultBuilder.status(MetadataFixerResult.RepairStatus.ID_REMOVED);
             }
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Can not obtain identification part.", e);
+            LOGGER.log(Level.FINE, "Can not obtain identification part.");
         }
     }
 
@@ -212,7 +212,7 @@ public class MetadataImpl implements Metadata {
                 XMPMetaFactory.getSchemaRegistry().registerNamespace(XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX, false);
             }
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Can not register " + XMPConst.NS_PDFUA_ID + " namespace.", e);
+            LOGGER.log(Level.FINE, "Can not register " + XMPConst.NS_PDFUA_ID + " namespace.");
         }
         boolean isBadPart = true;
         boolean isMissingPart = false;
@@ -224,7 +224,7 @@ public class MetadataImpl implements Metadata {
                 isMissingPart = this.metadata.getPDFUAIdentificationPart() == null;
             }
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
+            LOGGER.log(Level.FINE, "Can not obtain identification fields.");
         }
         try {
             if (isBadPart) {
@@ -234,7 +234,7 @@ public class MetadataImpl implements Metadata {
                 this.setNeedToBeUpdated(true);
             }
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
+            LOGGER.log(Level.FINE, "Can not obtain identification fields.");
         }
     }
     
@@ -267,7 +267,7 @@ public class MetadataImpl implements Metadata {
                 this.setNeedToBeUpdated(true);
             }
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Can not obtain extension schema.", e);
+            LOGGER.log(Level.FINE, "Can not obtain extension schema.");
         }
     }
     
@@ -295,7 +295,7 @@ public class MetadataImpl implements Metadata {
                 isMissingPart = this.metadata.getPDFAIdentificationPart() == null;
             }
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
+            LOGGER.log(Level.FINE, "Can not obtain identification fields.");
         }
         try {
             if (isBadPart) {
@@ -313,7 +313,7 @@ public class MetadataImpl implements Metadata {
                 this.setNeedToBeUpdated(true);
             }
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
+            LOGGER.log(Level.FINE, "Can not obtain identification fields.");
         }
     }
 
@@ -333,7 +333,7 @@ public class MetadataImpl implements Metadata {
                 resultBuilder.addFix(message);
             }
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
+            LOGGER.log(Level.FINE, "Can not obtain identification fields.");
         }
     }
 
@@ -366,7 +366,7 @@ public class MetadataImpl implements Metadata {
                     (part == 4 && !Objects.equals(conformance, schemaConformance)) ||
                     ((part == 1 || part == 2 || part == 3) && (schemaConformance == null || compare(conformance, schemaConformance) > 0));
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
+            LOGGER.log(Level.FINE, "Can not obtain identification fields.");
             throw new IllegalStateException(e);
         }
     }
@@ -392,7 +392,7 @@ public class MetadataImpl implements Metadata {
                 return false;
             }
         } catch (XMPException e) {
-            LOGGER.log(Level.FINE, "Can not obtain identification fields.", e);
+            LOGGER.log(Level.FINE, "Can not obtain identification fields.");
             throw new IllegalStateException(e);
         }
     }
@@ -457,7 +457,7 @@ public class MetadataImpl implements Metadata {
                     builder.addFix("Metadata stream filtered with FlateDecode");
                 }
             } catch (IOException e) {
-                LOGGER.log(Level.FINE, "Problems with setting filter for stream.", e);
+                LOGGER.log(Level.FINE, "Problems with setting filter for stream.");
             }
         }
     }

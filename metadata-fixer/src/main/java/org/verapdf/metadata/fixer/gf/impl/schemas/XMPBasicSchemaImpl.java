@@ -45,7 +45,7 @@ public class XMPBasicSchemaImpl extends BasicSchemaImpl implements XMPBasic {
 		try {
 			return this.meta.getCreatorTool();
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not get creator tool.", e);
+			LOGGER.log(Level.FINE, "Can not get creator tool.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -55,7 +55,7 @@ public class XMPBasicSchemaImpl extends BasicSchemaImpl implements XMPBasic {
 		try {
 			this.meta.setCreatorTool(creatorTool);
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not set creator tool.", e);
+			LOGGER.log(Level.FINE, "Can not set creator tool.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -65,7 +65,7 @@ public class XMPBasicSchemaImpl extends BasicSchemaImpl implements XMPBasic {
 		try {
 			return DateConverter.toXMPDateFormat(this.meta.getCreateDate());
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not get creation date.", e);
+			LOGGER.log(Level.FINE, "Can not get creation date.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -75,7 +75,7 @@ public class XMPBasicSchemaImpl extends BasicSchemaImpl implements XMPBasic {
 		try {
 			this.meta.setCreateDate(DateConverter.toCalendar(creationDate));
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not set creation date.", e);
+			LOGGER.log(Level.FINE, "Can not set creation date.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -85,7 +85,7 @@ public class XMPBasicSchemaImpl extends BasicSchemaImpl implements XMPBasic {
 		try {
 			return DateConverter.toXMPDateFormat(this.meta.getModifyDate());
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not get modification date.", e);
+			LOGGER.log(Level.FINE, "Can not get modification date.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -95,7 +95,7 @@ public class XMPBasicSchemaImpl extends BasicSchemaImpl implements XMPBasic {
 		try {
 			this.meta.setModifyDate(DateConverter.toCalendar(modificationDate));
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not set modification date.", e);
+			LOGGER.log(Level.FINE, "Can not set modification date.");
 			throw new IllegalStateException(e);
 		}
 	}
