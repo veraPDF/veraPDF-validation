@@ -109,7 +109,7 @@ public class ChunkParser {
 			case Operators.BMC:
 			case Operators.BDC:
 				processLineArts();
-				Long mcid = getMCID(arguments, resourcesHandler);
+				Long mcid = Operators.BDC.equals(operatorName) ? getMCID(arguments, resourcesHandler) : null;
                 if (StaticStorages.getIsFilterInvisibleLayers()) {
                     visibleContentStack.push(getLayerVisibility(arguments, resourcesHandler));
                 }
