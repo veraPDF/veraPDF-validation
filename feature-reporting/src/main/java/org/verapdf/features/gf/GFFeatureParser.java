@@ -137,7 +137,7 @@ public final class GFFeatureParser {
 				getCatalogFeatures(catalog);
 			}
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Problem in parsing document catalog", e);
+			LOGGER.log(Level.SEVERE, "Problem in parsing document catalog");
 		}
 
 		reporter.report(GFFeaturesObjectCreator.createLowLvlInfoFeaturesObject(cosDocument));

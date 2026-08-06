@@ -43,7 +43,7 @@ public class AdobePDFSchemaImpl extends BasicSchemaImpl implements AdobePDF {
 		try {
 			return this.meta.getProducer();
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not get producer.", e);
+			LOGGER.log(Level.FINE, "Can not get producer.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -53,7 +53,7 @@ public class AdobePDFSchemaImpl extends BasicSchemaImpl implements AdobePDF {
 		try {
 			this.meta.setProducer(producer);
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not set producer.", e);
+			LOGGER.log(Level.FINE, "Can not set producer.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -63,7 +63,7 @@ public class AdobePDFSchemaImpl extends BasicSchemaImpl implements AdobePDF {
 		try {
 			return this.meta.getKeywords();
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not get keywords.", e);
+			LOGGER.log(Level.FINE, "Can not get keywords.");
 			throw new IllegalStateException(e);
 		}
 	}
@@ -73,7 +73,7 @@ public class AdobePDFSchemaImpl extends BasicSchemaImpl implements AdobePDF {
 		try {
 			this.meta.setKeywords(keywords);
 		} catch (XMPException e) {
-			LOGGER.log(Level.FINE, "Can not set keywords.", e);
+			LOGGER.log(Level.FINE, "Can not set keywords.");
 			throw new IllegalStateException(e);
 		}
 	}

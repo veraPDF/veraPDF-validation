@@ -113,7 +113,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                     this.name = font.glyphIsPresent(glyphCode) ? null : ".notdef";
                 }
             } catch (IOException e) {
-                LOGGER.log(Level.FINE, "Can't convert code to glyph", e);
+                LOGGER.log(Level.FINE, "Can't convert code to glyph");
                 this.name = null;
             }
         }
@@ -195,7 +195,7 @@ public class GFGlyph extends GenericModelObject implements Glyph {
                 widthFromDictionary = getWidthFromDictionary(glyphCode, font);
             }
         } catch (IOException e) {
-            LOGGER.log(Level.FINE, "Error in parsing font program", e);
+            LOGGER.log(Level.FINE, "Error in parsing font program");
         }
     }
 
