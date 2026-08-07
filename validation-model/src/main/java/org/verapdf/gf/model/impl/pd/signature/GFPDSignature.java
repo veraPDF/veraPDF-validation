@@ -135,7 +135,7 @@ public class GFPDSignature extends GFPDObject implements PDSignature {
                 return byteRange[3] >= actualByteRange[3] - floating && byteRange[3] <= actualByteRange[3];
             }
         } catch (IOException ex) {
-            LOGGER.log(Level.FINE, "Can't create parser to process digital signature", ex);
+            LOGGER.log(Level.FINE, "Can't create parser to process digital signature");
             return Boolean.FALSE;
         }
     }
