@@ -298,9 +298,9 @@ public class GFAFileSpecification extends GFAObject implements AFileSpecificatio
 	}
 
 	@Override
-	public Boolean getDescHasTypeString() {
+	public Boolean getDescHasTypeStringText() {
 		COSObject Desc = getDescValue();
-		return getHasTypeString(Desc);
+		return getHasTypeStringText(Desc);
 	}
 
 	@Override
