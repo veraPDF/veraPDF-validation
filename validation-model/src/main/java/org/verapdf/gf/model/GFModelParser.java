@@ -129,7 +129,7 @@ public class GFModelParser implements PDFAParser {
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
-			throw new ModelParsingException("Couldn't parse stream");
+			throw new ModelParsingException("Couldn't parse stream", e);
 		}
 	}
 
@@ -156,7 +156,7 @@ public class GFModelParser implements PDFAParser {
 		} catch (InvalidPasswordException excep) {
 			throw new EncryptedPdfException("The PDF stream appears to be encrypted.", excep);
 		} catch (IOException e) {
-			throw new ModelParsingException("Couldn't parse stream");
+			throw new ModelParsingException("Couldn't parse stream", e);
 		}
 	}
 
