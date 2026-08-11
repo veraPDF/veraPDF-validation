@@ -56,7 +56,7 @@ public class Matrix implements Cloneable {
             Double d = (arg != null) ? arg.getReal() : null;
             if (d == null) {
                 matrixArray = new double[] {1, 0, 0, 1, 0, 0};
-                LOGGER.log(Level.WARNING,"Invalid matrix value " + i + " Defaulting to matrix [1,0,0,1,0,0].");
+                LOGGER.log(Level.WARNING,"Invalid matrix value. Defaulting to matrix [1,0,0,1,0,0].");
                 return;
             }
             matrixArray[i] = d;
@@ -70,7 +70,7 @@ public class Matrix implements Cloneable {
             Double d = (arg != null) ? arg.getReal() : null;
             if (d == null) {
                 matrixArray = new double[] {1, 0, 0, 1, 0, 0};
-                LOGGER.log(Level.WARNING,"Invalid matrix value " + i + " Defaulting to matrix [1,0,0,1,0,0].");
+                LOGGER.log(Level.WARNING,"Invalid matrix value. Defaulting to matrix [1,0,0,1,0,0].");
                 return;
             }
             matrixArray[i] = d;
