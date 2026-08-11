@@ -22,17 +22,21 @@ package org.verapdf.gf.model.factory.chunks;
 
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSObject;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
 import org.verapdf.wcag.algorithms.entities.geometry.Vertex;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Maxim Plushchov
  */
 public class Matrix implements Cloneable {
+    private static final Logger LOGGER = Logger.getLogger(Matrix.class.getCanonicalName());
 
 	private static final int SIZE = 6;
 	private double[] matrixArray;
@@ -47,22 +51,30 @@ public class Matrix implements Cloneable {
 
 	public Matrix(COSArray array) {
 		matrixArray = new double[SIZE];
-		matrixArray[0] = array.at(0).getReal();
-		matrixArray[1] = array.at(1).getReal();
-		matrixArray[2] = array.at(2).getReal();
-		matrixArray[3] = array.at(3).getReal();
-		matrixArray[4] = array.at(4).getReal();
-		matrixArray[5] = array.at(5).getReal();
+        for (int i = 0; i < SIZE; i++) {
+            COSObject arg = array.at(i);
+            Double d = (arg != null) ? arg.getReal() : null;
+            if (d == null) {
+                matrixArray = new double[] {1, 0, 0, 1, 0, 0};
+                LOGGER.log(Level.WARNING,"Invalid matrix value. Defaulting to matrix [1,0,0,1,0,0].");
+                return;
+            }
+            matrixArray[i] = d;
+        }
 	}
 
 	public Matrix(List<COSBase> arguments) {
-		matrixArray = new double[SIZE];
-		matrixArray[0] = arguments.get(0).getReal();
-		matrixArray[1] = arguments.get(1).getReal();
-		matrixArray[2] = arguments.get(2).getReal();
-		matrixArray[3] = arguments.get(3).getReal();
-		matrixArray[4] = arguments.get(4).getReal();
-		matrixArray[5] = arguments.get(5).getReal();
+        matrixArray = new double[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            COSBase arg = arguments.get(i);
+            Double d = (arg != null) ? arg.getReal() : null;
+            if (d == null) {
+                matrixArray = new double[] {1, 0, 0, 1, 0, 0};
+                LOGGER.log(Level.WARNING,"Invalid matrix value. Defaulting to matrix [1,0,0,1,0,0].");
+                return;
+            }
+            matrixArray[i] = d;
+        }
 	}
 
 	public Matrix(double a, double b, double c, double d, double e, double f) {
