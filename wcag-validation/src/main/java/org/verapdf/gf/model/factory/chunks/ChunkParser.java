@@ -66,6 +66,13 @@ public class ChunkParser {
 	public static final String REPLACEMENT_CHARACTER_STRING = "\uFFFD";
     public static final Map<String, String> fontNameToFontFamilyMap = new HashMap<>();
 
+	/**
+	 * A number in a TJ array is expressed in thousandths of a unit of text space
+	 * (ISO 32000-1, 9.4.3). Unlike a glyph width, it is not a glyph space value,
+	 * so it is never scaled by the FontMatrix of a Type 3 font.
+	 */
+	private static final double TEXT_SPACE_UNIT = 1.0 / 1000.0;
+
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
     private final Stack<Boolean> visibleContentStack = new Stack<Boolean>();
@@ -842,7 +849,7 @@ public class ChunkParser {
 						parseString(isVertical, (COSString) obj.getDirectBase(), textPieces, scalingFactor);
 					} else if (obj.getType().isNumber()) {
 						TextState textState = graphicsState.getTextState();
-						textPieces.shiftCurrent(-obj.getReal() * scalingFactor * textState.getTextFontSize() * 
+						textPieces.shiftCurrent(-obj.getReal() * TEXT_SPACE_UNIT * textState.getTextFontSize() *
 								(isVertical ? 1 : textState.getHorizontalScaling()));
 					}
 				}
