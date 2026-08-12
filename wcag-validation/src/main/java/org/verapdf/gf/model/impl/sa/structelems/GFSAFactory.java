@@ -22,13 +22,18 @@ package org.verapdf.gf.model.impl.sa.structelems;
 
 import org.verapdf.gf.model.impl.sa.GFSAStructElem;
 import org.verapdf.pd.structure.PDStructElem;
+import org.verapdf.pd.structure.StructureType;
 import org.verapdf.tools.TaggedPDFConstants;
 
 public class GFSAFactory {
 
     public static GFSAStructElem createTypedStructElem(PDStructElem structElemDictionary, String parentsStandardTypes){
-        String standardType = PDStructElem.getStructureElementStandardType(structElemDictionary);
-
+        StructureType standardStructureType = PDStructElem.getStructureElementStandardStructureType(structElemDictionary);
+        String standardType = standardStructureType != null ? standardStructureType.getType().getValue() : null;
+        if (PDStructElem.isMathStandardType(standardStructureType)) {
+            return new GFSAMathMLStructElem(structElemDictionary, parentsStandardTypes);
+        }
+        
         if (standardType == null) {
             return new GFSANonStandard(structElemDictionary, null, parentsStandardTypes);
         }
