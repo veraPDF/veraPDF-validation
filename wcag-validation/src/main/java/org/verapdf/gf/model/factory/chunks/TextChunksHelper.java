@@ -34,6 +34,13 @@ import java.util.List;
  */
 public class TextChunksHelper {
 
+	/**
+	 * Ascent and descent to assume, as a fraction of the em, when the font
+	 * provides no usable vertical metrics at all.
+	 */
+	private static final double FALLBACK_ASCENT = 0.8;
+	private static final double FALLBACK_DESCENT = -0.2;
+
 	protected static COSBase getArgument(List<COSBase> arguments, String operatorType) {
 		if (Operators.DOUBLE_QUOTE.equals(operatorType)) {
 			if (arguments.size() > 2) {
@@ -62,9 +69,20 @@ public class TextChunksHelper {
 		if (ascent == null) {
 			ascent = fontBoundingBox[3];
 		}
+		double horizontalScalingFactor = TextChunksHelper.getHorizontalScalingFactor(font);
+		double verticalScalingFactor = TextChunksHelper.getVerticalScalingFactor(font);
+		if (ascent == 0.0 && descent == 0.0) {
+			// A font bounding box whose elements are all zero carries no size information,
+			// and neither do an ascent and a descent that are both zero. Keeping those
+			// values would give every text chunk of this font a height of zero, which is
+			// indistinguishable from a genuinely invisible glyph. Assume a common em split
+			// instead. Dividing by the scaling factor expresses it in glyph space, so it
+			// holds for a Type 3 font with any FontMatrix as well.
+			ascent = FALLBACK_ASCENT / verticalScalingFactor;
+			descent = FALLBACK_DESCENT / verticalScalingFactor;
+		}
 		double x1;
 		double x2;
-		double horizontalScalingFactor = TextChunksHelper.getHorizontalScalingFactor(font);
 		if (textRenderingMatrixBefore.getScaleX() >= 0 && textRenderingMatrixBefore.getShearX() >= 0) {
 			x1 = textRenderingMatrixBefore.getTranslateX() + descent * textRenderingMatrixBefore.getShearX() * horizontalScalingFactor;
 			x2 = textRenderingMatrixAfter.getTranslateX() + ascent * textRenderingMatrixAfter.getShearX() * horizontalScalingFactor;
@@ -80,7 +98,6 @@ public class TextChunksHelper {
 		}
 		double y1;
 		double y2;
-		double verticalScalingFactor = TextChunksHelper.getVerticalScalingFactor(font);
 		if (textRenderingMatrixBefore.getScaleY() >= 0 && textRenderingMatrixBefore.getShearY() >= 0) {
 			y1 = textRenderingMatrixBefore.getTranslateY() + descent * textRenderingMatrixBefore.getScaleY() * verticalScalingFactor;
 			y2 = textRenderingMatrixAfter.getTranslateY() + ascent * textRenderingMatrixAfter.getScaleY() * verticalScalingFactor;
