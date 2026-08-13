@@ -870,7 +870,7 @@ public class ChunkParser {
 				TextState textState = graphicsState.getTextState();
 				org.verapdf.pd.font.PDFont font = textState.getTextFont();
 				int code = font.readCode(inputStream);
-				String value = font.toUnicode(code);
+				String value = font.toUnicode(code, false);
 				double scaling = isVertical ? 1 : textState.getHorizontalScaling();
 				double shift = (textState.getCharacterSpacing() + (code == 32 ? textState.getWordSpacing() : 0)) * scaling;
 				Double width = isVertical ? ((PDCIDFont) font).getVerticalWidth(code) : font.getWidth(code);
