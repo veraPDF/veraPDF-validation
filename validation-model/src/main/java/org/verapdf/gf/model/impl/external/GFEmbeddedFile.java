@@ -103,10 +103,17 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	private static boolean isValidPdfaStream(final InputStream toValidate, final Set<PDFAFlavour> flavours)
 			throws VeraPDFException, IOException {
 		try (GFModelParser parser = GFModelParser.createModelWithFlavour(toValidate, PDFAFlavour.NO_FLAVOUR)) {
-			if (!flavours.contains(parser.getFlavour())) {
+			PDFAFlavour flavour = null;
+			for (PDFAFlavour currentFlavour : parser.getFlavours()) {
+				if (flavours.contains(currentFlavour)) {
+					flavour = currentFlavour;
+					break;
+				}
+			}
+			if (flavour == null) {
 				return false;
 			}
-			try (PDFAValidator validator = ValidatorFactory.createValidator(parser.getFlavour(), false, 1)) {
+			try (PDFAValidator validator = ValidatorFactory.createValidator(flavour, false, 1)) {
 				ValidationResult result = validator.validate(parser);
 				return result.isCompliant();
 			}
