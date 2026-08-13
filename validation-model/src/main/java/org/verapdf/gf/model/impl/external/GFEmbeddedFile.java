@@ -77,28 +77,22 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
 	@Override
 	public Boolean getisValidPDFA12() {
-		return isValidPDFA(new PDFAFlavour[]{PDFAFlavour.PDFA_1_B, PDFAFlavour.PDFA_2_B});
+		return isValidPDFA(new HashSet<>(Arrays.asList(PDFAFlavour.PDFA_1_B, PDFAFlavour.PDFA_2_B)));
 	}
 
 	@Override
 	public Boolean getisValidPDFA124() {
-		return isValidPDFA(new PDFAFlavour[]{PDFAFlavour.PDFA_1_B, PDFAFlavour.PDFA_2_B,  PDFAFlavour.PDFA_4});
+		return isValidPDFA(new HashSet<>(Arrays.asList(PDFAFlavour.PDFA_1_B, PDFAFlavour.PDFA_2_B,  PDFAFlavour.PDFA_4)));
 	}
 	
-	private boolean isValidPDFA(PDFAFlavour[] flavours) {
+	private boolean isValidPDFA(Set<PDFAFlavour> flavours) {
 		if (this.stream == null) {
 			return Boolean.TRUE;
 		}
 		saveStaticContainersState();
 		boolean retVal = false;
 		try (InputStream unfilteredStream = stream.getData(COSStream.FilterFlags.DECODE)) {
-			for (PDFAFlavour flavour : flavours) {
-				retVal = isValidPdfaStream(unfilteredStream, flavour);
-				if (retVal) {
-					break;
-				}
-				unfilteredStream.reset();
-			}
+			retVal = isValidPdfaStream(unfilteredStream, flavours);
 		} catch (VeraPDFException | IOException e) {
 			LOGGER.log(Level.FINE, "Exception during validation of embedded file", e);
 		}
@@ -106,13 +100,16 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 		return retVal;
 	}
 
-	private static boolean isValidPdfaStream(final InputStream toValidate, final PDFAFlavour flavour)
-			throws VeraPDFException {
-		try (GFModelParser parser = GFModelParser.createModelWithFlavour(toValidate, flavour)) {
-			PDFAValidator validator = ValidatorFactory.createValidator(flavour, false, 1);
-			ValidationResult result = validator.validate(parser);
-			parser.close();
-			return result.isCompliant();
+	private static boolean isValidPdfaStream(final InputStream toValidate, final Set<PDFAFlavour> flavours)
+			throws VeraPDFException, IOException {
+		try (GFModelParser parser = GFModelParser.createModelWithFlavour(toValidate, PDFAFlavour.NO_FLAVOUR)) {
+			if (!flavours.contains(parser.getFlavour())) {
+				return false;
+			}
+			try (PDFAValidator validator = ValidatorFactory.createValidator(parser.getFlavour(), false, 1)) {
+				ValidationResult result = validator.validate(parser);
+				return result.isCompliant();
+			}
 		}
 	}
 
