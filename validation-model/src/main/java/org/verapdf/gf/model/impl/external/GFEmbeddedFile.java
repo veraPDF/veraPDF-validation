@@ -61,10 +61,18 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	public static final String EMBEDDED_FILE_TYPE = "EmbeddedFile";
 
 	private final COSStream stream;
+    protected String id;
 
 	public GFEmbeddedFile(COSStream stream) {
 		super(EMBEDDED_FILE_TYPE);
 		this.stream = stream;
+
+        if (stream != null) {
+            COSKey key = stream.getObjectKey();
+            id = key != null ?
+                    key.getNumber() + " " + key.getGeneration() + " obj " + this.getObjectType()
+                    : super.getID();
+        }
 	}
 
 	@Override
@@ -84,6 +92,11 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 	public Boolean getisValidPDFA124() {
 		return isValidPDFA(new HashSet<>(Arrays.asList(PDFAFlavour.PDFA_1_B, PDFAFlavour.PDFA_2_B,  PDFAFlavour.PDFA_4)));
 	}
+
+    @Override
+    public String getID() {
+        return this.id == null ? super.getID() : this.id;
+    }
 	
 	private boolean isValidPDFA(Set<PDFAFlavour> flavours) {
 		if (this.stream == null) {
