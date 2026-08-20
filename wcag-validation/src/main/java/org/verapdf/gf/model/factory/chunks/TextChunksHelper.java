@@ -56,11 +56,11 @@ public class TextChunksHelper {
 		double[] fontBoundingBox = font.getBoundingBox();
 		Double descent = font.getDescent();
 		if (descent == null) {
-            descent = textPieces.getDescent() != 0 ? textPieces.getDescent() : fontBoundingBox[1];
+            descent = textPieces.getDescent() != null ? textPieces.getDescent() : fontBoundingBox[1];
 		}
 		Double ascent = font.getAscent();
 		if (ascent == null) {
-			ascent = textPieces.getAscent() != 0 ? textPieces.getAscent() : fontBoundingBox[3];
+			ascent = textPieces.getAscent() != null ? textPieces.getAscent() : fontBoundingBox[3];
 		}
 		double x1;
 		double x2;

@@ -888,12 +888,14 @@ public class ChunkParser {
 					}
 				}
                 if (font instanceof PDType3Font) {
-                    double glyphAscent = ((PDType3Font) font).getAscentFromProgram(code);
-                    if (glyphAscent > textPieces.getAscent()) {
+                    Double glyphAscent = ((PDType3Font) font).getAscentFromProgram(code);
+                    if (glyphAscent != null && (textPieces.getAscent() == null ||
+                            glyphAscent > textPieces.getAscent())) {
                         textPieces.setAscent(glyphAscent);
                     }
-                    double glyphDescent = ((PDType3Font) font).getDescentFromProgram(code);
-                    if (glyphDescent < textPieces.getDescent()) {
+                    Double glyphDescent = ((PDType3Font) font).getDescentFromProgram(code);
+                    if (glyphDescent != null && (textPieces.getDescent() == null ||
+                            glyphDescent < textPieces.getDescent())) {
                         textPieces.setDescent(glyphDescent);
                     }
                 }
