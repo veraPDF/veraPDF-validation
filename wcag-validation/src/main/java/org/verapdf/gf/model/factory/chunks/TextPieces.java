@@ -33,6 +33,8 @@ public class TextPieces {
 	public final boolean isVertical;
 	private int currentIndex;
 	private double current;
+    private Double ascent;
+    private Double descent;
 
 	TextPieces(boolean isVertical) {
 		this.isVertical = isVertical;
@@ -132,7 +134,23 @@ public class TextPieces {
 			}
 		}
 		return streamInfos;
-	} 
+	}
+
+    public Double getAscent() {
+        return ascent;
+    }
+
+    public void setAscent(double ascent) {
+        this.ascent = ascent;
+    }
+
+    public Double getDescent() {
+        return descent;
+    }
+
+    public void setDescent(double descent) {
+        this.descent = descent;
+    }
 
 	public static class TextPiece {
 		private final String value;
