@@ -46,21 +46,21 @@ public class TextChunksHelper {
 	}
 
 	protected static BoundingBox calculateTextBoundingBox(boolean isVertical, Matrix textRenderingMatrixBefore, 
-														  Matrix textRenderingMatrixAfter, PDFont font, Integer pageNumber) {
+														  Matrix textRenderingMatrixAfter, PDFont font, Integer pageNumber, TextPieces textPieces) {
 		return isVertical ? TextChunksHelper.calculateTextBoundingBoxV(textRenderingMatrixBefore, textRenderingMatrixAfter, pageNumber)
-				: TextChunksHelper.calculateTextBoundingBoxH(textRenderingMatrixBefore, textRenderingMatrixAfter, font, pageNumber);
+				: TextChunksHelper.calculateTextBoundingBoxH(textRenderingMatrixBefore, textRenderingMatrixAfter, font, pageNumber, textPieces);
 	}
 
 	private static BoundingBox calculateTextBoundingBoxH(Matrix textRenderingMatrixBefore, Matrix textRenderingMatrixAfter, 
-														   PDFont font, Integer pageNumber) {
+														   PDFont font, Integer pageNumber, TextPieces textPieces) {
 		double[] fontBoundingBox = font.getBoundingBox();
 		Double descent = font.getDescent();
 		if (descent == null) {
-			descent = fontBoundingBox[1];
+            descent = textPieces.getDescent() != null ? textPieces.getDescent() : fontBoundingBox[1];
 		}
 		Double ascent = font.getAscent();
 		if (ascent == null) {
-			ascent = fontBoundingBox[3];
+			ascent = textPieces.getAscent() != null ? textPieces.getAscent() : fontBoundingBox[3];
 		}
 		double x1;
 		double x2;
