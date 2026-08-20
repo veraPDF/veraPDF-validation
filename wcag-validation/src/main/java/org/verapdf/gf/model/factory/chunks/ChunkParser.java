@@ -37,6 +37,7 @@ import org.verapdf.pd.colors.PDDeviceGray;
 import org.verapdf.pd.colors.PDDeviceRGB;
 import org.verapdf.pd.font.PDCIDFont;
 import org.verapdf.pd.font.PDFontDescriptor;
+import org.verapdf.pd.font.type3.PDType3Font;
 import org.verapdf.pd.images.PDXForm;
 import org.verapdf.pd.images.PDXObject;
 import org.verapdf.pd.optionalcontent.PDOCMDDictionary;
@@ -886,6 +887,17 @@ public class ChunkParser {
 						LOGGER.log(Level.WARNING, "The glyph can not be mapped to Unicode");
 					}
 				}
+                if (font instanceof PDType3Font) {
+                    double glyphAscent = ((PDType3Font) font).getAscentFromProgram(code);
+                    if (glyphAscent > textPieces.getAscent()) {
+                        textPieces.setAscent(glyphAscent);
+                    }
+                    double glyphDescent = ((PDType3Font) font).getDescentFromProgram(code);
+                    if (glyphDescent < textPieces.getDescent()) {
+                        textPieces.setDescent(glyphDescent);
+                    }
+                }
+
 				textPieces.add(new TextPieces.TextPiece(value, current, current + width));
 				textPieces.shiftCurrent(shift);
 			}
@@ -934,7 +946,7 @@ public class ChunkParser {
 			PDFontDescriptor descriptor = font.getFontDescriptor();
 			String fontNameWithoutSubset = font.getNameWithoutSubset();
 			TextChunk textChunk = new TextChunk(
-				TextChunksHelper.calculateTextBoundingBox(isVertical, textRenderingMatrixBefore, textRenderingMatrixAfter, font, pageNumber),
+				TextChunksHelper.calculateTextBoundingBox(isVertical, textRenderingMatrixBefore, textRenderingMatrixAfter, font, pageNumber, textPieces),
 				textPieces.getValue(), fontNameWithoutSubset, TextChunksHelper.calculateTextSize(textRenderingMatrixAfter),
 				TextChunksHelper.calculateFontWeight(graphicsState.getTextState().getRenderingMode(), font), 
 					descriptor.getItalicAngle(), TextChunksHelper.calculateTextBaseLine(textRenderingMatrixAfter),

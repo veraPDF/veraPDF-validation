@@ -33,6 +33,8 @@ public class TextPieces {
 	public final boolean isVertical;
 	private int currentIndex;
 	private double current;
+    private double ascent;
+    private double descent;
 
 	TextPieces(boolean isVertical) {
 		this.isVertical = isVertical;
@@ -40,6 +42,8 @@ public class TextPieces {
 		textPieces = new TreeSet<>(isVertical ? new TextPieceComparatorV() : new TextPieceComparatorH());
 		currentIndex = 0;
 		current = 0;
+        ascent = 0;
+        descent = 0;
 	}
 
 	public void add(TextPiece textPiece) {
@@ -132,7 +136,23 @@ public class TextPieces {
 			}
 		}
 		return streamInfos;
-	} 
+	}
+
+    public double getAscent() {
+        return ascent;
+    }
+
+    public void setAscent(double ascent) {
+        this.ascent = ascent;
+    }
+
+    public double getDescent() {
+        return descent;
+    }
+
+    public void setDescent(double descent) {
+        this.descent = descent;
+    }
 
 	public static class TextPiece {
 		private final String value;
