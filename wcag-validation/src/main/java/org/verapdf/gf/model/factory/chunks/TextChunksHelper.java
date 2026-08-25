@@ -169,7 +169,8 @@ public class TextChunksHelper {
 	}
 
 	protected static void updateSymbolEnds(List<Double> symbolEnds, double shift, double left, int length) {
-		if (length <= 1) {
+		if (length == 0) return;
+        if (length == 1) {
 			symbolEnds.add(left + shift);
 		} else {
 			double newShift = shift / length;
