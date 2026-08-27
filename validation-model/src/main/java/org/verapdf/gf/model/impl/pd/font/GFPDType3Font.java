@@ -131,8 +131,7 @@ public class GFPDType3Font extends GFPDSimpleFont implements PDType3Font {
      * PDF/A-4 validation should doesn't accept Resource dictionaries specified in the individual CharProc stream dictionaries
      */
     private PDResourcesHandler getResourcesFromCharProcs(COSObject charProcs) {
-        if (!charProcs.knownKey(ASAtom.RESOURCES) || 
-                PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0)) {
+        if (!charProcs.knownKey(ASAtom.RESOURCES)) {
             return null;
         }
         PDResources res = new PDResources(charProcs.getKey(ASAtom.RESOURCES));
