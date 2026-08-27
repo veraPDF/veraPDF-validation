@@ -24,6 +24,7 @@ import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
 import org.verapdf.model.selayer.SETable;
 import org.verapdf.model.pdlayer.PDStructElem;
+import org.verapdf.pdfa.flavours.PDFAFlavour;
 import org.verapdf.pdfa.flavours.PDFFlavours;
 import org.verapdf.tools.TaggedPDFConstants;
 
@@ -199,6 +200,9 @@ public class GFSETable extends GFPDStructElem implements SETable {
 
     private boolean hasHeaders(GFSETableCell[][] cells, int cellRowNumber, int cellColumnNumber,
                                int cellEndRowNumber, int cellEndColumnNumber) {
+        if (PDFFlavours.isFlavour(StaticContainers.getFlavour(), PDFAFlavour.PDFUA_1)) {
+            return false;
+        }
         if (cellRowNumber > 0) {
             for (int columnNumber = cellColumnNumber; columnNumber < cellEndColumnNumber; columnNumber++) {
                 boolean headerFound = false;
