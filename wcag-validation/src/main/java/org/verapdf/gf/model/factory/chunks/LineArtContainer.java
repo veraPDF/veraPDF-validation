@@ -25,6 +25,8 @@ import org.verapdf.gf.model.impl.containers.StaticStorages;
 import org.verapdf.wcag.algorithms.entities.content.LineArtChunk;
 import org.verapdf.wcag.algorithms.entities.content.LineChunk;
 import org.verapdf.wcag.algorithms.entities.geometry.BoundingBox;
+import org.verapdf.wcag.algorithms.semanticalgorithms.containers.StaticContainers;
+import org.verapdf.wcag.algorithms.semanticalgorithms.utils.StreamInfo;
 
 import java.util.*;
 
@@ -35,12 +37,22 @@ public class LineArtContainer {
 	private final Map<Long, List<BoundingBox>> lineArtBBoxes;
 	private final Map<Long, LineArtChunk> lineArts;
 	private final Map<Long, List<LineChunk>> lineArtLines;
+	/**
+	 * Stream position of the first paint operator seen for each mcid.
+	 *
+	 * <p>Kept because the chunk for an untagged region is not built here — it is
+	 * built in {@code ChunkParser.parseLineArts}, once the stream has been read,
+	 * where no single operator is in scope any more. Without somewhere to hold
+	 * the position, a region whose marks carry no mcid can never be given one.
+	 */
+	private final Map<Long, List<StreamInfo>> lineArtStreamInfos;
 	private final COSKey objectKey;
 
 	public LineArtContainer(COSKey objectKey) {
 		lineArtBBoxes = new HashMap<>();
 		lineArts = new HashMap<>();
 		lineArtLines = new HashMap<>();
+		lineArtStreamInfos = new HashMap<>();
 		this.objectKey = objectKey;
 	}
 
@@ -56,7 +68,31 @@ public class LineArtContainer {
 		return lineArts.get(mcid);
 	}
 
+	/** Stream positions recorded for this mcid, empty when none were. */
+	public List<StreamInfo> getStreamInfos(Long mcid) {
+		List<StreamInfo> infos = lineArtStreamInfos.get(mcid);
+		return infos == null ? Collections.emptyList() : infos;
+	}
+
+	/**
+	 * Forgets the position for this mcid, so the next region under it records its
+	 * own. Called where the boxes are cleared: keeping the old position would
+	 * hand a later region the operator that drew an earlier one.
+	 */
+	public void clearStreamInfos(Long mcid) {
+		lineArtStreamInfos.remove(mcid);
+	}
+
 	public void add(Long mcid, LineChunk lineChunk) {
+		add(mcid, lineChunk, null, null);
+	}
+
+	/**
+	 * @param operatorIndex index of the paint operator that drew this line, or
+	 *                      null when it is not known
+	 * @param xObjectName   name of the form the line was drawn inside, or null
+	 */
+	public void add(Long mcid, LineChunk lineChunk, Integer operatorIndex, String xObjectName) {
 		List<LineChunk> lineChunks = getLineChunks(mcid);
 		if (lineChunks != null) {
 			lineChunks.add(lineChunk);
@@ -65,12 +101,26 @@ public class LineArtContainer {
 			lineChunks.add(lineChunk);
 			lineArtLines.put(mcid, lineChunks);
 		}
-		add(mcid, lineChunk.getBoundingBox());
+		add(mcid, lineChunk.getBoundingBox(), operatorIndex, xObjectName);
 	}
 
 	public void add(Long mcid, BoundingBox boundingBox) {
+		add(mcid, boundingBox, null, null);
+	}
+
+	public void add(Long mcid, BoundingBox boundingBox, Integer operatorIndex, String xObjectName) {
 		if (boundingBox.isEmpty()) {
 			return;
+		}
+		// Every paint operator, not just the first. A StreamInfo names one
+		// operator, so a region an infographic draws with thousands of them needs
+		// one entry each: recording only the first wrapped one operator and left
+		// the rest of the region outside the tree.
+		if (StaticContainers.isDataLoader() && operatorIndex != null) {
+			List<StreamInfo> infos = lineArtStreamInfos.computeIfAbsent(mcid, k -> new ArrayList<>());
+			if (infos.isEmpty() || infos.get(infos.size() - 1).getOperatorIndex() != operatorIndex) {
+				infos.add(new StreamInfo(operatorIndex, xObjectName, null));
+			}
 		}
 		List<BoundingBox> list = getBoundingBoxes(mcid);
 		if (list != null && !StaticStorages.getIsIgnoreMCIDs()) {
@@ -90,6 +140,9 @@ public class LineArtContainer {
 		} else {
 			if (mcid != null) {
 				LineArtChunk lineArtChunk = new LineArtChunk();
+				// No stream info attached here on purpose: only the region's first
+				// operator has been seen at this point. ChunkParser.parseLineArts
+				// sets the complete list once the stream has been read.
 				StaticStorages.getChunks().add(objectKey, mcid, lineArtChunk);
 				lineArts.put(mcid, lineArtChunk);
 			}
