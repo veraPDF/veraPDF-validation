@@ -413,7 +413,7 @@ public class ChunkParser {
 			case Operators.F_FILL_OBSOLETE:
 			case Operators.F_STAR_FILL:
 				processh();
-				processf();
+				processf(operatorIndex);
 				break;
 			case Operators.GS:
 				PDExtGState extGState = this.resourcesHandler.getExtGState(getLastCOSName(arguments));
@@ -491,21 +491,21 @@ public class ChunkParser {
 			case Operators.B_CLOSEPATH_FILL_STROKE:
 			case Operators.B_STAR_CLOSEPATH_EOFILL_STROKE:
 				processh();
-				processB();
+				processB(operatorIndex);
 				break;
 			case Operators.B_FILL_STROKE:
 			case Operators.B_STAR_EOFILL_STROKE:
-				processB();
+				processB(operatorIndex);
 				break;
 			case Operators.N:
 				nonDrawingArtifacts = new ArrayList<>();
 				break;
 			case Operators.S_CLOSE_STROKE:
 				processh();
-				processS();
+				processS(operatorIndex);
 				break;
 			case Operators.S_STROKE:
-				processS();
+				processS(operatorIndex);
 				break;
 			case Operators.CM_CONCAT:
                 if (arguments.size() == 6) {
@@ -611,7 +611,12 @@ public class ChunkParser {
 		path.setCurrentPoint(path.getStartX(), path.getStartY());
 	}
 
-	private void processB() {
+	/**
+	 * @param operatorIndex position of the paint operator in the stream, so a
+	 *                      line art chunk can carry it the way text and image
+	 *                      chunks already do
+	 */
+	private void processB(int operatorIndex) {
         if (!processLayers()) {
             nonDrawingArtifacts = new ArrayList<>();
             return;
@@ -622,26 +627,31 @@ public class ChunkParser {
 			if (chunk instanceof LineChunk) {
 				LineChunk lineChunk = transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 						graphicsState.getLineCap());
-				processLineChunk(boundingBox, mcid, lineChunk);
+				processLineChunk(boundingBox, mcid, lineChunk, operatorIndex);
 			} else if (chunk instanceof CurveChunk) {
 				CurveChunk curveChunk = CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
 						graphicsState.getLineWidth());
-				processBoundingBox(boundingBox, mcid, curveChunk.getBoundingBox());
+				processBoundingBox(boundingBox, mcid, curveChunk.getBoundingBox(), operatorIndex);
 			} else if (chunk instanceof Rectangle) {
 				LineChunk line = ((Rectangle)chunk).getLine(graphicsState.getLineWidth());
 				if (line != null) {
 					LineChunk line1 = transformLineChunk(line, line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE);
-					processLineChunk(boundingBox, mcid, line1);
+					processLineChunk(boundingBox, mcid, line1, operatorIndex);
 				}
 			}
 		}
 		if (StaticStorages.getIsIgnoreMCIDs()) {
-			lineArtContainer.add(mcid, boundingBox);
+			lineArtContainer.add(mcid, boundingBox, operatorIndex, xObjectName);
 		}
 		nonDrawingArtifacts = new ArrayList<>();
 	}
 
-	private void processS() {
+	/**
+	 * @param operatorIndex position of the paint operator in the stream, so a
+	 *                      line art chunk can carry it the way text and image
+	 *                      chunks already do
+	 */
+	private void processS(int operatorIndex) {
         if (!processLayers()) {
             nonDrawingArtifacts = new ArrayList<>();
             return;
@@ -652,11 +662,11 @@ public class ChunkParser {
 			if (chunk instanceof LineChunk) {
 				LineChunk lineChunk = transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 						graphicsState.getLineCap());
-				processLineChunk(boundingBox, mcid, lineChunk);
+				processLineChunk(boundingBox, mcid, lineChunk, operatorIndex);
 			} else if (chunk instanceof CurveChunk) {
 				CurveChunk curveChunk = CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
 						graphicsState.getLineWidth());
-				processBoundingBox(boundingBox, mcid, curveChunk.getBoundingBox());
+				processBoundingBox(boundingBox, mcid, curveChunk.getBoundingBox(), operatorIndex);
 			} else if (chunk instanceof Rectangle) {
 				Rectangle rectangle = (Rectangle) chunk;
 				if (rectangle.getHeight() < graphicsState.getLineWidth() ||
@@ -664,24 +674,29 @@ public class ChunkParser {
 					LineChunk line = rectangle.getLine(graphicsState.getLineWidth());
 					if (line != null) {
 						LineChunk line1 = transformLineChunk(line, line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE);
-						processLineChunk(boundingBox, mcid, line1);
+						processLineChunk(boundingBox, mcid, line1, operatorIndex);
 					}
 				} else {
 					List<LineChunk> lines = rectangle.getLines(graphicsState.getLineWidth());
 					for (LineChunk line : lines) {
 						LineChunk line1 = transformLineChunk(line, graphicsState.getLineWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE);
-						processLineChunk(boundingBox, mcid, line1);
+						processLineChunk(boundingBox, mcid, line1, operatorIndex);
 					}
 				}
 			}
 		}
 		if (StaticStorages.getIsIgnoreMCIDs()) {
-			lineArtContainer.add(mcid, boundingBox);
+			lineArtContainer.add(mcid, boundingBox, operatorIndex, xObjectName);
 		}
 		nonDrawingArtifacts = new ArrayList<>();
 	}
 
-	private void processf() {
+	/**
+	 * @param operatorIndex position of the paint operator in the stream, so a
+	 *                      line art chunk can carry it the way text and image
+	 *                      chunks already do
+	 */
+	private void processf(int operatorIndex) {
         if (!processLayers()) {
             nonDrawingArtifacts = new ArrayList<>();
             return;
@@ -694,42 +709,48 @@ public class ChunkParser {
 				LineChunk line = ((Rectangle)chunk).getLine(0);
 				if (line != null) {
 					LineChunk line1 = transformLineChunk(line, line.getWidth(), LineChunk.PROJECTING_SQUARE_CAP_STYLE);
-					processLineChunk(boundingBox, mcid, line1);
+					processLineChunk(boundingBox, mcid, line1, operatorIndex);
 				}
 			} else if (chunk instanceof LineChunk) {
 				LineChunk line = parsingRectangleFromLines(i);
 				if (line != null) {
-					processLineChunk(boundingBox, mcid, line);
+					processLineChunk(boundingBox, mcid, line, operatorIndex);
 					i += 3;
 				} else {
 					LineChunk line1 = transformLineChunk((LineChunk)chunk, graphicsState.getLineWidth(),
 							graphicsState.getLineCap());
-					processBoundingBox(boundingBox, mcid, line1.getBoundingBox());
+					processBoundingBox(boundingBox, mcid, line1.getBoundingBox(), operatorIndex);
 				}
 			} else if (chunk instanceof CurveChunk) {
 				CurveChunk curveChunk = CurveChunk.transformCurve((CurveChunk)chunk, graphicsState.getCTM(),
 						graphicsState.getLineWidth());
-				processBoundingBox(boundingBox, mcid, curveChunk.getBoundingBox());
+				processBoundingBox(boundingBox, mcid, curveChunk.getBoundingBox(), operatorIndex);
 			}
 		}
 		if (StaticStorages.getIsIgnoreMCIDs()) {
-			lineArtContainer.add(mcid, boundingBox);
+			lineArtContainer.add(mcid, boundingBox, operatorIndex, xObjectName);
 		}
 		nonDrawingArtifacts = new ArrayList<>();
 	}
 	
-	private void processLineChunk(BoundingBox boundingBox, Long mcid, LineChunk lineChunk) {
-		lineArtContainer.add(mcid, lineChunk);
+	private void processLineChunk(BoundingBox boundingBox, Long mcid, LineChunk lineChunk,
+	                              int operatorIndex) {
+		lineArtContainer.add(mcid, lineChunk, operatorIndex, xObjectName);
 		if (StaticStorages.getIsIgnoreMCIDs()) {
 			boundingBox.union(lineChunk.getBoundingBox());
 		}
 	}
 	
-	private void processBoundingBox(BoundingBox boundingBox, Long mcid, BoundingBox newBoundingBox) {
+	private void processBoundingBox(BoundingBox boundingBox, Long mcid, BoundingBox newBoundingBox,
+	                                int operatorIndex) {
 		if (StaticStorages.getIsIgnoreMCIDs()) {
 			boundingBox.union(newBoundingBox);
 		} else {
-			lineArtContainer.add(mcid, newBoundingBox);
+			// Curves reach the container here rather than through
+			// processLineChunk, so the operator index has to be carried on this
+			// path too: a region drawn only with curve operators is otherwise
+			// left without one.
+			lineArtContainer.add(mcid, newBoundingBox, operatorIndex, xObjectName);
 		}
 	}
 
@@ -1086,9 +1107,18 @@ public class ChunkParser {
 			if (lineChunks == null) {
 				lineChunks = new LinkedList<>();
 			}
+			// Stream position recorded for this mcid while the operators were read.
+			// The chunks below are built after the stream, so this is the only way
+			// they can carry one — and without one a vector region can never be
+			// given a marked content id, which is what makes it untaggable.
+			List<StreamInfo> lineArtStreamInfos = lineArtContainer.getStreamInfos(mcid);
 			if (mcid == null && parentMarkedContent == null) {
 				for (BoundingBox box : boundingBoxes.getValue()) {
-					artifacts.add(new LineArtChunk(box));
+					LineArtChunk artifact = new LineArtChunk(box);
+					for (StreamInfo info : lineArtStreamInfos) {
+						artifact.getStreamInfos().add(new StreamInfo(info));
+					}
+					artifacts.add(artifact);
 				}
 				artifacts.addAll(lineChunks);
 			}
@@ -1097,10 +1127,25 @@ public class ChunkParser {
 				boundingBox.union(box);
 			}
 			if (mcid != null) {
-				lineArtContainer.getLineArt(mcid).setBoundingBox(boundingBox);
-				lineArtContainer.getLineArt(mcid).setLineChunks(lineChunks);
+				LineArtChunk existing = lineArtContainer.getLineArt(mcid);
+				existing.setBoundingBox(boundingBox);
+				existing.setLineChunks(lineChunks);
+				// Set here rather than where the chunk was created. The chunk is
+				// created on the region's first bounding box, when only the first
+				// operator has been seen, and the operators that follow never
+				// reach it — so a region inside marked content exposed just one of
+				// them. This runs once the stream has been read, so the list is
+				// complete.
+				existing.getStreamInfos().clear();
+				for (StreamInfo info : lineArtStreamInfos) {
+					existing.getStreamInfos().add(new StreamInfo(info));
+				}
 			} else {
-				StaticStorages.getChunks().add(parentObjectKey, parentMarkedContent, new LineArtChunk(boundingBox, lineChunks));
+				LineArtChunk lineArtChunk = new LineArtChunk(boundingBox, lineChunks);
+				for (StreamInfo info : lineArtStreamInfos) {
+					lineArtChunk.getStreamInfos().add(new StreamInfo(info));
+				}
+				StaticStorages.getChunks().add(parentObjectKey, parentMarkedContent, lineArtChunk);
 			}
 		}
 	}
@@ -1109,18 +1154,33 @@ public class ChunkParser {
 		if (!StaticStorages.getIsIgnoreMCIDs()) {
 			return;
 		}
+		// Read before the container's record is cleared below. This is the path a
+		// region outside any marked content takes, and the chunks it produces are
+		// the ones a consumer sees, so a position missing here is a region that
+		// cannot be tagged however well the rest is wired.
+		List<StreamInfo> pending = lineArtContainer.getStreamInfos(null);
 		List<LineChunk> lineChunks = lineArtContainer.getLineChunks(null);
 		if (lineChunks != null && !lineChunks.isEmpty()) {
+			for (LineChunk lineChunk : lineChunks) {
+				for (StreamInfo info : pending) {
+					lineChunk.getStreamInfos().add(new StreamInfo(info));
+				}
+			}
 			artifacts.addAll(lineChunks);
 			lineChunks.clear();
 		}
 		List<BoundingBox> boundingBoxes = lineArtContainer.getBoundingBoxes(null);
 		if (boundingBoxes != null && !boundingBoxes.isEmpty()) {
 			for (BoundingBox box : boundingBoxes) {
-				artifacts.add(new LineArtChunk(box));
+				LineArtChunk artifact = new LineArtChunk(box);
+				for (StreamInfo info : pending) {
+					artifact.getStreamInfos().add(new StreamInfo(info));
+				}
+				artifacts.add(artifact);
 			}
 			boundingBoxes.clear();
 		}
+		lineArtContainer.clearStreamInfos(null);
 	}
 
     public boolean processLayers() {
