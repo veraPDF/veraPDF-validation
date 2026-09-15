@@ -49,10 +49,7 @@ import org.verapdf.tools.StaticResources;
 import org.verapdf.tools.TaggedPDFConstants;
 import org.verapdf.tools.TaggedPDFRoleMapHelper;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -329,11 +326,23 @@ public class GFPDAnnot extends GFPDObject implements PDAnnot {
 		if (taggedPDFRoleMapHelper != null) {
 			COSObject parentDictionary = getParentDictionary();
 			if (parentDictionary != null) {
+                Set<COSKey> keys = new HashSet<>();
 				PDStructElem structElem = new PDStructElem(parentDictionary);
 				while (structElem != null) {
 					if (TaggedPDFConstants.ARTIFACT.equals(PDStructElem.getStructureElementStandardType(structElem))) {
 						return true;
 					}
+
+                    COSKey key = structElem.getObject().getObjectKey();
+
+                    if (keys.contains(key)) {
+                        break;
+                    }
+
+                    if (key != null) {
+                        keys.add(key);
+                    }
+
 					structElem = structElem.getParent();
 				}
 			}
