@@ -21,6 +21,8 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 		switch (link) {
 			case "Entries":
 				return getEntries();
+			case "AAPLKeywords":
+				return getAAPLKeywords();
 			default:
 				return super.getLinkedObjects(link);
 		}
@@ -46,7 +48,7 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	private List<ADocInfoEntry> getEntries1_1() {
 		List<ADocInfoEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
-			if ("Author".equals(key.getValue()) || "CreationDate".equals(key.getValue()) || "Creator".equals(key.getValue()) || "Keywords".equals(key.getValue()) || "ModDate".equals(key.getValue()) || "Producer".equals(key.getValue()) || "Subject".equals(key.getValue()) || "Title".equals(key.getValue())) {
+			if ("AAPL:Keywords".equals(key.getValue()) || "Author".equals(key.getValue()) || "CreationDate".equals(key.getValue()) || "Creator".equals(key.getValue()) || "GTS_PDFXVersion".equals(key.getValue()) || "Keywords".equals(key.getValue()) || "ModDate".equals(key.getValue()) || "Producer".equals(key.getValue()) || "Subject".equals(key.getValue()) || "Title".equals(key.getValue())) {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
@@ -58,13 +60,52 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	private List<ADocInfoEntry> getEntries1_3() {
 		List<ADocInfoEntry> list = new LinkedList<>();
 		for (ASAtom key : baseObject.getKeySet()) {
-			if ("Author".equals(key.getValue()) || "CreationDate".equals(key.getValue()) || "Creator".equals(key.getValue()) || "Keywords".equals(key.getValue()) || "ModDate".equals(key.getValue()) || "Producer".equals(key.getValue()) || "Subject".equals(key.getValue()) || "Title".equals(key.getValue()) || "Trapped".equals(key.getValue())) {
+			if ("AAPL:Keywords".equals(key.getValue()) || "Author".equals(key.getValue()) || "CreationDate".equals(key.getValue()) || "Creator".equals(key.getValue()) || "GTS_PDFXVersion".equals(key.getValue()) || "Keywords".equals(key.getValue()) || "ModDate".equals(key.getValue()) || "Producer".equals(key.getValue()) || "Subject".equals(key.getValue()) || "Title".equals(key.getValue()) || "Trapped".equals(key.getValue())) {
 				continue;
 			}
 			COSObject object = this.baseObject.getKey(key);
 			list.add(new GFADocInfoEntry(object != null ? object.get() : null, this.baseObject, this.parentObject, keyName, key.getValue()));
 		}
 		return Collections.unmodifiableList(list);
+	}
+
+	private List<AArrayOfStringsText> getAAPLKeywords() {
+		return getAAPLKeywords1_0();
+	}
+
+	private List<AArrayOfStringsText> getAAPLKeywords1_0() {
+		COSObject object = getAAPLKeywordsValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_ARRAY) {
+			List<AArrayOfStringsText> list = new ArrayList<>(1);
+			list.add(new GFAArrayOfStringsText((COSArray)object.getDirectBase(), this.baseObject, "AAPL:Keywords"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontainsAAPLKeywords() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("AAPL:Keywords"));
+	}
+
+	public COSObject getAAPLKeywordsValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("AAPL:Keywords"));
+		return object;
+	}
+
+	@Override
+	public String getAAPLKeywordsType() {
+		COSObject AAPLKeywords = getAAPLKeywordsValue();
+		return getObjectType(AAPLKeywords);
+	}
+
+	@Override
+	public Boolean getAAPLKeywordsHasTypeArray() {
+		COSObject AAPLKeywords = getAAPLKeywordsValue();
+		return getHasTypeArray(AAPLKeywords);
 	}
 
 	@Override
@@ -131,6 +172,28 @@ public class GFADocInfo extends GFAObject implements ADocInfo {
 	public Boolean getCreatorHasTypeStringText() {
 		COSObject Creator = getCreatorValue();
 		return getHasTypeStringText(Creator);
+	}
+
+	@Override
+	public Boolean getcontainsGTS_PDFXVersion() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("GTS_PDFXVersion"));
+	}
+
+	public COSObject getGTS_PDFXVersionValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GTS_PDFXVersion"));
+		return object;
+	}
+
+	@Override
+	public String getGTS_PDFXVersionType() {
+		COSObject GTS_PDFXVersion = getGTS_PDFXVersionValue();
+		return getObjectType(GTS_PDFXVersion);
+	}
+
+	@Override
+	public Boolean getGTS_PDFXVersionHasTypeStringText() {
+		COSObject GTS_PDFXVersion = getGTS_PDFXVersionValue();
+		return getHasTypeStringText(GTS_PDFXVersion);
 	}
 
 	@Override
