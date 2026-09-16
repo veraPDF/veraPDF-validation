@@ -422,6 +422,11 @@ public class GFAObject extends GenericModelObject implements AObject {
 	}
 
 	@Override
+	public Boolean gethasExtensionPDF_X() {
+		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.PDF_X);
+	}
+
+	@Override
 	public Boolean gethasExtensionWTPDF() {
 		return StaticCoreContainers.getEnabledExtensions().contains(ExtensionObjectType.WTPDF);
 	}
