@@ -72,7 +72,7 @@ public class ChunkParser {
 	 * (ISO 32000-1, 9.4.3). Unlike a glyph width, it is not a glyph space value,
 	 * so it is never scaled by the FontMatrix of a Type 3 font.
 	 */
-	private static final double TEXT_SPACE_UNIT = 1.0 / 1000.0;
+	public static final double TEXT_SPACE_UNIT = 1.0 / 1000.0;
 
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
