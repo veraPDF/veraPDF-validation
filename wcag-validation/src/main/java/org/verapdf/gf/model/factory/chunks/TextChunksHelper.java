@@ -139,7 +139,7 @@ public class TextChunksHelper {
 				return fontMatrix[0];
 			}
 		}
-		return 1.0 / 1000.0;
+		return ChunkParser.TEXT_SPACE_UNIT;
 	}
 
 	public static double getVerticalScalingFactor(PDFont font) {
@@ -149,7 +149,7 @@ public class TextChunksHelper {
 				return fontMatrix[3];
 			}
 		}
-		return 1.0 / 1000.0;
+		return ChunkParser.TEXT_SPACE_UNIT;
 	}
 	
 	protected static double calculateTextBaseLine(Matrix textMatrix) {
