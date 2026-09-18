@@ -167,7 +167,7 @@ public class GFPDPage extends GFPDObject implements PDPage {
 	}
 
 	private OutputIntents parseOutputIntents() {
-		if (!PDFFlavours.isFlavourPart(StaticContainers.getFlavour(), PDFAFlavour.Specification.ISO_19005_4)) {
+		if (!PDFFlavours.isPDFA4RelatedFlavour(StaticContainers.getFlavour())) {
 			return null;
 		}
 		List<org.verapdf.pd.PDOutputIntent> outInts = ((org.verapdf.pd.PDPage) this.simplePDObject).getOutputIntents();
