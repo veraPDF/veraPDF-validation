@@ -74,6 +74,13 @@ public class ChunkParser {
 	 */
 	public static final double TEXT_SPACE_UNIT = 1.0 / 1000.0;
 
+	/**
+	 * How much two boxes may be apart before they count as disjoint, in points.
+	 * A chunk is called clipped only when it is separated from the clip by more
+	 * than this, so a chunk that merely touches the clip boundary keeps its text.
+	 */
+	private static final double CLIP_TOLERANCE = 1.0e-3;
+
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
     private final Stack<Boolean> visibleContentStack = new Stack<Boolean>();
@@ -87,6 +94,13 @@ public class ChunkParser {
 	private final PDResourcesHandler resourcesHandler;
 	private final GraphicsState graphicsState;
 	private final Path path = new Path();
+	/**
+	 * Bounding box, in page space, of the path currently being constructed --
+	 * the candidate clip. Null while no path point has been seen.
+	 */
+	private BoundingBox clipPathBox = null;
+	/** Set by W / W*, cleared by the operator that ends the path. */
+	private boolean pendingClip = false;
 	private final List<IChunk> artifacts = new LinkedList<>();
 	private List<Object> nonDrawingArtifacts = new ArrayList<>();
 	private final LineArtContainer lineArtContainer;
@@ -402,6 +416,11 @@ public class ChunkParser {
 							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()),
 							new Vertex(arguments.get(4).getReal(), arguments.get(5).getReal()),
 							graphicsState.getLineWidth());
+					// A Bezier curve stays inside the hull of its control points,
+					// so the control polygon is a safe over-approximation.
+					addClipPathPoint(arguments.get(0).getReal(), arguments.get(1).getReal());
+					addClipPathPoint(arguments.get(2).getReal(), arguments.get(3).getReal());
+					addClipPathPoint(arguments.get(4).getReal(), arguments.get(5).getReal());
 					path.setCurrentPoint(curve.getX3(), curve.getY3());
 					nonDrawingArtifacts.add(curve);
 				}
@@ -414,6 +433,7 @@ public class ChunkParser {
 			case Operators.F_STAR_FILL:
 				processh();
 				processf(operatorIndex);
+				applyPendingClip();
 				break;
 			case Operators.GS:
 				PDExtGState extGState = this.resourcesHandler.getExtGState(getLastCOSName(arguments));
@@ -428,6 +448,7 @@ public class ChunkParser {
 						nonDrawingArtifacts.add(new LineChunk(pageNumber, path.getCurrentX(), path.getCurrentY(),
 								x, y, graphicsState.getLineWidth()));
 					}
+					addClipPathPoint(x, y);
 					path.setCurrentPoint(x, y);
 				}
 				break;
@@ -436,6 +457,7 @@ public class ChunkParser {
 						arguments.get(1).getType().isNumber()) {
 					double x = arguments.get(0).getReal();
 					double y = arguments.get(1).getReal();
+					addClipPathPoint(x, y);
 					path.setStartPoint(x, y);
 					path.setCurrentPoint(x, y);
 				}
@@ -459,7 +481,15 @@ public class ChunkParser {
 						arguments.get(3).getType().isNumber()) {
 					double x = arguments.get(0).getReal();
 					double y = arguments.get(1).getReal();
-					nonDrawingArtifacts.add(new Rectangle(pageNumber, x, y, arguments.get(2).getReal(), arguments.get(3).getReal()));
+					double width = arguments.get(2).getReal();
+					double height = arguments.get(3).getReal();
+					nonDrawingArtifacts.add(new Rectangle(pageNumber, x, y, width, height));
+					// All four corners: under a rotating or shearing CTM the
+					// rectangle is not axis aligned in page space.
+					addClipPathPoint(x, y);
+					addClipPathPoint(x + width, y);
+					addClipPathPoint(x + width, y + height);
+					addClipPathPoint(x, y + height);
 					path.setCurrentPoint(x, y);
 					path.setStartPoint(x, y);
 				}
@@ -472,6 +502,8 @@ public class ChunkParser {
 							new Vertex(arguments.get(0).getReal(), arguments.get(1).getReal()),
 							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()),
 							graphicsState.getLineWidth(), true);
+					addClipPathPoint(arguments.get(0).getReal(), arguments.get(1).getReal());
+					addClipPathPoint(arguments.get(2).getReal(), arguments.get(3).getReal());
 					path.setCurrentPoint(curve.getX3(), curve.getY3());
 					nonDrawingArtifacts.add(curve);
 				}
@@ -484,6 +516,8 @@ public class ChunkParser {
 							new Vertex(arguments.get(0).getReal(), arguments.get(1).getReal()),
 							new Vertex(arguments.get(2).getReal(), arguments.get(3).getReal()),
 							graphicsState.getLineWidth(), false);
+					addClipPathPoint(arguments.get(0).getReal(), arguments.get(1).getReal());
+					addClipPathPoint(arguments.get(2).getReal(), arguments.get(3).getReal());
 					path.setCurrentPoint(curve.getX3(), curve.getY3());
 					nonDrawingArtifacts.add(curve);
 				}
@@ -492,20 +526,32 @@ public class ChunkParser {
 			case Operators.B_STAR_CLOSEPATH_EOFILL_STROKE:
 				processh();
 				processB(operatorIndex);
+				applyPendingClip();
 				break;
 			case Operators.B_FILL_STROKE:
 			case Operators.B_STAR_EOFILL_STROKE:
 				processB(operatorIndex);
+				applyPendingClip();
+				break;
+			case Operators.W_CLIP:
+			case Operators.W_STAR_EOCLIP:
+				// W and W* do not clip by themselves: they arm the clip, and the
+				// operator that ends the path applies it. See the coordinate
+				// contract on applyPendingClip.
+				pendingClip = true;
 				break;
 			case Operators.N:
 				nonDrawingArtifacts = new ArrayList<>();
+				applyPendingClip();
 				break;
 			case Operators.S_CLOSE_STROKE:
 				processh();
 				processS(operatorIndex);
+				applyPendingClip();
 				break;
 			case Operators.S_STROKE:
 				processS(operatorIndex);
+				applyPendingClip();
 				break;
 			case Operators.CM_CONCAT:
                 if (arguments.size() == 6) {
@@ -547,6 +593,10 @@ public class ChunkParser {
 						}
 						GraphicsState xFormGraphicsState = graphicsState.clone();
 						xFormGraphicsState.getCTM().concatenate(new Matrix(((PDXForm) xObject).getMatrix()));
+						// A form's /BBox clips its own content (ISO 32000-1,
+						// 8.10.2), and the clone already carries the clip
+						// inherited from here, so the two compose.
+						intersectFormBBoxClip(xFormGraphicsState, (PDXForm) xObject);
 						GFSAXForm xForm = new GFSAXForm((PDXForm) xObject, resourcesHandler, xFormGraphicsState, pageNumber,
 								key, markedContent, xObjectName.getName().getValue());
 						artifacts.addAll(xForm.getArtifacts());
@@ -600,6 +650,116 @@ public class ChunkParser {
 	private void processDoubleQuote(double op1, double op2) {
 		this.graphicsState.getTextState().setWordSpacing(op1);
 		this.graphicsState.getTextState().setCharacterSpacing(op2);
+	}
+
+	/*
+	 * ------------------------------------------------------------------
+	 * Clipping: the coordinate contract
+	 * ------------------------------------------------------------------
+	 *
+	 * Path points are transformed by the CTM current at each path
+	 * construction operator (m, l, re, c, v, y), not by whatever CTM the
+	 * painting operator happens to see, and are accumulated into
+	 * clipPathBox in page space -- the same space createTextChunk's
+	 * bounding box is built in, because the text rendering matrix that
+	 * produces it ends with the same CTM.
+	 *
+	 * W and W* do not clip. They set pendingClip, and the pending clip is
+	 * applied after the path painting operator that ends the path (n, f, F,
+	 * f*, B, B*, b, b*, S, s), using the bounding box of the whole
+	 * constructed path; the path is then reset.
+	 *
+	 * The effective clip is the intersection of the inherited clip and that
+	 * box. Null means unclipped; an EMPTY intersection stays an empty box
+	 * and must never become "unclipped" again (see GraphicsState).
+	 *
+	 * q and Q save and restore the clip with the rest of the graphics
+	 * state, because GraphicsState carries it through both clone() and
+	 * copyProperties.
+	 *
+	 * On Do of a Form XObject the nested parser inherits the clip through
+	 * the cloned graphics state and additionally intersects the form's
+	 * /BBox transformed by /Matrix x CTM, so nesting composes.
+	 *
+	 * Non-rectangular clipping paths are approximated by their bounding
+	 * box. That approximation only ever makes the clip LARGER, so
+	 * disjointness still proves invisibility -- but overlap proves nothing,
+	 * and no visibility is claimed. Text inside the box but outside the
+	 * real path is therefore retained.
+	 */
+
+	/**
+	 * Extends the path under construction with one point, transformed by the
+	 * CTM in force right now.
+	 */
+	private void addClipPathPoint(double x, double y) {
+		double pageX = graphicsState.getCTM().transformX(x, y);
+		double pageY = graphicsState.getCTM().transformY(x, y);
+		if (clipPathBox == null) {
+			clipPathBox = new BoundingBox(pageNumber, pageX, pageY, pageX, pageY);
+			return;
+		}
+		clipPathBox.setLeftX(Math.min(clipPathBox.getLeftX(), pageX));
+		clipPathBox.setRightX(Math.max(clipPathBox.getRightX(), pageX));
+		clipPathBox.setBottomY(Math.min(clipPathBox.getBottomY(), pageY));
+		clipPathBox.setTopY(Math.max(clipPathBox.getTopY(), pageY));
+	}
+
+	/**
+	 * Applies the clip armed by W / W*, if any, and resets the path. Called by
+	 * every path painting operator, so that a path built without W also ends
+	 * here.
+	 *
+	 * <p>A W with no path point at all is left as a no-op rather than read as
+	 * an empty clip: the conservative reading of a degenerate stream is that
+	 * nothing was clipped.
+	 */
+	private void applyPendingClip() {
+		if (pendingClip && clipPathBox != null) {
+			graphicsState.intersectClip(clipPathBox);
+		}
+		pendingClip = false;
+		clipPathBox = null;
+	}
+
+	/**
+	 * Intersects a form's own /BBox, transformed by the CTM the form will be
+	 * parsed with, into that state's clip.
+	 */
+	private void intersectFormBBoxClip(GraphicsState state, PDXForm form) {
+		double[] bbox = form.getBBox();
+		if (bbox == null || bbox.length != 4) {
+			return;
+		}
+		state.intersectClip(state.getCTM().transformBoundingBox(
+				new BoundingBox(pageNumber, bbox[0], bbox[1], bbox[2], bbox[3])));
+	}
+
+	/**
+	 * Marks a chunk whose bounding box is wholly outside the effective clip, so
+	 * a consumer can drop text that cannot appear on the page.
+	 *
+	 * <p>Conservative on purpose: only a box separated from the clip by more
+	 * than CLIP_TOLERANCE counts. A chunk that touches the clip boundary or
+	 * crosses it keeps its text, because part of it is readable and a chunk is
+	 * not split at the boundary. A degenerate (zero area) text box has no
+	 * geometry to place outside the clip and is never marked.
+	 */
+	private void markIfClipped(TextChunk textChunk) {
+		BoundingBox clip = graphicsState.getClipBox();
+		if (clip == null || clip.getPageNumber() == null) {
+			return;
+		}
+		BoundingBox box = textChunk.getBoundingBox();
+		if (box == null || box.getPageNumber() == null) {
+			return;
+		}
+		if (box.getWidth() <= CLIP_TOLERANCE || box.getHeight() <= CLIP_TOLERANCE) {
+			return;
+		}
+		if (clip.notOverlaps(box, CLIP_TOLERANCE)) {
+			textChunk.setClippedText(true);
+		}
 	}
 
 	private void processh() {
@@ -978,6 +1138,7 @@ public class ChunkParser {
 			if (StaticContainers.isDataLoader()) {
 				textChunk.getStreamInfos().addAll(textPieces.getStreamInfos(operatorIndex, xObjectName));
 			}
+			markIfClipped(textChunk);
 			if (StaticContainers.isDataLoader() && !fontNameToFontFamilyMap.containsKey(fontNameWithoutSubset)) {
 				String fontFamily = descriptor.getFontFamily();
 				if (fontFamily == null || fontFamily.isEmpty()) {
