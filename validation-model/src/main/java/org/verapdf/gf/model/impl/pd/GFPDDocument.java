@@ -330,6 +330,17 @@ public class GFPDDocument extends GFPDObject implements PDDocument {
     }
 
     @Override
+    public String getpdfVersion() {
+        Float version = document.getVersion();
+        return version != null ? version.toString() : null;
+    }
+
+    @Override
+    public String getheader() {
+        return document.getDocument().getHeader().getHeader();
+    }
+
+    @Override
     public String getmostCommonOrientation() {
         List<String> twoTheMostFrequent = getPages()
                 .stream()
