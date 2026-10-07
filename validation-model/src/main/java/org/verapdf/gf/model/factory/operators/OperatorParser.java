@@ -538,7 +538,7 @@ class OperatorParser {
 				List<String> parentsTags;
 				if (!markedContentStack.empty()) {
 					mcid = markedContentStack.peek().getInheritedMCID();
-					parentsTags = markedContentStack.peek().getParentsTags();
+					parentsTags = markedContentStack.peek().getTags();
 				} else {
 					parentsTags = new LinkedList<>(this.parentsTags);
 				}
