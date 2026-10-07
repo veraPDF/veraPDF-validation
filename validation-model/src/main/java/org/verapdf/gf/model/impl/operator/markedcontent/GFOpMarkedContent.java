@@ -140,13 +140,17 @@ public abstract class GFOpMarkedContent extends GFOperator implements OpMarkedCo
 	}
 
 	public List<String> getParentsTags() {
-		COSName tagName = getTag();
-		String tag = tagName != null ? tagName.getString() : "";
 		List<String> parentsTags = new LinkedList<>(this.parentsTags);
 		if (markedContent != null) {
-			parentsTags.addAll(markedContent.getParentsTags());
+			parentsTags.addAll(markedContent.getTags());
 		}
-		parentsTags.add(tag);
+		return parentsTags;
+	}
+
+	public List<String> getTags() {
+		COSName tagName = getTag();
+		List<String> parentsTags = getParentsTags();
+		parentsTags.add(tagName != null ? tagName.getString() : "");
 		return parentsTags;
 	}
 

@@ -170,6 +170,11 @@ public class GFSEMarkedContent extends GFSEGroupedContent implements SEMarkedCon
     }
 
     @Override
+    public List<String> getTags() {
+        return operator.getTags();
+    }
+
+    @Override
     public String getLangValue() {
         String lang = getLang();
         return lang != null ? lang : getinheritedLang();

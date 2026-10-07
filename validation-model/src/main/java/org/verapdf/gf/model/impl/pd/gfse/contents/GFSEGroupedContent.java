@@ -63,6 +63,10 @@ public abstract class GFSEGroupedContent extends GFSEContentItem implements SEGr
         return parentsTags;
     }
 
+    public List<String> getTags() {
+        return parentsTags;
+    }
+
     @Override
     public String getparentStructureTag() {
         return parentStructElem != null ? parentStructElem.getNameKeyStringValue(ASAtom.S) : null;
