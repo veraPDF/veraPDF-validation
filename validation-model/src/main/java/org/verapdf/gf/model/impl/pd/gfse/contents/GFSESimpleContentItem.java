@@ -57,7 +57,7 @@ public abstract class GFSESimpleContentItem extends GFSEContentItem implements S
 
     @Override
     public List<String> getparentsTags() {
-        return groupedContent.getparentsTags();
+        return groupedContent.getTags();
     }
 
     @Override
