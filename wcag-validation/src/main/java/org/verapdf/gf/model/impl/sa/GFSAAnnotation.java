@@ -101,21 +101,9 @@ public class GFSAAnnotation extends GenericModelObject implements SAAnnotation {
 	}
 
 	@Override
-	public String getAlt() {
-		PDStructTreeRoot structTreeRoot = StaticResources.getDocument().getStructTreeRoot();
-		Long structParent = this.annot.getStructParent();
-		if (structTreeRoot != null && structParent != null) {
-			PDNumberTreeNode parentTreeRoot = structTreeRoot.getParentTree();
-			COSObject structureElement = parentTreeRoot == null ? null : parentTreeRoot.getObject(structParent);
-			if (structureElement != null) {
-				COSObject baseAlt = structureElement.getKey(ASAtom.ALT);
-				if (baseAlt != null && baseAlt.getType() == COSObjType.COS_STRING) {
-					return baseAlt.getString();
-				}
-			}
-		}
-		return null;
-	}
+    public String getAlt() {
+        return annot.getAlt();
+    }
 
 	@Override
 	public Long getF() {
