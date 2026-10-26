@@ -892,10 +892,10 @@ public class GFAFontDescriptorCIDType0 extends GFAObject implements AFontDescrip
 
 	@Override
 	public String getparentBaseFontNameValue() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+		if (new COSObject(this.parentObject) == null || !new COSObject(this.parentObject).getType().isDictionaryBased()) {
 			return null;
 		}
-		return new GFAFontCIDType0(this.parentObject.getDirectBase(), null, null).getBaseFontNameValue();
+		return new GFAFontCIDType0(new COSObject(this.parentObject).getDirectBase(), null, null).getBaseFontNameValue();
 	}
 
 }

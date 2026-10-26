@@ -492,10 +492,10 @@ public class GFAFontDescriptorType3 extends GFAObject implements AFontDescriptor
 
 	@Override
 	public String getparentNameNameValue() {
-		if (this.parentObject == null || !this.parentObject.getType().isDictionaryBased()) {
+		if (new COSObject(this.parentObject) == null || !new COSObject(this.parentObject).getType().isDictionaryBased()) {
 			return null;
 		}
-		return new GFAFontType3(this.parentObject.getDirectBase(), null, null).getNameNameValue();
+		return new GFAFontType3(new COSObject(this.parentObject).getDirectBase(), null, null).getNameNameValue();
 	}
 
 }
