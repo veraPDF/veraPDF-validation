@@ -404,7 +404,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	}
 
 	private void getNamesEmbeddedFiles(List<CosFileSpecification> files, PDNameTreeNode node) {
-		Map<String, COSObject> names = node.getNames();
+		Map<COSString, COSObject> names = node.getNames();
 		for (COSObject value : names.values()) {
 			if (value != null && value.getType().isDictionaryBased()) {
 				files.add(new GFCosFileSpecification((COSDictionary) value.getDirectBase(), true));

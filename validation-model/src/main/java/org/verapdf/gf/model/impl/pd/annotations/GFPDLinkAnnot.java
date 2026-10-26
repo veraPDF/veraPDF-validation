@@ -24,6 +24,7 @@ import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSKey;
 import org.verapdf.cos.COSObjType;
 import org.verapdf.cos.COSObject;
+import org.verapdf.cos.COSString;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDAnnot;
 import org.verapdf.gf.model.impl.pd.GFPDDestination;
@@ -128,7 +129,7 @@ public class GFPDLinkAnnot extends GFPDAnnot implements PDLinkAnnot {
 			}
 			PDNameTreeNode dests = namesDictionary.getDests();
 			if (dests != null) {
-				COSObject dest = dests.getObject(destination.getString());
+				COSObject dest = dests.getObject((COSString) destination.getDirectBase());
 				if (dest == null) {
 					LOGGER.log(Level.WARNING, "Named destination " + destination.getString() + 
 							" not found in the Dests name tree in the Names dictionary");
