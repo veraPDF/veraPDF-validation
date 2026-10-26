@@ -133,7 +133,7 @@ public class GFAArrayOfStructElemKidsEntry extends GFAObject implements AArrayOf
 
 	@Override
 	public Boolean getcontainsparentPg() {
-		return this.parentParentObject.knownKey(ASAtom.getASAtom("Pg"));
+		return new COSObject(this.parentParentObject).knownKey(ASAtom.getASAtom("Pg"));
 	}
 
 }

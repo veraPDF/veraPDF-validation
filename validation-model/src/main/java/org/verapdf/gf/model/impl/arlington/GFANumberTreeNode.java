@@ -184,8 +184,8 @@ public class GFANumberTreeNode extends GFAObject implements ANumberTreeNode {
 	}
 
 	@Override
-	public Boolean getcontainsparentKids() {
-		return this.parentObject.knownKey(ASAtom.getASAtom("Kids"));
+	public Boolean getparentHasTypeArray() {
+		return getHasTypeArray(new COSObject(this.parentObject));
 	}
 
 }
