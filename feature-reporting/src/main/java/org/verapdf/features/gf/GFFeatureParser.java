@@ -426,7 +426,7 @@ public final class GFFeatureParser {
 	}
 
 	private void reportJavaScripts(final PDNameTreeNode node) {
-		Map<String, COSObject> names = node.getNames();
+		Map<COSString, COSObject> names = node.getNames();
 		for (COSObject value : names.values()) {
 			if (value != null && value.getType().isDictionaryBased()) {
 				reportAction(new PDAction(value), ActionFeaturesObjectAdapter.Location.DOCUMENT);
@@ -439,7 +439,7 @@ public final class GFFeatureParser {
 
 	private int reportEmbeddedFileNode(final PDNameTreeNode node, final int index) {
 		int res = index;
-		Map<String, COSObject> names = node.getNames();
+		Map<COSString, COSObject> names = node.getNames();
 		for (COSObject value : names.values()) {
 			if (value != null && value.getType().isDictionaryBased()) {
 				reporter.report(GFFeaturesObjectCreator.createEmbeddedFileFeaturesObject(value, ++res));
