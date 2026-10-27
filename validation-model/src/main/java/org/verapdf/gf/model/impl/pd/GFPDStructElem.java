@@ -166,13 +166,15 @@ public class GFPDStructElem extends GFPDStructTreeNode implements PDStructElem {
 			}
 			if (standardStructureType == null || !Objects.equals(type.getType(), standardStructureType.getType()) || 
 					!Objects.equals(type.getNameSpaceURI(), standardStructureType.getNameSpaceURI())) {
-				return type.getType().getValue();
+				return PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0)
+                        ? type.getNameSpaceURI() + ":" + type.getType().getValue() : type.getType().getValue();
 			}
 		} else if (standardType != null) {
 			StructureType standardTypeMap = org.verapdf.pd.structure.PDStructElem.getStructureTypeStandardStructureType(standardStructureType);
 			if (standardTypeMap == null || !Objects.equals(standardTypeMap.getType(), standardStructureType.getType()) ||
 					!Objects.equals(standardTypeMap.getNameSpaceURI(), standardStructureType.getNameSpaceURI())) {
-				return standardType;
+				return PDFFlavours.isPDFSpecification(StaticContainers.getFlavour(), PDFAFlavour.PDFSpecification.ISO_32000_2_0) ?
+                        standardStructureType.getNameSpaceURI() + ":" + standardType : standardType;
 			}
 		}
 		return null;
