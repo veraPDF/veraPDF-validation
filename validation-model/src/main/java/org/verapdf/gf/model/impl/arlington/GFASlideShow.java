@@ -196,7 +196,7 @@ public class GFASlideShow extends GFAObject implements ASlideShow {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(Resources);
-		return nameTreeNode.containsKey(StartResource.getString());
+		return nameTreeNode.containsKey((COSString)StartResource.getDirectBase());
 	}
 
 }

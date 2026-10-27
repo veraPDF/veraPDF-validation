@@ -251,7 +251,7 @@ public class GFATarget extends GFAObject implements ATarget {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesDests);
-		return nameTreeNode.containsKey(P.getString());
+		return nameTreeNode.containsKey((COSString)P.getDirectBase());
 	}
 
 	@Override
@@ -265,7 +265,7 @@ public class GFATarget extends GFAObject implements ATarget {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesEmbeddedFiles);
-		return nameTreeNode.containsKey(N.getString());
+		return nameTreeNode.containsKey((COSString)N.getDirectBase());
 	}
 
 	@Override

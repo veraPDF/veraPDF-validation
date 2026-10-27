@@ -188,7 +188,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 			return false;
 		}
 		Long previousNumber = null;
-		String previousString = null;
+		COSString previousString = null;
 		for (int i = 0; i < object.size(); i += number) {
 			COSObject elem = object.at(i);
 			if (elem == null) {
@@ -200,10 +200,10 @@ public class GFAObject extends GenericModelObject implements AObject {
 				}
 				previousNumber = elem.getInteger();
 			} else if (elem.getType() == COSObjType.COS_STRING) {
-				if (previousString != null && previousString.compareTo(elem.getString()) >= 0) {
+				if (previousString != null && COSString.compare(previousString, (COSString)elem.getDirectBase()) >= 0) {
 					return false;
 				}
-				previousString = elem.getString();
+				previousString = (COSString)elem.getDirectBase();
 			} else {
 				return false;
 			}
@@ -309,7 +309,7 @@ public class GFAObject extends GenericModelObject implements AObject {
 			if (dests == null) {
 				return null;
 			}
-			object = dests.getObject(object.getString());
+			object = dests.getObject((COSString)object.getDirectBase());
 		}
 		Long pageNumber = null;
 		if (object != null && object.getType() == COSObjType.COS_INTEGER) {

@@ -631,7 +631,7 @@ public class GFAActionGoTo extends GFAObject implements AActionGoTo {
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesDests);
-		return nameTreeNode.containsKey(D.getString());
+		return nameTreeNode.containsKey((COSString)D.getDirectBase());
 	}
 
 }

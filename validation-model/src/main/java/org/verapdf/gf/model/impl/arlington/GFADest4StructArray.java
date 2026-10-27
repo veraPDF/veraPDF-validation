@@ -257,7 +257,7 @@ public class GFADest4StructArray extends GFAObject implements ADest4StructArray 
 			return false;
 		}
 		PDNameTreeNode nameTreeNode = PDNameTreeNode.create(trailerCatalogNamesDests);
-		return nameTreeNode.containsKey(entry0.getString());
+		return nameTreeNode.containsKey((COSString)entry0.getDirectBase());
 	}
 
 	@Override
