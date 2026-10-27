@@ -19,6 +19,8 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	@Override
 	public List<? extends org.verapdf.model.baselayer.Object> getLinkedObjects(String link) {
 		switch (link) {
+			case "entry3DU":
+				return getentry3DU();
 			case "AF":
 				return getAF();
 			case "AP":
@@ -27,6 +29,8 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 				return getBorder();
 			case "C":
 				return getC();
+			case "GEO":
+				return getGEO();
 			case "OC":
 				return getOC();
 			case "P":
@@ -38,6 +42,28 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 			default:
 				return super.getLinkedObjects(link);
 		}
+	}
+
+	private List<A3DUnits> getentry3DU() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getentry3DU2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<A3DUnits> getentry3DU2_0() {
+		COSObject object = getentry3DUValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<A3DUnits> list = new ArrayList<>(1);
+			list.add(new GFA3DUnits((COSDictionary)object.getDirectBase(), this.baseObject, "3DU"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
 	}
 
 	private List<AArrayOfAFFileSpecifications> getAF() {
@@ -138,6 +164,28 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 		if (object.getType() == COSObjType.COS_ARRAY) {
 			List<AArrayOf_4NumbersColorAnnotation> list = new ArrayList<>(1);
 			list.add(new GFAArrayOf_4NumbersColorAnnotation((COSArray)object.getDirectBase(), this.baseObject, "C"));
+			return Collections.unmodifiableList(list);
+		}
+		return Collections.emptyList();
+	}
+
+	private List<AMeasureGEO> getGEO() {
+		switch (StaticContainers.getFlavour()) {
+			case ARLINGTON2_0:
+				return getGEO2_0();
+			default:
+				return Collections.emptyList();
+		}
+	}
+
+	private List<AMeasureGEO> getGEO2_0() {
+		COSObject object = getGEOValue();
+		if (object == null) {
+			return Collections.emptyList();
+		}
+		if (object.getType() == COSObjType.COS_DICT) {
+			List<AMeasureGEO> list = new ArrayList<>(1);
+			list.add(new GFAMeasureGEO((COSDictionary)object.getDirectBase(), this.baseObject, "GEO"));
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
@@ -268,6 +316,28 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 			return Collections.unmodifiableList(list);
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public Boolean getcontains3DU() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("3DU"));
+	}
+
+	public COSObject getentry3DUValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("3DU"));
+		return object;
+	}
+
+	@Override
+	public String getentry3DUType() {
+		COSObject entry3DU = getentry3DUValue();
+		return getObjectType(entry3DU);
+	}
+
+	@Override
+	public Boolean getentry3DUHasTypeDictionary() {
+		COSObject entry3DU = getentry3DUValue();
+		return getHasTypeDictionary(entry3DU);
 	}
 
 	@Override
@@ -518,6 +588,28 @@ public class GFAAnnotRichMedia extends GFAObject implements AAnnotRichMedia {
 	public Long getFBitmaskValue() {
 		COSObject F = getFValue();
 		return getBitmaskValue(F);
+	}
+
+	@Override
+	public Boolean getcontainsGEO() {
+		return this.baseObject.knownKey(ASAtom.getASAtom("GEO"));
+	}
+
+	public COSObject getGEOValue() {
+		COSObject object = this.baseObject.getKey(ASAtom.getASAtom("GEO"));
+		return object;
+	}
+
+	@Override
+	public String getGEOType() {
+		COSObject GEO = getGEOValue();
+		return getObjectType(GEO);
+	}
+
+	@Override
+	public Boolean getGEOHasTypeDictionary() {
+		COSObject GEO = getGEOValue();
+		return getHasTypeDictionary(GEO);
 	}
 
 	@Override
