@@ -76,6 +76,7 @@ public class ChunkParser {
 
 	private final Deque<GraphicsState> graphicsStateStack = new ArrayDeque<>();
 	private final Stack<Long> markedContentStack = new Stack<>();
+	private ActualTextSequence actualTextSequence = null;
     private final Stack<Boolean> visibleContentStack = new Stack<Boolean>();
 
 	private final Set<Long> processedMCIDs = new HashSet<>();
@@ -128,12 +129,22 @@ public class ChunkParser {
 						processedMCIDs.add(mcid);
 					}
 				}
+				if (actualTextSequence == null && Operators.BDC.equals(operatorName)) {
+					String actualText = getActualText(arguments, resourcesHandler);
+					if (actualText != null) {
+						actualTextSequence = new ActualTextSequence(actualText, markedContentStack.size());
+					}
+				}
 				markedContentStack.push(mcid);
 				break;
 			case Operators.EMC:
 				processLineArts();
                 if (!markedContentStack.isEmpty()) {
                     markedContentStack.pop();
+                    if (actualTextSequence != null && actualTextSequence.depth == markedContentStack.size()) {
+                        actualTextSequence.apply();
+                        actualTextSequence = null;
+                    }
                 } else {
                     LOGGER.log(Level.WARNING, "EMC operator does not have a balancing BMC/BDC operator");
                 }
@@ -994,6 +1005,9 @@ public class ChunkParser {
 				}
 				fontNameToFontFamilyMap.put(fontNameWithoutSubset, fontFamily);
 			}
+			if (actualTextSequence != null) {
+				actualTextSequence.textChunks.add(textChunk);
+			}
 			return textChunk;
 		}
 		return null;
@@ -1032,6 +1046,20 @@ public class ChunkParser {
                     return property.getIntegerKey(ASAtom.MCID);
                 }
 			}
+		}
+		return null;
+	}
+
+	private static String getActualText(List<COSBase> arguments, PDResourcesHandler resources) {
+		if (arguments.isEmpty()) {
+			return null;
+		}
+		COSBase properties = arguments.get(arguments.size() - 1);
+		if (properties.getType() == COSObjType.COS_NAME && resources != null) {
+			properties = getPropertyByName(properties.getName(), resources);
+		}
+		if (properties != null && properties.getType() == COSObjType.COS_DICT) {
+			return properties.getStringKey(ASAtom.ACTUAL_TEXT);
 		}
 		return null;
 	}
@@ -1198,4 +1226,76 @@ public class ChunkParser {
         }
         return true;
     }
+
+	/**
+	 * The text chunks shown inside a marked-content sequence with an ActualText entry
+	 * (ISO 32000-1, 14.9.4). A nested ActualText is part of the outer one and is not read.
+	 */
+	private static class ActualTextSequence {
+
+		private final String actualText;
+		private final int depth;
+		private final List<TextChunk> textChunks = new ArrayList<>();
+
+		private ActualTextSequence(String actualText, int depth) {
+			this.actualText = actualText;
+			this.depth = depth;
+		}
+
+		/**
+		 * Replaces the values of the chunks with the ActualText, character by character.
+		 * The lengths stay the same, so the symbol ends and stream infos of the chunks stay
+		 * valid. An ActualText of another length is not applied, and neither is one with
+		 * control characters or right-to-left text: the chunk values are in visual order.
+		 * An ActualText on white space is not applied either. Producers draw a space glyph
+		 * for a character that is invisible (a soft hyphen inside a word) or that is drawn
+		 * by another glyph as well (a list label).
+		 */
+		private void apply() {
+			String value = getValue();
+			if (value.isEmpty() || isWhiteSpace(value)) {
+				return;
+			}
+			if (value.length() != actualText.length() || !isApplicable(actualText)) {
+				LOGGER.log(Level.FINE, "ActualText \"" + actualText + "\" is not applied to text \"" + value + "\"");
+				return;
+			}
+			int start = 0;
+			for (TextChunk textChunk : textChunks) {
+				int end = start + textChunk.getValue().length();
+				textChunk.setValue(actualText.substring(start, end));
+				start = end;
+			}
+		}
+
+		private String getValue() {
+			StringBuilder value = new StringBuilder();
+			for (TextChunk textChunk : textChunks) {
+				value.append(textChunk.getValue());
+			}
+			return value.toString();
+		}
+
+		private static boolean isWhiteSpace(String value) {
+			for (int i = 0; i < value.length(); i++) {
+				char symbol = value.charAt(i);
+				if (!Character.isWhitespace(symbol) && !Character.isSpaceChar(symbol)) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		private static boolean isApplicable(String actualText) {
+			for (int i = 0; i < actualText.length(); i++) {
+				char symbol = actualText.charAt(i);
+				byte directionality = Character.getDirectionality(symbol);
+				if (Character.isISOControl(symbol) || directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT ||
+				    directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC) {
+					return false;
+				}
+			}
+			return true;
+		}
+	}
 }
