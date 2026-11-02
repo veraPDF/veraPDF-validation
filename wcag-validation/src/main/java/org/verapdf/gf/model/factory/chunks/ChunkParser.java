@@ -802,16 +802,16 @@ public class ChunkParser {
 	
 	private static boolean isHorizontalLine(LineChunk line1, LineChunk line2, LineChunk line3, LineChunk line4) {
 		return line1.isHorizontalLine() && (line2.isVerticalLine() ||
-				Vertex.areCloseVertexes(line2.getEnd(), line2.getStart())) &&
+				(Vertex.areCloseVertexes(line2.getEnd(), line2.getStart()) && !line2.isHorizontalLine())) &&
 				line3.isHorizontalLine() && (line4.isVerticalLine() ||
-				Vertex.areCloseVertexes(line4.getEnd(), line4.getStart()));
+				(Vertex.areCloseVertexes(line4.getEnd(), line4.getStart())  && !line4.isHorizontalLine()));
 	}
 	
 	private static boolean isVerticalLine(LineChunk line1, LineChunk line2, LineChunk line3, LineChunk line4) {
 		return line1.isVerticalLine() && (line2.isHorizontalLine() ||
-				Vertex.areCloseVertexes(line2.getEnd(), line2.getStart())) &&
+				(Vertex.areCloseVertexes(line2.getEnd(), line2.getStart()) && !line2.isVerticalLine())) &&
 				line3.isVerticalLine() && (line4.isHorizontalLine() ||
-				Vertex.areCloseVertexes(line4.getEnd(), line4.getStart()));
+				(Vertex.areCloseVertexes(line4.getEnd(), line4.getStart()) && !line4.isVerticalLine()));
 	}
 	
 
