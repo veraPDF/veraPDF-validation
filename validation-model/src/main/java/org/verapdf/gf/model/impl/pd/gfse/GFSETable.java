@@ -57,9 +57,15 @@ public class GFSETable extends GFPDStructElem implements SETable {
     private void checkTable() {
         List<Integer> rowGroupingsIndexes = new LinkedList<>();
         List<GFPDStructElem> listTR = getTR(rowGroupingsIndexes);
+        if (listTR.isEmpty()) {
+            useHeadersAndIdOrScope = true;
+            return;
+        }
         int numberOfRows = getNumberOfRows(listTR);
         this.rowSpan = (long)numberOfRows;
-        if (numberOfRows == 0) {
+        if (listTR.size() > numberOfRows) {
+            this.numberOfRowWithWrongColumnSpan = (long)numberOfRows;
+            this.wrongColumnSpan = (long)0;
             useHeadersAndIdOrScope = true;
             return;
         }
