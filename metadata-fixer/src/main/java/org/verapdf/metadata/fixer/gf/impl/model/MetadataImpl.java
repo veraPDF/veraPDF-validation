@@ -148,47 +148,55 @@ public class MetadataImpl implements Metadata {
     public void addPDFIdentificationSchema(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
         if (PDFFlavours.isFlavourISOSeries(flavour, PDFAFlavour.IsoStandardSeries.ISO_14289)) {
             addPDFUAIdentificationSchema(resultBuilder, flavour);
-//            checkAndFixPDFUAPrefixes(resultBuilder, flavour);
+            checkAndFixPDFUAPrefixes(resultBuilder, flavour);
             updateExtensionSchema(resultBuilder, flavour);
         } else {
             addPDFAIdentificationSchema(resultBuilder, flavour);
-//            checkAndFixPDFAPrefixes(resultBuilder, flavour);
+            checkAndFixPDFAPrefixes(resultBuilder, flavour);
         }
         fixRevProperty(resultBuilder, flavour);
     }
 
     public void checkAndFixPDFAPrefixes(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1) ||
-                PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_2) ||
-                PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_3)) {
-            fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
-            fixPropertyPrefix(resultBuilder, VeraPDFMeta.CONFORMANCE, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
-            fixPropertyPrefix(resultBuilder, VeraPDFMeta.AMD, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
-            if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
-                fixPropertyPrefix(resultBuilder, VeraPDFMeta.CORR, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
+        try {
+            if (PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1) ||
+                    PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_2) ||
+                    PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_3)) {
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.CONFORMANCE, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.AMD, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
+                if (!PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_1)) {
+                    fixPropertyPrefix(resultBuilder, VeraPDFMeta.CORR, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
+                }
+            } else if (PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_4)) {
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.REVISION_YEAR, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
             }
-        } else if (PDFFlavours.isFlavourPart(flavour, PDFAFlavour.Specification.ISO_19005_4)) {
-            fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
-            fixPropertyPrefix(resultBuilder, VeraPDFMeta.REVISION_YEAR, XMPConst.NS_PDFA_ID, VeraPDFMeta.PDFAID_PREFIX);
+        } catch (XMPException e) {
+            LOGGER.log(Level.FINE, "Can not fix prefixes of identification properties.");
         }
     }
 
     public void checkAndFixPDFUAPrefixes(MetadataFixerResultImpl.Builder resultBuilder, PDFAFlavour flavour) {
-        if (PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_1)) {
-            fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
-            fixPropertyPrefix(resultBuilder, VeraPDFMeta.CORR, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
-            fixPropertyPrefix(resultBuilder, VeraPDFMeta.AMD, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
-        } else if (PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_2)) {
-            fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
-            fixPropertyPrefix(resultBuilder, VeraPDFMeta.REVISION_YEAR, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
+        try {
+            if (PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_1)) {
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.CORR, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.AMD, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
+            } else if (PDFFlavours.isFlavour(flavour, PDFAFlavour.PDFUA_2)) {
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.PART, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
+                fixPropertyPrefix(resultBuilder, VeraPDFMeta.REVISION_YEAR, XMPConst.NS_PDFUA_ID, VeraPDFMeta.PDFUAID_PREFIX);
+            }
+        } catch (XMPException e) {
+            LOGGER.log(Level.FINE, "Can not fix prefixes of identification properties.");
         }
     }
 
     private void fixPropertyPrefix(MetadataFixerResultImpl.Builder resultBuilder, String propertyName, String schemaId, 
-                                   String propertyPrefix) {
+                                   String propertyPrefix) throws XMPException {
         VeraPDFXMPNode property = this.metadata.getProperty(schemaId, propertyName);
         if (property != null && !propertyPrefix.equals(property.getPrefix())) {
-            property.setPrefix(propertyPrefix);
+            this.metadata.setPropertyPrefix(schemaId, propertyName, propertyPrefix);
             this.setNeedToBeUpdated(true);
             resultBuilder.addFix("Set prefix of " + propertyName + " property to " + propertyPrefix);
         }
