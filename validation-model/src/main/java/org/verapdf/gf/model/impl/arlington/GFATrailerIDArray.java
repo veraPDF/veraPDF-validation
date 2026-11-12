@@ -46,7 +46,7 @@ public class GFATrailerIDArray extends GFAObject implements ATrailerIDArray {
 	public Long getentry0StringSize() {
 		COSObject entry0 = getentry0Value();
 		if (entry0 != null && entry0.getType() == COSObjType.COS_STRING) {
-			return (long) entry0.getString().length();
+			return entry0.getInteger();
 		}
 		return null;
 	}
@@ -81,7 +81,7 @@ public class GFATrailerIDArray extends GFAObject implements ATrailerIDArray {
 	public Long getentry1StringSize() {
 		COSObject entry1 = getentry1Value();
 		if (entry1 != null && entry1.getType() == COSObjType.COS_STRING) {
-			return (long) entry1.getString().length();
+			return entry1.getInteger();
 		}
 		return null;
 	}

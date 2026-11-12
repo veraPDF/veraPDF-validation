@@ -52,7 +52,7 @@ public class GFAArrayOfDuration extends GFAObject implements AArrayOfDuration {
 	public Long getentry0StringSize() {
 		COSObject entry0 = getentry0Value();
 		if (entry0 != null && entry0.getType() == COSObjType.COS_STRING) {
-			return (long) entry0.getString().length();
+			return entry0.getInteger();
 		}
 		return null;
 	}

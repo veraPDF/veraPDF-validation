@@ -188,7 +188,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	public Long getDurationStringSize() {
 		COSObject Duration = getDurationValue();
 		if (Duration != null && Duration.getType() == COSObjType.COS_STRING) {
-			return (long) Duration.getString().length();
+			return Duration.getInteger();
 		}
 		return null;
 	}
@@ -421,7 +421,7 @@ public class GFAMovieActivation extends GFAObject implements AMovieActivation {
 	public Long getStartStringSize() {
 		COSObject Start = getStartValue();
 		if (Start != null && Start.getType() == COSObjType.COS_STRING) {
-			return (long) Start.getString().length();
+			return Start.getInteger();
 		}
 		return null;
 	}

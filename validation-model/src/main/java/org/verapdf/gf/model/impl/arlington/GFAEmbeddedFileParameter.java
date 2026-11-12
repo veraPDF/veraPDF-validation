@@ -79,7 +79,7 @@ public class GFAEmbeddedFileParameter extends GFAObject implements AEmbeddedFile
 	public Long getCheckSumStringSize() {
 		COSObject CheckSum = getCheckSumValue();
 		if (CheckSum != null && CheckSum.getType() == COSObjType.COS_STRING) {
-			return (long) CheckSum.getString().length();
+			return CheckSum.getInteger();
 		}
 		return null;
 	}

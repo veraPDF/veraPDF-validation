@@ -274,7 +274,7 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	public Long getOStringSize() {
 		COSObject O = getOValue();
 		if (O != null && O.getType() == COSObjType.COS_STRING) {
-			return (long) O.getString().length();
+			return O.getInteger();
 		}
 		return null;
 	}
@@ -305,7 +305,7 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	public Long getOEStringSize() {
 		COSObject OE = getOEValue();
 		if (OE != null && OE.getType() == COSObjType.COS_STRING) {
-			return (long) OE.getString().length();
+			return OE.getInteger();
 		}
 		return null;
 	}
@@ -508,7 +508,7 @@ public class GFAEncryptionStandard extends GFAObject implements AEncryptionStand
 	public Long getUStringSize() {
 		COSObject U = getUValue();
 		if (U != null && U.getType() == COSObjType.COS_STRING) {
-			return (long) U.getString().length();
+			return U.getInteger();
 		}
 		return null;
 	}

@@ -42,7 +42,7 @@ public class GFAStyleDict extends GFAObject implements AStyleDict {
 	public Long getPanoseStringSize() {
 		COSObject Panose = getPanoseValue();
 		if (Panose != null && Panose.getType() == COSObjType.COS_STRING) {
-			return (long) Panose.getString().length();
+			return Panose.getInteger();
 		}
 		return null;
 	}
