@@ -62,13 +62,11 @@ public class GFSETable extends GFPDStructElem implements SETable {
             return;
         }
         int numberOfRows = getNumberOfRows(listTR);
-        this.rowSpan = (long)numberOfRows;
         if (listTR.size() > numberOfRows) {
-            this.numberOfRowWithWrongColumnSpan = (long)numberOfRows;
-            this.wrongColumnSpan = (long)0;
             useHeadersAndIdOrScope = true;
             return;
         }
+        this.rowSpan = (long)numberOfRows;
         int numberOfColumns = getNumberOfColumns(listTR.get(0));
         this.columnSpan = (long)numberOfColumns;
         GFSETableCell[][] cells = new GFSETableCell[numberOfRows][numberOfColumns];
