@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
+import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.selayer.SETable;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
@@ -33,6 +34,7 @@ import java.util.*;
 public class GFSETable extends GFPDStructElem implements SETable {
 
     public static final String TABLE_STRUCTURE_ELEMENT_TYPE = "SETable";
+    public static final String ROWS = "rows";
 
     private Boolean useHeadersAndIdOrScope;
     private Long columnSpan;
@@ -40,9 +42,40 @@ public class GFSETable extends GFPDStructElem implements SETable {
     private Long numberOfRowWithWrongColumnSpan = null;
     private Long numberOfColumnWithWrongRowSpan = null;
     private Long wrongColumnSpan;
+    private GFSETableCell[][] cells = new GFSETableCell[0][0];
 
     public GFSETable(org.verapdf.pd.structure.PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.TABLE, TABLE_STRUCTURE_ELEMENT_TYPE);
+    }
+
+    @Override
+    public List<? extends Object> getLinkedObjects(String link) {
+        switch (link) {
+            case ROWS:
+                return getRows();
+            default:
+                return super.getLinkedObjects(link);
+        }
+    }
+
+    public List<GFSETR> getRows() {
+        List<GFPDStructElem> rows = getTR(new LinkedList<>());
+        List<GFSETR> tableRows = new ArrayList<>(rows.size());
+        for (GFPDStructElem row : rows) {
+            tableRows.add((GFSETR) row);
+        }
+        return Collections.unmodifiableList(tableRows);
+    }
+
+    public GFSETableCell[][] getCells() {
+        if (rowSpan == null) {
+            checkTable();
+        }
+        GFSETableCell[][] result = new GFSETableCell[cells.length][];
+        for (int row = 0; row < cells.length; row++) {
+            result[row] = cells[row].clone();
+        }
+        return result;
     }
 
     // This logic checks that all TH have Scope attribute or TD reference to TH ID using Headers
@@ -74,6 +107,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
             return;
         }
         GFSETableCell[][] cells = new GFSETableCell[numberOfRows][numberOfColumns];
+        this.cells = cells;
         if (!checkRegular(listTR, cells, numberOfRows, numberOfColumns, rowGroupingsIndexes)) {
             useHeadersAndIdOrScope = true;
             return;

@@ -53,6 +53,10 @@ public class GFSETH extends GFSETableCell implements SETH {
         if (PDFFlavours.isFlavour(StaticContainers.getFlavour(), PDFAFlavour.PDFUA_1)) {
             return null;
         }
+        return getDefaultScopeAllFlavours(rowNumber, columnNumber);
+    }
+
+    public static String getDefaultScopeAllFlavours(int rowNumber, int columnNumber) {
         if (rowNumber == 0 && columnNumber == 0) {
             return BOTH;
         }
