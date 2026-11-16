@@ -69,7 +69,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	private final int headerCommentByte3;
 	private final int headerCommentByte4;
 	private final boolean isOptionalContentPresent;
-	private final int postEOFDataSize;
+	private final long postEOFDataSize;
 	private final boolean isLinearised;
 	private final String firstPageID;
 	private final String lastID;
@@ -166,7 +166,7 @@ public class GFCosDocument extends GFCosObject implements CosDocument {
 	 */
 	@Override
 	public Long getpostEOFDataSize() {
-		return (long) this.postEOFDataSize;
+		return this.postEOFDataSize;
 	}
 
 	/**
