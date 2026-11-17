@@ -21,41 +21,15 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
-import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.selayer.SETR;
 import org.verapdf.pd.structure.PDStructElem;
 import org.verapdf.tools.TaggedPDFConstants;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class GFSETR extends GFPDStructElem implements SETR {
 
     public static final String TR_STRUCTURE_ELEMENT_TYPE = "SETR";
-    public static final String CELLS = "cells";
 
     public GFSETR(PDStructElem structElemDictionary) {
         super(structElemDictionary, TaggedPDFConstants.TR, TR_STRUCTURE_ELEMENT_TYPE);
-    }
-
-    @Override
-    public List<? extends Object> getLinkedObjects(String link) {
-        switch (link) {
-            case CELLS:
-                return getCells();
-            default:
-                return super.getLinkedObjects(link);
-        }
-    }
-
-    public List<GFSETableCell> getCells() {
-        List<GFSETableCell> cells = new ArrayList<>();
-        for (GFPDStructElem child : getStructuralSignificanceChildren()) {
-            if (child instanceof GFSETableCell) {
-                cells.add((GFSETableCell) child);
-            }
-        }
-        return Collections.unmodifiableList(cells);
     }
 }

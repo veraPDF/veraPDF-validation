@@ -22,7 +22,6 @@ package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.gf.model.impl.pd.GFPDStructElem;
-import org.verapdf.model.baselayer.Object;
 import org.verapdf.model.selayer.SETable;
 import org.verapdf.model.pdlayer.PDStructElem;
 import org.verapdf.pdfa.flavours.PDFAFlavour;
@@ -34,7 +33,6 @@ import java.util.*;
 public class GFSETable extends GFPDStructElem implements SETable {
 
     public static final String TABLE_STRUCTURE_ELEMENT_TYPE = "SETable";
-    public static final String ROWS = "rows";
 
     private Boolean useHeadersAndIdOrScope;
     private Long columnSpan;
@@ -48,34 +46,11 @@ public class GFSETable extends GFPDStructElem implements SETable {
         super(structElemDictionary, TaggedPDFConstants.TABLE, TABLE_STRUCTURE_ELEMENT_TYPE);
     }
 
-    @Override
-    public List<? extends Object> getLinkedObjects(String link) {
-        switch (link) {
-            case ROWS:
-                return getRows();
-            default:
-                return super.getLinkedObjects(link);
-        }
-    }
-
-    public List<GFSETR> getRows() {
-        List<GFPDStructElem> rows = getTR(new LinkedList<>());
-        List<GFSETR> tableRows = new ArrayList<>(rows.size());
-        for (GFPDStructElem row : rows) {
-            tableRows.add((GFSETR) row);
-        }
-        return Collections.unmodifiableList(tableRows);
-    }
-
     public GFSETableCell[][] getCells() {
         if (rowSpan == null) {
             checkTable();
         }
-        GFSETableCell[][] result = new GFSETableCell[cells.length][];
-        for (int row = 0; row < cells.length; row++) {
-            result[row] = cells[row].clone();
-        }
-        return result;
+        return cells;
     }
 
     // This logic checks that all TH have Scope attribute or TD reference to TH ID using Headers
@@ -106,21 +81,20 @@ public class GFSETable extends GFPDStructElem implements SETable {
             useHeadersAndIdOrScope = true;
             return;
         }
-        GFSETableCell[][] cells = new GFSETableCell[numberOfRows][numberOfColumns];
-        this.cells = cells;
-        if (!checkRegular(listTR, cells, numberOfRows, numberOfColumns, rowGroupingsIndexes)) {
+        this.cells = new GFSETableCell[numberOfRows][numberOfColumns];
+        if (!checkRegular(listTR, numberOfRows, numberOfColumns, rowGroupingsIndexes)) {
             useHeadersAndIdOrScope = true;
             return;
         }
         Set<String> idSet = new HashSet<>();
-        if (hasScope(cells, numberOfRows, numberOfColumns, idSet)) {
+        if (hasScope(numberOfRows, numberOfColumns, idSet)) {
             useHeadersAndIdOrScope = true;
             return;
         }
-        useHeadersAndIdOrScope = hasHeaders(cells, idSet, numberOfRows, numberOfColumns);
+        useHeadersAndIdOrScope = hasHeaders(idSet, numberOfRows, numberOfColumns);
     }
 
-    private boolean hasScope(GFSETableCell[][] cells, int numberOfRows, int numberOfColumns, Set<String> idSet) {
+    private boolean hasScope(int numberOfRows, int numberOfColumns, Set<String> idSet) {
         boolean hasScope = true;
         for (int rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
             for (int columnNumber = 0; columnNumber < numberOfColumns; columnNumber++) {
@@ -140,7 +114,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
         return hasScope;
     }
 
-    private boolean checkRegular(List<GFPDStructElem> listTR, GFSETableCell[][] cells,
+    private boolean checkRegular(List<GFPDStructElem> listTR,
                                  int numberOfRows, int numberOfColumns, List<Integer> rowGroupingsIndexes) {
         for (int rowNumber = 0; rowNumber < listTR.size(); rowNumber++) {
             int columnNumber = 0;
@@ -173,7 +147,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
                         }
                     }
                 }
-                if (!checkRegular(cells, cell, rowSpan, colSpan, rowNumber, columnNumber)) {
+                if (!checkRegular(cell, rowSpan, colSpan, rowNumber, columnNumber)) {
                     return false;
                 }
                 columnNumber += colSpan;
@@ -200,7 +174,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
         return true;
     }
 
-    private boolean hasHeaders(GFSETableCell[][] cells, Set<String> idSet, int numberOfRows, int numberOfColumns) {
+    private boolean hasHeaders(Set<String> idSet, int numberOfRows, int numberOfColumns) {
         for (int rowNumber = 0; rowNumber < numberOfRows; rowNumber++) {
             for (int columnNumber = 0; columnNumber < numberOfColumns; columnNumber++) {
                 GFSETableCell cell = cells[rowNumber][columnNumber];
@@ -221,7 +195,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
                         }
                     }
                 }
-                if (hasHeaders || hasHeaders(cells, rowNumber, columnNumber,
+                if (hasHeaders || hasHeaders(rowNumber, columnNumber,
                         rowNumber + tableCell.getRowSpan().intValue(), columnNumber + tableCell.getColSpan().intValue())) {
                     tableCell.setHasConnectedHeader(true);
                     continue;
@@ -240,7 +214,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
         return true;
     }
 
-    private boolean hasHeaders(GFSETableCell[][] cells, int cellRowNumber, int cellColumnNumber,
+    private boolean hasHeaders(int cellRowNumber, int cellColumnNumber,
                                int cellEndRowNumber, int cellEndColumnNumber) {
         if (PDFFlavours.isFlavour(StaticContainers.getFlavour(), PDFAFlavour.PDFUA_1)) {
             return false;
@@ -321,7 +295,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
         }
         return numberOfColumns;
     }
- 
+
     private Integer getNumberOfRows(List<GFPDStructElem> listTR) {
         int numberOfRows = 0;
         for (int rowNumber = 0; rowNumber < listTR.size(); rowNumber++) {
@@ -354,7 +328,7 @@ public class GFSETable extends GFPDStructElem implements SETable {
         return numberOfRows;
     }
 
-    private Boolean checkRegular(GFSETableCell[][] cells, GFSETableCell cell, long rowSpan, long colSpan,
+    private Boolean checkRegular(GFSETableCell cell, long rowSpan, long colSpan,
                                  int rowNumber, int columnNumber) {
         cell.setRowNumber(rowNumber);
         cell.setColumnNumber(columnNumber);

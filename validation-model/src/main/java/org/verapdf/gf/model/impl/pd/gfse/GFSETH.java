@@ -22,7 +22,6 @@ package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.as.ASAtom;
 import org.verapdf.cos.COSName;
-import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.model.selayer.SETH;
 import org.verapdf.pd.structure.PDStructElem;
@@ -59,10 +58,10 @@ public class GFSETH extends GFSETableCell implements SETH {
         if (PDFFlavours.isFlavour(StaticContainers.getFlavour(), PDFAFlavour.PDFUA_1)) {
             return null;
         }
-        return getDefaultScopeAllFlavours(rowNumber, columnNumber);
+        return calculateScope(rowNumber, columnNumber);
     }
 
-    public static String getDefaultScopeAllFlavours(int rowNumber, int columnNumber) {
+    public static String calculateScope(int rowNumber, int columnNumber) {
         if (rowNumber == 0 && columnNumber == 0) {
             return BOTH;
         }
