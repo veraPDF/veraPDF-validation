@@ -62,13 +62,17 @@ public class GFSETable extends GFPDStructElem implements SETable {
             return;
         }
         int numberOfRows = getNumberOfRows(listTR);
-        if (listTR.size() > numberOfRows) {
-            useHeadersAndIdOrScope = true;
-            return;
-        }
         this.rowSpan = (long)numberOfRows;
         int numberOfColumns = getNumberOfColumns(listTR.get(0));
         this.columnSpan = (long)numberOfColumns;
+        if (numberOfRowWithWrongColumnSpan != null) {
+            useHeadersAndIdOrScope = true;
+            return;
+        }
+        if (rowSpan == 0 || columnSpan == 0) {
+            useHeadersAndIdOrScope = true;
+            return;
+        }
         GFSETableCell[][] cells = new GFSETableCell[numberOfRows][numberOfColumns];
         if (!checkRegular(listTR, cells, numberOfRows, numberOfColumns, rowGroupingsIndexes)) {
             useHeadersAndIdOrScope = true;
@@ -283,22 +287,35 @@ public class GFSETable extends GFPDStructElem implements SETable {
         }
         return numberOfColumns;
     }
-
+ 
     private Integer getNumberOfRows(List<GFPDStructElem> listTR) {
         int numberOfRows = 0;
         for (int rowNumber = 0; rowNumber < listTR.size(); rowNumber++) {
             List<GFPDStructElem> children = listTR.get(rowNumber).getStructuralSignificanceChildren();
+            boolean containsCells = false;
             for (PDStructElem elem : children) {
                 String type = elem.getstandardType();
                 if (TaggedPDFConstants.TH.equals(type) || TaggedPDFConstants.TD.equals(type)) {
+                    containsCells = true;
                     Long rowSpan = ((GFSETableCell)elem).getRowSpan();
                     numberOfRows += rowSpan;
                     if (rowSpan > 1) {
                         rowNumber += rowSpan - 1;
+                    } else if (rowSpan < 1 && this.numberOfRowWithWrongColumnSpan == null) {
+                        this.numberOfRowWithWrongColumnSpan = (long)rowNumber;
+                        this.wrongColumnSpan = 0l;
                     }
                     break;
                 }
             }
+            if (!containsCells && this.numberOfRowWithWrongColumnSpan == null) {
+                this.numberOfRowWithWrongColumnSpan = (long)rowNumber;
+                this.wrongColumnSpan = 0l;
+            }
+        }
+        if (Objects.equals(this.numberOfRowWithWrongColumnSpan, 0L)) {
+            this.numberOfRowWithWrongColumnSpan = null;
+            this.wrongColumnSpan = null;
         }
         return numberOfRows;
     }
