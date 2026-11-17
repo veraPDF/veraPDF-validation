@@ -21,6 +21,8 @@
 package org.verapdf.gf.model.impl.pd.gfse;
 
 import org.verapdf.as.ASAtom;
+import org.verapdf.cos.COSName;
+import org.verapdf.cos.COSObject;
 import org.verapdf.gf.model.impl.containers.StaticContainers;
 import org.verapdf.model.selayer.SETH;
 import org.verapdf.pd.structure.PDStructElem;
@@ -47,6 +49,10 @@ public class GFSETH extends GFSETableCell implements SETH {
 
     protected String getScope() {
         return AttributeHelper.getScope(simpleCOSObject);
+    }
+
+    public void setScope(String value) {
+        AttributeHelper.setAttributeValue(this.simpleCOSObject, ASAtom.TABLE, ASAtom.SCOPE, COSName.construct(ASAtom.getASAtom(value)));
     }
 
     public static String getDefaultScope(int rowNumber, int columnNumber) {
