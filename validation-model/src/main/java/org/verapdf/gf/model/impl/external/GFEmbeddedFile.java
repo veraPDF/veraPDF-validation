@@ -85,12 +85,14 @@ public class GFEmbeddedFile extends GFExternal implements EmbeddedFile {
 
 	@Override
 	public Boolean getisValidPDFA12() {
-		return isValidPDFA(new HashSet<>(Arrays.asList(PDFAFlavour.PDFA_1_B, PDFAFlavour.PDFA_2_B)));
+		return isValidPDFA(new HashSet<>(Arrays.asList(PDFAFlavour.PDFA_1_A, PDFAFlavour.PDFA_1_B, PDFAFlavour.PDFA_2_A, 
+				PDFAFlavour.PDFA_2_B, PDFAFlavour.PDFA_2_U)));
 	}
 
 	@Override
 	public Boolean getisValidPDFA124() {
-		return isValidPDFA(new HashSet<>(Arrays.asList(PDFAFlavour.PDFA_1_B, PDFAFlavour.PDFA_2_B,  PDFAFlavour.PDFA_4)));
+		return isValidPDFA(new HashSet<>(Arrays.asList(PDFAFlavour.PDFA_1_A, PDFAFlavour.PDFA_1_B, PDFAFlavour.PDFA_2_A,
+				PDFAFlavour.PDFA_2_B, PDFAFlavour.PDFA_2_U, PDFAFlavour.PDFA_4, PDFAFlavour.PDFA_4_E, PDFAFlavour.PDFA_4_F)));
 	}
 
     @Override
