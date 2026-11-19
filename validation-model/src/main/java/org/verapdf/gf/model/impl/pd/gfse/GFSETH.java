@@ -46,7 +46,7 @@ public class GFSETH extends GFSETableCell implements SETH {
         return simplePDObject.getStringKey(ASAtom.ID);
     }
 
-    protected String getScope() {
+    public String getScope() {
         return AttributeHelper.getScope(simpleCOSObject);
     }
 
