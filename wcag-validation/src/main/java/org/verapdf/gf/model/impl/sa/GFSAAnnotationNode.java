@@ -41,7 +41,7 @@ public class GFSAAnnotationNode extends AnnotationNode {
 				getObjectKeyNumber(getDestination(annotation, ASAtom.SD)));
 	}
 
-	private static BoundingBox getBoundingBox(PDAnnotation annotation) {
+	public static BoundingBox getBoundingBox(PDAnnotation annotation) {
 		Integer pageNumber = getAnnotationPageNumber(annotation);
 		double[] rect = annotation.getRect();
 		BoundingBox boundingBox = rect == null ? new BoundingBox() : new BoundingBox(pageNumber, rect);
