@@ -183,7 +183,7 @@ public class GFModelParser implements PDFAParser {
 			
 			return flavours.isEmpty() ? getDefaultFlavours(defaultFlavour) : flavours;
 		} catch (XMPException | IOException e) {
-			logger.log(Level.FINE, e.getMessage(), e);
+			logger.log(Level.WARNING, e.getMessage(), e);
 			return getDefaultFlavours(defaultFlavour);
 		}
 	}
@@ -222,7 +222,7 @@ public class GFModelParser implements PDFAParser {
 			Integer identificationPart = veraPDFMeta.getPDFUAIdentificationPart();
 			return PDFAFlavour.byFlavourId(PDFUA_PREFIX + identificationPart);
 		} catch (XMPException e) {
-			logger.log(Level.FINE, e.getMessage(), e);
+			logger.log(Level.FINE, e.getMessage());
 			return PDFAFlavour.NO_FLAVOUR;
 		}
 	}
