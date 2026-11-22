@@ -183,7 +183,7 @@ public class GFModelParser implements PDFAParser {
 			
 			return flavours.isEmpty() ? getDefaultFlavours(defaultFlavour) : flavours;
 		} catch (XMPException | IOException e) {
-			logger.log(Level.FINE, e.getMessage());
+			logger.log(Level.WARNING, e.getMessage());
 			return getDefaultFlavours(defaultFlavour);
 		}
 	}
