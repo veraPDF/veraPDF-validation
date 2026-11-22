@@ -314,7 +314,7 @@ public class GFModelParser implements PDFAParser {
 
 	@Override
 	public PDFAFlavour getFlavour() {
-		return this.flavour.get(0);
+		return !this.flavour.isEmpty() ? this.flavour.get(0) : PDFAFlavour.NO_FLAVOUR;
 	}
 
 	@Override
