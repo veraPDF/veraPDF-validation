@@ -86,10 +86,7 @@ public class GFCosBBox extends GFCosArray implements CosBBox {
     private Double getRequiredValue(final int position) {
         COSArray array = (COSArray) this.baseObject;
         if (array.size() > position) {
-            COSBase base = array.at(position).get();
-            if (base instanceof COSIndirect) {
-                base = base.getDirectBase();
-            }
+            COSBase base = array.at(position).getDirectBase();
             if (base instanceof COSNumber) {
                 return base.getReal();
             }
