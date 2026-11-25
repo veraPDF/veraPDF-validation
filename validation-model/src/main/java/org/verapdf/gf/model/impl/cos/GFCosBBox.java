@@ -90,8 +90,9 @@ public class GFCosBBox extends GFCosArray implements CosBBox {
             if (base instanceof COSNumber) {
                 return base.getReal();
             }
+            String type = base == null ? "null" : base.getClass().getSimpleName();
 			LOGGER.log(Level.WARNING, "In bbox expected number but got "
-			        + base.getClass().getSimpleName());
+			        + type);
         } else {
             LOGGER.log(Level.WARNING, "Expected size of bbox array greater than "
                     + position + " but got " + array.size());
