@@ -22,6 +22,7 @@ package org.verapdf.gf.model.impl.cos;
 
 import org.verapdf.cos.COSArray;
 import org.verapdf.cos.COSBase;
+import org.verapdf.cos.COSIndirect;
 import org.verapdf.cos.COSNumber;
 import org.verapdf.model.coslayer.CosBBox;
 
@@ -85,12 +86,13 @@ public class GFCosBBox extends GFCosArray implements CosBBox {
     private Double getRequiredValue(final int position) {
         COSArray array = (COSArray) this.baseObject;
         if (array.size() > position) {
-            COSBase base = array.at(position).get();
+            COSBase base = array.at(position).getDirectBase();
             if (base instanceof COSNumber) {
                 return base.getReal();
             }
+            String type = base == null ? "null" : base.getClass().getSimpleName();
 			LOGGER.log(Level.WARNING, "In bbox expected number but got "
-			        + base.getClass().getSimpleName());
+			        + type);
         } else {
             LOGGER.log(Level.WARNING, "Expected size of bbox array greater than "
                     + position + " but got " + array.size());
